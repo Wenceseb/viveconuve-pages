@@ -1,37 +1,39 @@
 <!doctype html>
 <html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f7f5ef">
-<title>{{title}}</title>
-<meta name="description" content="{{description}}">
-<meta name="robots" content="{{robots}}">
-<link rel="canonical" href="{{canonical}}">
-<meta property="og:locale" content="es_ES">
-<meta property="og:type" content="{{type}}">
-<meta property="og:site_name" content="ViveConUve">
-<meta property="og:title" content="{{title}}">
-<meta property="og:description" content="{{description}}">
-<meta property="og:url" content="{{canonical}}">
-<meta property="og:image" content="https://viveconuve.com/assets/images/viveconuve.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{title}}">
-<meta name="twitter:description" content="{{description}}">
-<meta name="twitter:image" content="https://viveconuve.com/assets/images/viveconuve.png">
-<link rel="icon" href="/assets/images/favicon.png" type="image/png">
-<link rel="alternate" type="application/rss+xml" title="ViveConUve RSS" href="/rss.xml">
-<link rel="stylesheet" href="{{cssUrl}}">
-{{{newsletterHead}}}
-{{{schemas}}}
-<script defer src="{{jsUrl}}" data-analytics-id="{{analyticsId}}" data-adsense-id="{{adsenseId}}"></script>
-</head>
-<body class="{{layout}}">
-<a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
-{{{header}}}
-<main id="contenido-principal">{{{content}}}</main>
-{{{footer}}}
-{{{cookies}}}
-{{{newsletterScript}}}
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f5ef" />
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}" />
+    <meta name="robots" content="{{robots}}" />
+    <link rel="canonical" href="{{canonical}}" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:type" content="{{type}}" />
+    <meta property="og:site_name" content="ViveConUve" />
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="og:url" content="{{canonical}}" />
+    <meta property="og:image" content="https://viveconuve.com/assets/images/viveconuve.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{title}}" />
+    <meta name="twitter:description" content="{{description}}" />
+    <meta name="twitter:image" content="https://viveconuve.com/assets/images/viveconuve.png" />
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png" />
+    <link rel="alternate" type="application/rss+xml" title="ViveConUve RSS" href="/rss.xml" />
+    <link rel="stylesheet" href="{{cssUrl}}" />
+    {{{newsletterHead}}} {{{schemas}}}
+    <script
+      defer
+      src="{{jsUrl}}"
+      data-analytics-id="{{analyticsId}}"
+      data-adsense-id="{{adsenseId}}"
+    ></script>
+  </head>
+  <body class="{{layout}}">
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+    {{{header}}}
+    <main id="contenido-principal">{{{content}}}</main>
+    {{{footer}}} {{{cookies}}} {{{newsletterScript}}}
+  </body>
 </html>

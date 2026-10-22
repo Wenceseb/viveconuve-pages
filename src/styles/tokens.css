@@ -1,0 +1,13 @@
+/* Design tokens: landscape greens, daylight paper, restrained olive accents. */
+:root {
+  --ink: #203f35;
+  --paper: #f7f5ef;
+  --muted: #5d6861;
+  --line: #d8ded3;
+  --lime: #e1ed9f;
+  --color-texto: #253e34;
+  --color-acento: #315b43;
+  --color-bloque-fondo: #efeee5;
+  --color-bloque-borde: #d8ded3;
+  --sombra-suave: none;
+}
