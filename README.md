@@ -8,7 +8,7 @@ Requiere Node.js 22 o posterior.
 
 ```sh
 npm ci --ignore-scripts
-npm run build
+npm run check
 npm run dev
 ```
 
@@ -30,3 +30,21 @@ Las URL de los artículos no cambian. El código fuente, dependencias y pruebas 
 ## Publicación
 
 GitHub Actions compila el sitio desde `main` y publica `dist/`. Las ramas y pull requests se comprueban sin desplegar en producción.
+
+## Comprobaciones
+
+```sh
+npm run check
+npm run format:check
+npm audit --audit-level=high
+```
+
+Las pruebas cubren la conservación de las 23 páginas iniciales, URLs, metadatos, enlaces, recursos, formularios y consentimiento. La compilación genera imágenes WebP adaptables y bundles con hash. No hay dependencias de ejecución para los visitantes.
+
+## Documentación
+
+- [Arquitectura y despliegue](docs/architecture.md)
+- [Cómo editar y añadir contenido](docs/editing-content.md)
+- [Skills instaladas y revisión de procedencia](docs/design-skills.md)
+
+Las imágenes y textos pertenecen a sus respectivos titulares; la publicación del repositorio no concede una licencia general sobre el contenido editorial.

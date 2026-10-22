@@ -11,6 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,11 +20,14 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: npm run build
+      - run: npm audit --audit-level=high
+      - run: npm run check
+      - run: npm run format:check
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
   deploy:
+    timeout-minutes: 10
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest

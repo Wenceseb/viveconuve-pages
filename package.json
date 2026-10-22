@@ -11,7 +11,9 @@
     "build": "node scripts/build.mjs",
     "dev": "node scripts/serve.mjs",
     "test": "node --test",
-    "check": "npm run build && npm test && node scripts/check.mjs"
+    "check": "npm run build && npm test && node scripts/check.mjs",
+    "format": "prettier --write \"scripts/**/*.mjs\" \"src/**/*.{js,css,html}\" \"tests/*.mjs\" \"*.json\" \".github/workflows/*.yml\"",
+    "format:check": "prettier --check \"scripts/**/*.mjs\" \"src/**/*.{js,css,html}\" \"tests/*.mjs\" \"*.json\" \".github/workflows/*.yml\""
   },
   "devDependencies": {
     "parse5": "8.0.1",
