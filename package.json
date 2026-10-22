@@ -15,10 +15,13 @@
     "format": "prettier --write \"scripts/**/*.mjs\" \"src/**/*.{js,css,html}\" \"tests/*.mjs\" \"*.json\" \".github/workflows/*.yml\"",
     "format:check": "prettier --check \"scripts/**/*.mjs\" \"src/**/*.{js,css,html}\" \"tests/*.mjs\" \"*.json\" \".github/workflows/*.yml\"",
     "check:runtime": "node scripts/check-runtime.mjs",
+    "check:browser": "node scripts/browser-check.mjs",
     "prebuild": "npm run check:runtime"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
     "parse5": "8.0.1",
+    "playwright": "1.64.1",
     "prettier": "3.9.10",
     "sharp": "0.35.5"
   }
