@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Static publishing pipeline for ViveConUve",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.23.4 <23"
   },
   "scripts": {
     "build": "node scripts/build.mjs",
@@ -13,7 +13,9 @@
     "test": "node --test",
     "check": "npm run build && npm test && node scripts/check.mjs",
     "format": "prettier --write \"scripts/**/*.mjs\" \"src/**/*.{js,css,html}\" \"tests/*.mjs\" \"*.json\" \".github/workflows/*.yml\"",
-    "format:check": "prettier --check \"scripts/**/*.mjs\" \"src/**/*.{js,css,html}\" \"tests/*.mjs\" \"*.json\" \".github/workflows/*.yml\""
+    "format:check": "prettier --check \"scripts/**/*.mjs\" \"src/**/*.{js,css,html}\" \"tests/*.mjs\" \"*.json\" \".github/workflows/*.yml\"",
+    "check:runtime": "node scripts/check-runtime.mjs",
+    "prebuild": "npm run check:runtime"
   },
   "devDependencies": {
     "parse5": "8.0.1",

@@ -4,7 +4,7 @@ Sitio editorial estático de Wenceslao «Uve». Producción: https://viveconuve.
 
 ## Desarrollo
 
-Requiere Node.js 22 o posterior.
+Requiere Node.js 22.23.4 o un parche posterior de Node 22. La referencia está en `.node-version`; la compilación rechaza versiones anteriores y cambios de versión principal sin revisar.
 
 ```sh
 npm ci --ignore-scripts
@@ -36,7 +36,7 @@ GitHub Actions compila el sitio desde `main` y publica `dist/`. Las ramas y pull
 ```sh
 npm run check
 npm run format:check
-npm audit --audit-level=high
+npm audit --audit-level=low
 ```
 
 Las pruebas cubren la conservación de las 23 páginas iniciales, URLs, metadatos, enlaces, recursos, formularios y consentimiento. La compilación genera imágenes WebP adaptables y bundles con hash. No hay dependencias de ejecución para los visitantes.
