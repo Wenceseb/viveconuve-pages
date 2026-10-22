@@ -11,3 +11,5 @@ Para añadir páginas se utiliza el mismo bloque de metadatos que en una página
 No editar `dist/`: se regenera en cada compilación. Tampoco copiar cabeceras, scripts ni el formulario a cada artículo: los componentes viven en `src/templates/partials/`.
 
 Para comprobar accesibilidad y navegación en un navegador aislado: `npx --no-install playwright install chromium` y `npm run check:browser`. En Windows también se puede usar el Chrome instalado con `$env:BROWSER_CHANNEL='chrome'`. Las pruebas cubren móvil y escritorio, teclado, imágenes, desbordamientos, consentimiento y el envío nativo del formulario. El POST se intercepta: no se envían suscripciones reales. GitHub Actions ejecuta estos controles antes de publicar.
+
+CI utiliza el Chrome que GitHub incluye en la imagen oficial Ubuntu 24.04 (`BROWSER_CHANNEL=chrome`), evitando descargar otro navegador e instalar paquetes del sistema en cada despliegue.
