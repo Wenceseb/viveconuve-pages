@@ -68,7 +68,7 @@ for (const page of pages) {
     ...site,
     ...page,
     content,
-    canonical: site.url + (page.permalink === '/index.html' ? '/' : page.permalink),
+    canonical: new URL(page.permalink === '/index.html' ? '/' : page.permalink, site.url).href,
     socialImage: site.url + socialImage,
     cssUrl,
     jsUrl,

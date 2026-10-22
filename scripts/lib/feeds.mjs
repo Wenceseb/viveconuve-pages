@@ -1,5 +1,6 @@
 import { escapeHtml } from './content.mjs';
-const urlFor = (site, page) => site.url + (page.permalink === '/index.html' ? '/' : page.permalink);
+const urlFor = (site, page) =>
+  new URL(page.permalink === '/index.html' ? '/' : page.permalink, site.url).href;
 const dateFor = (page) =>
   page.published ||
   page.structuredData.find((item) => item['@type'] === 'BlogPosting')?.datePublished;

@@ -30,6 +30,11 @@ test('feeds use publication dates, exclude noindex and escape XML metadata', () 
   assert.ok(rss.includes('&lt;text&gt;'));
   assert.ok(rss.includes('Fri, 09 May 2025 00:00:00 GMT'));
   assert.ok(!rss.includes('<lastBuildDate>'));
+  const spaced = createFeeds({ name: 'Site', url: 'https://example.com' }, [
+    { ...article, permalink: '/10.000 pasos.html' },
+  ]);
+  assert.ok(spaced.sitemap.includes('/10.000%20pasos.html'));
+  assert.ok(spaced.rss.includes('/10.000%20pasos.html'));
   assert.throws(() =>
     createFeeds({ name: 'Site', url: 'https://example.com' }, [
       { ...article, updated: 'invented' },
