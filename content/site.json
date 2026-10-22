@@ -1,0 +1,32 @@
+{
+  "name": "ViveConUve",
+  "url": "https://viveconuve.com",
+  "analyticsId": "G-TV8RWZS09J",
+  "adsenseId": "ca-pub-1872823598589896",
+  "navigation": [
+    {
+      "label": "Inicio",
+      "href": "/index.html"
+    },
+    {
+      "label": "Empieza por aquí",
+      "href": "/index.html#empieza-aqui"
+    },
+    {
+      "label": "Método UVE",
+      "href": "/metodo-uve-ubica-verifica-experimenta.html"
+    },
+    {
+      "label": "Artículos",
+      "href": "/articulos.html"
+    },
+    {
+      "label": "Sobre mí",
+      "href": "/sobre-mi.html"
+    },
+    {
+      "label": "Newsletter",
+      "href": "/index.html#newsletter"
+    }
+  ]
+}
