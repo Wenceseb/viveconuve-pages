@@ -20,7 +20,7 @@ npm run dev
 - `src/templates/`: estructura HTML y componentes compartidos.
 - `src/styles/` y `src/scripts/`: código del sitio.
 - `assets/images/`: imágenes fuente.
-- `public/`: archivos que se copian sin transformación, como RSS y descargas.
+- `public/`: archivos que se copian sin transformación, como robots.txt y descargas. RSS y sitemap se generan desde el contenido.
 - `scripts/`: compilación, validación y servidor local.
 - `tests/`: comprobaciones de regresión.
 - `dist/`: resultado generado, ignorado por Git y único directorio publicado.
@@ -37,9 +37,13 @@ GitHub Actions compila el sitio desde `main` y publica `dist/`. Las ramas y pull
 npm run check
 npm run format:check
 npm audit --audit-level=low
+npx --no-install playwright install chromium
+npm run check:browser
 ```
 
 Las pruebas cubren la conservación de las 23 páginas iniciales, URLs, metadatos, enlaces, recursos, formularios y consentimiento. La compilación genera imágenes WebP adaptables y bundles con hash. No hay dependencias de ejecución para los visitantes.
+
+Las pruebas de navegador revisan páginas representativas a 390 y 1440 px con axe-core, comprueban teclado, imágenes, consentimiento y el POST del formulario mediante una interceptación local sin suscripciones reales. Se ejecutan antes de cada publicación.
 
 ## Documentación
 
