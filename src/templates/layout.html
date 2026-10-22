@@ -14,15 +14,15 @@
     <meta property="og:title" content="{{title}}" />
     <meta property="og:description" content="{{description}}" />
     <meta property="og:url" content="{{canonical}}" />
-    <meta property="og:image" content="https://viveconuve.com/assets/images/viveconuve.png" />
+    <meta property="og:image" content="{{socialImage}}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{title}}" />
     <meta name="twitter:description" content="{{description}}" />
-    <meta name="twitter:image" content="https://viveconuve.com/assets/images/viveconuve.png" />
+    <meta name="twitter:image" content="{{socialImage}}" />
     <link rel="icon" href="/assets/images/favicon.png" type="image/png" />
     <link rel="alternate" type="application/rss+xml" title="ViveConUve RSS" href="/rss.xml" />
     <link rel="stylesheet" href="{{cssUrl}}" />
-    {{{newsletterHead}}} {{{schemas}}}
+    {{{schemas}}}
     <script
       defer
       src="{{jsUrl}}"
@@ -34,6 +34,6 @@
     <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
     {{{header}}}
     <main id="contenido-principal">{{{content}}}</main>
-    {{{footer}}} {{{cookies}}} {{{newsletterScript}}}
+    {{{footer}}} {{{cookies}}}
   </body>
 </html>

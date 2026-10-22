@@ -929,3 +929,22 @@ input:focus-visible {
 .newsletter #success-message {
   color: #245339;
 }
+.newsletter-brevo {
+  max-width: 540px;
+  margin-inline: auto;
+}
+.newsletter .entry__label {
+  display: block;
+  margin-bottom: 8px;
+}
+.newsletter .sib-form-block__button {
+  background: var(--ink);
+  color: white;
+  cursor: pointer;
+}
+.newsletter .sib-form-block__button:hover {
+  background: #315b43;
+}
+.newsletter .progress-indicator__icon {
+  display: none;
+}

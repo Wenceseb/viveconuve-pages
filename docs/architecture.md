@@ -8,11 +8,11 @@ Cada artículo está en `content/articles/` y cada página general en `content/p
 
 La plantilla `src/templates/layout.html` reúne metadatos, cabecera, pie y consentimiento. `{{campo}}` escapa texto y atributos; `{{{campo}}}` solo se utiliza para HTML interno confiable. `{{> newsletter}}` inserta el formulario compartido. Este motor no evalúa JavaScript en el contenido.
 
-`content/site.json` contiene navegación e identificadores públicos de los servicios existentes; nunca debe contener credenciales. La newsletter solo carga sus recursos externos en portada y archivo. No se simulan confirmaciones de envío. La analítica y AdSense se cargan tras aceptar cookies; se puede retirar el consentimiento desde el pie.
+`content/site.json` contiene navegación e identificadores públicos de los servicios existentes; nunca debe contener credenciales. La newsletter usa un formulario HTML nativo y solo conecta con Brevo al enviar; no carga scripts, estilos ni fuentes del proveedor durante la lectura. No se simulan confirmaciones de envío. La analítica y AdSense se cargan tras aceptar cookies; se puede retirar el consentimiento desde el pie.
 
 ## Recursos y rendimiento
 
-Las imágenes fuente se conservan en `assets/images/`. Sharp genera WebP de 400, 800 y 1200 píxeles sin ampliar originales, dimensiones intrínsecas, `srcset`, `sizes` y JPEG/PNG de respaldo para las redes sociales. La imagen principal tiene prioridad alta; el resto se carga de forma diferida. `.cache/` evita recomprimir entradas idénticas.
+Las imágenes fuente se conservan en `assets/images/`. Sharp genera WebP de 96, 400, 640, 800 y 1200 píxeles sin ampliar originales, dimensiones intrínsecas, `srcset`, `sizes` y JPEG/PNG de respaldo para las redes sociales. La imagen principal tiene prioridad alta; el resto se carga de forma diferida. `.cache/` evita recomprimir entradas idénticas.
 
 CSS se separa en tokens, base y componentes. Se publica un solo CSS y un JavaScript general con hashes de contenido en sus nombres. La tipografía de cuerpo usa fuentes del sistema y los títulos Georgia, sin descargar fuentes externas. El resultado es determinista para los mismos archivos y año de publicación; no incluye fechas de compilación.
 

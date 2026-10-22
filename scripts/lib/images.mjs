@@ -21,10 +21,10 @@ export async function buildImages(root, output) {
     const stem = parse(name).name;
     const digest = createHash('sha256')
       .update(buffer)
-      .update(`v2:${sharp.versions.sharp}:${sharp.versions.vips}`)
+      .update(`v3:${sharp.versions.sharp}:${sharp.versions.vips}`)
       .digest('hex');
     const variants = [];
-    const widths = [...new Set([400, 800, 1200].map((w) => Math.min(w, width)))];
+    const widths = [...new Set([96, 400, 640, 800, 1200].map((w) => Math.min(w, width)))];
     for (const w of widths) {
       const filename = `${stem}-${w}.webp`,
         cached = join(cache, `${digest}-${w}.webp`);
@@ -34,7 +34,7 @@ export async function buildImages(root, output) {
         await image
           .clone()
           .resize({ width: w, withoutEnlargement: true })
-          .webp({ quality: 78, effort: 5 })
+          .webp({ quality: 65, effort: 5 })
           .toFile(cached);
       }
       await copyFile(cached, join(target, filename));
@@ -77,11 +77,16 @@ export function optimizeDocumentImages(document, manifest) {
     setAttr(node, 'srcset', image.variants.map((v) => `${v.url} ${v.width}w`).join(', '));
     const classes = attr(node, 'class') || '';
     const compact = (attr(node.parentNode, 'class') || '').includes('hero-signature');
+    const hero = (attr(node.parentNode, 'class') || '').includes('hero-imagen');
     const sizes = classes.includes('brand-logo')
       ? '45px'
-      : classes.includes('card-cover')
-        ? '(max-width:768px) calc(100vw - 44px), 360px'
-        : '(max-width:768px) calc(100vw - 44px), 780px';
+      : compact
+        ? '48px'
+        : hero
+          ? '(max-width:768px) calc(100vw - 44px), 480px'
+          : classes.includes('card-cover')
+            ? '(max-width:768px) calc(100vw - 44px), 360px'
+            : '(max-width:768px) calc(100vw - 44px), 780px';
     setAttr(node, 'sizes', sizes);
     if (!attr(node, 'fetchpriority')) setAttr(node, 'loading', 'lazy');
     if (attr(node, 'fetchpriority') === 'high')

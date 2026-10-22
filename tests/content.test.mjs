@@ -46,10 +46,10 @@ test('generated production output has no broken links, invalid metadata, tracker
   assert.deepEqual(result.errors, []);
   assert.equal(result.pages, 23);
 });
-test('newsletter scripts and styles are isolated to pages containing the shared form', async () => {
+test('newsletter uses native submission without third-party scripts or styles', async () => {
   for (const page of await loadPages(root)) {
     const source = await readFile(resolve(root, 'dist', '.' + page.permalink), 'utf8');
-    assert.equal(source.includes('sibforms.com/forms/end-form/build/main.js'), page.newsletter);
+    assert.ok(!source.includes('sibforms.com/forms/end-form/build/'));
     assert.equal(source.includes('id="sib-form"'), page.newsletter);
     assert.ok(!source.includes('vcv-newsletter-feedback'));
   }
@@ -68,4 +68,22 @@ test('newsletter input, locale and submit button belong to the same form', async
   );
   assert.ok(nodes(form, 'input').some((node) => attr(node, 'name') === 'locale'));
   assert.ok(nodes(form, 'button').some((node) => attr(node, 'type') === 'submit'));
+});
+
+test('article social previews and structured data use existing editorial images', async () => {
+  const images = new Set();
+  for (const page of (await loadPages(root)).filter((page) => page.type === 'article')) {
+    const document = parse(await readFile(resolve(root, 'dist', '.' + page.permalink), 'utf8'));
+    const image = nodes(document, 'meta').find((node) => attr(node, 'property') === 'og:image');
+    const url = new URL(attr(image, 'content'));
+    assert.equal(url.origin, 'https://viveconuve.com');
+    assert.ok((await readFile(resolve(root, 'dist', '.' + url.pathname))).length > 0);
+    const schema = nodes(document, 'script')
+      .filter((node) => attr(node, 'type') === 'application/ld+json')
+      .map((node) => JSON.parse(text(node)))
+      .find((data) => data['@type'] === 'BlogPosting');
+    if (schema) assert.equal(schema.image, url.href);
+    images.add(url.href);
+  }
+  assert.ok(images.size > 5, 'Articles should not all share the generic logo');
 });

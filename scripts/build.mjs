@@ -5,6 +5,8 @@ import { createHash } from 'node:crypto';
 import { parse, serialize } from 'parse5';
 import { loadPages, render, escapeHtml } from './lib/content.mjs';
 import { buildImages, optimizeDocumentImages } from './lib/images.mjs';
+import { createFeeds } from './lib/feeds.mjs';
+import { nodes, attr } from './lib/html.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const output = resolve(root, 'dist');
 if (output !== join(root, 'dist')) throw new Error('Unsafe build output');
@@ -41,11 +43,21 @@ const cssUrl = `/assets/styles/site.${hash(css)}.css`,
   jsUrl = `/assets/scripts/site.${hash(js)}.js`;
 await writeFile(join(output, cssUrl), css);
 await writeFile(join(output, jsUrl), js);
-const newsletterJs = await read('src/scripts/newsletter.js');
-const newsletterUrl = `/assets/scripts/newsletter.${hash(newsletterJs)}.js`;
-await writeFile(join(output, newsletterUrl), newsletterJs);
-for (const page of await loadPages(root)) {
+const pages = await loadPages(root);
+const feeds = createFeeds(site, pages);
+await writeFile(join(output, 'sitemap.xml'), feeds.sitemap);
+await writeFile(join(output, 'rss.xml'), feeds.rss);
+for (const page of pages) {
   const content = page.content.replaceAll('{{> newsletter}}', partials.newsletter);
+  const contentImages = nodes(parse(content), 'img');
+  const firstImage = [
+    ...contentImages.filter((node) => attr(node, 'fetchpriority') === 'high'),
+    ...contentImages,
+  ]
+    .map((node) => attr(node, 'src'))
+    .find((src) => imageManifest.has(src));
+  const socialImage = page.socialImage || firstImage || '/assets/images/viveconuve.png';
+  if (!imageManifest.has(socialImage)) throw new Error(`${page.source}: missing social image`);
   const navigation = site.navigation
     .map(
       (item) =>
@@ -57,27 +69,31 @@ for (const page of await loadPages(root)) {
     ...page,
     content,
     canonical: site.url + (page.permalink === '/index.html' ? '/' : page.permalink),
+    socialImage: site.url + socialImage,
     cssUrl,
     jsUrl,
     header: render(partials.header, { navigation }),
     footer: render(partials.footer, { year: new Date().getUTCFullYear() }),
     cookies: partials.cookies,
     schemas: page.structuredData
+      .map((data) =>
+        data['@type'] === 'BlogPosting'
+          ? {
+              ...data,
+              image: site.url + socialImage,
+              ...(page.updated ? { dateModified: page.updated } : {}),
+            }
+          : data,
+      )
       .map(
         (data) =>
           `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`,
       )
       .join('\n'),
-    newsletterHead: page.newsletter
-      ? '<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css"><link rel="preconnect" href="https://sibforms.com">'
-      : '',
-    newsletterScript: page.newsletter
-      ? `<script defer src="${newsletterUrl}"></script><script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>`
-      : '',
   });
   if (/\{\{[>#\w]/.test(html)) throw new Error(`${page.source}: unresolved template`);
   const document = parse(html);
   optimizeDocumentImages(document, imageManifest);
   await writeFile(join(output, page.permalink), serialize(document) + '\n');
 }
-console.log(`Built ${(await loadPages(root)).length} pages in dist/`);
+console.log(`Built ${pages.length} pages in dist/`);
