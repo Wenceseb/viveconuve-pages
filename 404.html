@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página no encontrada – ViveConUve</title>
+    <meta name="description" content="Lo sentimos, esta página no existe. Vuelve a ViveConUve para seguir explorando contenido sobre salud, movimiento y bienestar real.">
+    <meta name="robots" content="noindex, follow">
+
+    <link rel="canonical" href="https://viveconuve.com/404.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Página no encontrada – ViveConUve">
+    <meta property="og:description" content="Parece que este sendero aún no existe. Vuelve a la página principal para seguir explorando.">
+    <meta property="og:image" content="https://viveconuve.com/viveconuve.png">
+    <meta property="og:url" content="https://viveconuve.com/404.html">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Página no encontrada – ViveConUve">
+    <meta name="twitter:description" content="Parece que este sendero aún no existe. Vuelve a la página principal para seguir explorando.">
+    <meta name="twitter:image" content="https://viveconuve.com/viveconuve.png">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="ViveConUve RSS" href="https://viveconuve.com/rss.xml">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1872823598589896"
+     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="redesign.css?v=1">
+    <script defer src="ui.js"></script>
+</head>
+
+<body>
+    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- Banner de cookies -->
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+        <p>
+            En ViveConUve uso cookies básicas para que la web funcione bien y, en el futuro,
+            para analítica (GA4) y publicidad. Puedes aceptar o rechazar estas cookies.
+            Más info en la
+            <a href="politica-privacidad.html" target="_blank" rel="noopener noreferrer">
+                política de privacidad
+            </a>.
+        </p>
+        <div class="cookie-banner-buttons">
+            <button type="button" class="btn-primario" data-cookie-action="accept">Aceptar cookies</button>
+            <button type="button" class="btn-secundario" data-cookie-action="reject">Solo las necesarias</button>
+        </div>
+    </div>
+    <!-- Fin banner de cookies -->
+
+    <header>
+    <div class="header-inner">
+        <!-- Marca: logo + texto -->
+        <a href="index.html" class="brand">
+            <img src="viveconuve.png" alt="Logo de ViveConUve" class="brand-logo" width="150">
+            <div class="brand-text">
+                <p class="brand-title">ViveConUve</p>
+                <p class="brand-tagline">
+                    Menos ruido en la cabeza, más vida en tu cuerpo.
+                </p>
+            </div>
+        </a>
+
+        <!-- Botón hamburguesa -->
+        <button class="nav-toggle" aria-expanded="false" aria-label="Abrir menú">
+            ☰
+        </button>
+
+        <!-- Menú principal -->
+       <nav aria-label="Navegación principal">
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.html#empieza-aqui">Empieza por aquí</a></li>
+        <li><a href="metodo-uve-ubica-verifica-experimenta.html">Método UVE</a></li>
+        <li><a href="articulos.html">Artículos</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="index.html#newsletter">Newsletter ↗</a></li>
+    </ul>
+</nav>
+
+    </div>
+</header>
+
+    <main id="contenido-principal" class="bloque ancho-centrado" style="text-align:center; padding:4rem 1rem;">
+        <h1>Parece que este sendero aún no existe</h1>
+        <p style="max-width:600px; margin:0 auto 2rem;">
+            La página que estás buscando no está disponible, ha cambiado o nunca existió.
+            Pero no pasa nada, puedes volver a la senda principal desde aquí.
+        </p>
+
+        <div style="margin-top:2rem;">
+            <a href="index.html" class="btn-primario" style="margin-right:1rem;">Volver al inicio</a>
+            <a href="articulos.html" class="btn-secundario">Ver artículos</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            © <span id="year"></span> ViveConUve ·
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="politica-privacidad.html">Política de privacidad</a> ·
+            <a href="rss.xml">RSS</a>
+        </p>
+    </footer>
+
+    <!-- Script de cookies -->
+    <script>
+    (function() {
+        var STORAGE_KEY='vcv_cookie_consent';
+        var banner=document.getElementById('cookie-banner');
+        if(!banner) return;
+
+        function enableAnalytics(){
+            var GA_ID='G-XXXXXXXXXX';
+            if(!GA_ID || GA_ID==='G-XXXXXXXXXX') return;
+            window.dataLayer=window.dataLayer||[];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag=gtag;
+
+            var s=document.createElement('script');
+            s.async=true;
+            s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
+            document.head.appendChild(s);
+
+            gtag('js',new Date());
+            gtag('config',GA_ID);
+        }
+
+        function setConsent(v){
+            try{ localStorage.setItem(STORAGE_KEY,v); }catch(e){}
+        }
+        function hide(){ banner.style.display='none'; }
+        function show(){ banner.style.display='block'; }
+
+        var saved=null;
+        try{ saved=localStorage.getItem(STORAGE_KEY);}catch(e){}
+
+        if(saved==='accepted'){ hide(); enableAnalytics(); }
+        else if(saved==='rejected'){ hide(); }
+        else{ show(); }
+
+        banner.querySelector('[data-cookie-action="accept"]').onclick=function(){
+            setConsent('accepted'); hide(); enableAnalytics();
+        };
+        banner.querySelector('[data-cookie-action="reject"]').onclick=function(){
+            setConsent('rejected'); hide();
+        };
+    })();
+
+    // Año dinámico
+    (function(){
+        var y=document.getElementById('year');
+        if(y) y.textContent=new Date().getFullYear();
+    })();
+    </script>
+<script>
+(function() {
+    var toggle = document.querySelector('.nav-toggle');
+    var nav = document.querySelector('nav[aria-label="Navegación principal"]');
+    if (!toggle || !nav) return;
+
+    toggle.addEventListener('click', function () {
+        var isOpen = nav.classList.toggle('nav-abierto');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+})();
+</script>
+</body>
+</html>
+

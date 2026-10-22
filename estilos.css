@@ -1,0 +1,1135 @@
+/* 1. Reset básico y modelo de caja */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 2. Variables globales de diseño */
+:root {
+    --color-fondo-top: #e53935;
+    --color-fondo-bottom: #fb8c00;
+    --color-texto: #111827;
+    --color-blanco: #ffffff;
+
+    --color-acento: #c2410c;
+    --color-bloque-fondo: #fff7ed;
+    --color-bloque-borde: #fed7aa;
+
+    --radio-base: 10px;
+    --sombra-suave: 0 10px 30px rgba(15, 23, 42, 0.18);
+
+    --espacio-s: 0.5rem;
+    --espacio-m: 1rem;
+    --espacio-l: 1.5rem;
+}
+
+/* 3. Base de documento */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(to bottom, var(--color-fondo-top), var(--color-fondo-bottom));
+    color: var(--color-texto);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Enlace para saltar al contenido (accesibilidad) */
+.skip-link {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background-color: #111827;
+    color: #f9fafb;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    z-index: 50;
+    transform: translateY(-150%);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0;
+}
+
+.skip-link:focus-visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Focus accesible */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid #facc15;
+    outline-offset: 2px;
+}
+
+/* 4. Cabecera (solo la cabecera principal de la página) */
+body > header {
+    padding: var(--espacio-m) var(--espacio-m) var(--espacio-s);
+    color: var(--color-blanco);
+    background: none; /* dejamos ver el degradado del body */
+}
+
+/* Contenedor interior del header */
+.header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    animation: aparecer-suave 0.45s ease-out;
+}
+
+/* Marca (logo + texto) */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Logo más “marca” y más integrado con la paleta cálida */
+.brand-logo {
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.28);
+    object-fit: cover;
+    background-color: #fefce8;
+}
+
+/* Contenedor de textos de marca */
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Título de marca: más jerarquía y presencia */
+.brand-title {
+    margin: 0 0 0.15rem 0;
+    font-size: clamp(2rem, 3.1vw, 2.6rem);
+    letter-spacing: 0.11em;
+    font-weight: 800;
+    text-transform: none; /* mantenemos ViveConUve tal cual */
+}
+
+/* Tagline más fino y editorial */
+.brand-tagline {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.9;
+    max-width: 22rem;
+    line-height: 1.5;
+}
+
+/* 5. Menú de navegación */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin-top: var(--espacio-m);
+    background: none; /* dejamos ver el degradado del body */
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: var(--espacio-s) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0;
+}
+
+/* Enlaces del menú con fondo del mismo color que la hero / “Empieza por aquí” */
+nav a {
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    background-color: var(--color-bloque-fondo);   /* mismo fondo que hero/empieza aquí */
+    color: var(--color-texto);
+    border: 1px solid var(--color-bloque-borde);
+}
+
+/* Enlace activo en navegación */
+nav a.active {
+    background-color: var(--color-acento);
+    color: var(--color-blanco);
+    border-color: var(--color-acento);
+}
+
+/* Hover y foco coherentes con el resto de la web */
+nav a:hover,
+nav a:focus-visible {
+    background-color: var(--color-acento);
+    color: var(--color-blanco);
+    border-color: var(--color-acento);
+}
+
+/* Botón hamburguesa (oculto en escritorio) */
+.nav-toggle {
+    display: none; /* se muestra en móvil dentro del media query */
+    background-color: var(--color-bloque-fondo);   /* mismo fondo crema que Inicio / Método UVE */
+    border: 1px solid var(--color-bloque-borde);   /* mismo borde suave */
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    color: var(--color-acento);                    /* rayas ☰ en naranja acento */
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.18); /* sombra suave como el resto de la web */
+}
+
+/* Hover / foco elegante */
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+    background-color: #fee2c5;        /* un pelín más calentito */
+    border-color: var(--color-acento);
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.22);
+    transform: translateY(-1px);
+}
+
+/* Versión móvil: nav tipo hamburguesa */
+@media (max-width: 768px) {
+ .header-inner {
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .brand {
+        flex: 1 1 auto;
+    }
+
+    .nav-toggle {
+        display: inline-block;
+    }
+
+    /* Quitamos el nav tipo “pastilla” en móvil */
+    header nav {
+        position: static;
+        margin-top: var(--espacio-s);
+        background-color: transparent;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    header nav ul {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+        padding: 0.5rem 0;
+    }
+
+    header nav.nav-abierto ul {
+        display: flex;
+    }
+
+    header nav a {
+        width: 100%;
+        display: block;
+        text-align: left;
+        border-radius: 8px;
+    }
+}
+
+/* 6. Contenedor principal */
+main {
+    max-width: 900px;
+    margin: var(--espacio-l) auto;
+    padding: var(--espacio-l) var(--espacio-m);
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-base);
+    box-shadow: var(--sombra-suave);
+    animation: aparecer-suave 0.5s ease-out;
+}
+
+/* 7. Tipografía y texto */
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 700;
+}
+
+main h1 {
+    color: var(--color-texto);
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    margin-top: 0;
+    margin-bottom: var(--espacio-m);
+}
+
+main h2 {
+    font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+    margin-top: 0;
+    margin-bottom: var(--espacio-m);
+    color: var(--color-texto);
+}
+
+main h3 {
+    font-size: 1.25rem;
+    margin-top: var(--espacio-l);
+    margin-bottom: var(--espacio-s);
+    color: var(--color-texto);
+}
+
+main h4 {
+    font-size: 1.1rem;
+}
+
+main p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-top: 0.5rem;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.hero-imagen .hero-eyebrow {
+    margin: 0.35rem 0 0 0;
+    font-size: 0.72rem;          /* más pequeño */
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9a3412;
+    opacity: 0.85;
+}
+.hero-imagen figcaption {
+    margin-top: 0.25rem;
+    font-size: 0.7rem;   /* más pequeña que el texto normal */
+    line-height: 1.4;
+}
+
+
+/* 8. Secciones y listas */
+section {
+    margin-bottom: var(--espacio-l);
+}
+
+/* Dejar margen al hacer scroll a anclas (#id) para que no tape el nav sticky */
+section[id] {
+    scroll-margin-top: 6rem;
+}
+
+ul,
+ol {
+    padding-left: 1.25rem;
+}
+
+li {
+    margin-bottom: 0.25rem;
+}
+
+/* 9. Bloques destacados y artículos */
+.articulo-destacado {
+    border-left: 4px solid var(--color-texto);
+    padding-left: var(--espacio-m);
+    margin: 0;
+}
+
+/* Título principal del artículo (posts individuales) */
+.articulo-destacado h1 {
+    color: var(--color-texto);
+    margin-top: 0;
+    margin-bottom: var(--espacio-s);
+}
+
+.articulo-destacado h4 {
+    margin: 0 0 0.25rem 0;
+}
+
+.articulo-destacado .meta-articulo {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+/* Bloques destacados (artículo, “Empieza por aquí”, etc.) */
+.bloque-destacado {
+    background-color: var(--color-bloque-fondo);
+    border: 1px solid var(--color-bloque-borde);
+    border-radius: var(--radio-base);
+    padding: var(--espacio-m);
+}
+
+.bloque-destacado h3 {
+    margin-top: 0;
+    color: var(--color-acento);
+}
+
+
+/* Citas */
+blockquote {
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid var(--color-texto);
+    background-color: #f3f4f6;
+    font-style: italic;
+}
+
+/* Enlaces dentro del contenido principal */
+main a {
+    color: var(--color-acento);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+main a:hover {
+    text-decoration: underline;
+}
+/* Enlace "Volver a la página de inicio" al final de los artículos */
+p.volver-inicio {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+p.volver-inicio a {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-bloque-borde);
+    background-color: var(--color-bloque-fondo);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+p.volver-inicio a:hover {
+    background-color: #fee2c5;
+    text-decoration: none;
+}
+
+/* 10. Formulario */
+form {
+    max-width: 600px;
+}
+
+input,
+textarea,
+select,
+button {
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-texto);
+}
+
+button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    border: none;
+    background-color: var(--color-texto);
+    color: var(--color-blanco);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1f2937;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+}
+
+/* 11. Progreso y vídeo */
+progress {
+    width: 100%;
+}
+
+section iframe {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 12. Pie de página */
+footer {
+    text-align: center;
+    padding: var(--espacio-m);
+    color: var(--color-blanco);
+    font-size: 0.9rem;
+    background-color: #111827;
+}
+
+footer a {
+    color: var(--color-blanco);
+    text-decoration: underline;
+}
+
+/* 13. Home: Hero principal */
+.hero {
+    background-color: var(--color-bloque-fondo);
+    border: 1px solid var(--color-bloque-borde);
+    border-radius: var(--radio-base);
+    padding: 1.75rem var(--espacio-m);
+    margin-bottom: var(--espacio-l);
+
+    /* NUEVO: 2 columnas imagen + texto en escritorio */
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: var(--espacio-l);
+    align-items: center;
+}
+
+.hero-contenido {
+    max-width: 700px;
+}
+
+.hero-eyebrow {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: #9a3412;
+}
+
+.hero h1 {
+    margin: 0 0 0.7rem 0;
+    font-size: clamp(1.8rem, 3.1vw, 2.3rem);
+    color: var(--color-texto);
+}
+
+.hero-texto {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* Botones de la hero */
+.hero-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.btn-primario,
+.btn-secundario {
+    display: inline-block;
+    padding: 0.55rem 1.2rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+/* 14. Home: Pilares de ViveConUve */
+.pilares {
+    background-color: var(--color-bloque-fondo);
+    border: 1px solid var(--color-bloque-borde);
+    border-radius: var(--radio-base);
+    padding: var(--espacio-m);
+    margin-bottom: var(--espacio-l);
+}
+
+.pilares h3 {
+    margin-top: 0;
+    margin-bottom: var(--espacio-s);
+    color: var(--color-acento);
+}
+
+.pilares-intro {
+    margin-top: 0;
+    margin-bottom: var(--espacio-m);
+}
+
+.pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--espacio-m);
+}
+
+.pilar-item {
+    background-color: #ffffff;
+    border-radius: var(--radio-base);
+    padding: var(--espacio-m);
+    border: 1px solid #fee2c5;
+}
+
+.pilar-item h4 {
+    margin-top: 0;
+    margin-bottom: 0.35rem;
+}
+
+/* Párrafos de los pilares: alineados a la izquierda */
+.pilares p,
+.pilar-item p {
+    text-align: left;
+    text-justify: auto;
+}
+
+/* 15. Sobre mí */
+.sobre-mi-layout {
+    display: flex;
+    gap: var(--espacio-l);
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--espacio-s);
+}
+
+/* Columna de texto algo más ancha */
+.sobre-mi-texto {
+    flex: 1 1 60%;
+}
+
+.sobre-mi-texto p {
+    margin-top: 0;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Columna de foto */
+.sobre-mi-foto {
+    flex: 1 1 40%;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sobre-mi-foto img {
+    max-width: 220px;
+    width: 100%;
+    border-radius: 999px;
+    display: block;
+    margin: 0 auto var(--espacio-s);
+}
+
+.sobre-mi-foto figcaption {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+/* 16. Página de artículos: layout + sidebar */
+.layout-articulos {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1.3fr);
+    gap: var(--espacio-l);
+    align-items: flex-start;
+    margin-top: var(--espacio-m);
+}
+
+.zona-articulos > h1 {
+    margin-top: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-m);
+}
+
+/* Bloques de la sidebar */
+.sidebar-bloque {
+    background-color: var(--color-bloque-fondo);
+    border: 1px solid var(--color-bloque-borde);
+    border-radius: var(--radio-base);
+    padding: var(--espacio-m);
+}
+
+.sidebar-bloque h4 {
+    margin-top: 0;
+}
+
+/* Espacio reservado para futura publicidad */
+.ad-slot {
+    margin-top: var(--espacio-s);
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px dashed #9ca3af;
+    font-size: 0.9rem;
+    color: #4b5563;
+    background-color: #fff;
+}
+
+/* Listado de artículos (Grid de tarjetas) */
+.lista-articulos {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr); /* una columna limpia */
+    gap: var(--espacio-l);
+    margin-top: var(--espacio-m);
+    align-items: stretch;
+}
+
+/* Categorías de artículos */
+.categoria-articulos {
+    margin-bottom: var(--espacio-l);
+}
+
+.categoria-articulos h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-acento);
+    margin-top: 0;
+    margin-bottom: var(--espacio-m);
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-bloque-borde);
+}
+
+/* Tarjetas de artículo */
+.tarjeta-articulo {
+    background-color: var(--color-bloque-fondo);
+    border: 1px solid var(--color-bloque-borde);
+    border-radius: var(--radio-base);
+    padding: var(--espacio-m);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Efecto hover */
+.tarjeta-articulo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.16);
+}
+
+.tarjeta-articulo h4 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+}
+
+.tarjeta-articulo .meta-articulo {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.tarjeta-articulo p:last-child {
+    margin-bottom: 0;
+}
+
+.badge-proximamente {
+    font-size: 0.85rem;
+    font-weight: 600;
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+}
+
+/* 17. Transiciones globales para enlaces y botones */
+nav a,
+main a,
+button {
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+/* 18. Animación de entrada del contenido */
+@keyframes aparecer-suave {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 20. Banner de cookies */
+.cookie-banner {
+    position: fixed;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    max-width: 600px;
+    width: calc(100% - 2rem);
+    background: #111827;
+    color: #F9FAFB;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    z-index: 50;
+    display: none; /* se muestra por JS si hace falta */
+}
+
+.cookie-banner p {
+    margin: 0 0 0.75rem;
+    line-height: 1.5;
+}
+
+.cookie-banner a {
+    color: #93C5FD;
+    text-decoration: underline;
+}
+
+.cookie-banner-title {
+    margin: 0 0 0.35rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+
+.cookie-banner-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.cookie-banner .btn-primario,
+.cookie-banner .btn-secundario {
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+}
+
+.cookie-banner .btn-primario {
+    background: var(--color-acento);
+    color: #F9FAFB;
+}
+
+.cookie-banner .btn-secundario {
+    background: transparent;
+    color: #F9FAFB;
+    border: 1px solid rgba(249, 250, 251, 0.35);
+}
+
+/* Hover de cookies: sutil (no “dos botones principales”) */
+.cookie-banner .btn-primario:hover {
+    background: #9a3412;
+}
+
+.cookie-banner .btn-secundario:hover {
+    background: rgba(249, 250, 251, 0.12);
+    border-color: rgba(249, 250, 251, 0.55);
+    color: #F9FAFB;
+}
+@media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-contenido {
+        max-width: 100%;
+    }
+}
+
+/* 19. Responsive móvil (solo teléfonos muy pequeños) */
+@media (max-width: 480px) {
+    body > header {
+        padding: var(--espacio-m) var(--espacio-s) var(--espacio-s);
+    }
+
+    .header-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .brand {
+        justify-content: center;
+    }
+
+    nav {
+        margin-top: var(--espacio-s);
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    main {
+        margin: var(--espacio-m);
+        padding: var(--espacio-m);
+    }
+
+    section {
+        margin-bottom: var(--espacio-m);
+    }
+
+    .articulo-destacado {
+        border-left-width: 3px;
+        padding-left: 0.75rem;
+    }
+
+    form {
+        max-width: 100%;
+    }
+
+    .layout-articulos {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        margin-top: var(--espacio-m);
+    }
+
+    .hero {
+        padding: var(--espacio-m);
+    }
+
+    .hero-botones {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .sobre-mi-layout {
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+    }
+
+    .sobre-mi-foto {
+        margin-top: var(--espacio-m);
+    }
+
+    .lista-articulos {
+        grid-template-columns: 1fr;
+    }
+
+    main p {
+        font-size: 1.02rem;
+        line-height: 1.75;
+    }
+
+    .cookie-banner {
+        bottom: 0.5rem;
+        padding: 0.85rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+/* Imagen principal de los posts (cover) */
+.post-imagen-principal {
+    margin: 0 0 var(--espacio-m) 0;
+}
+
+.post-imagen-principal img {
+    display: block;
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    border-radius: var(--radio-base);
+    border: 1px solid var(--color-bloque-borde);
+}
+
+.post-imagen-principal figcaption {
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
+    color: #4b5563;
+    text-align: left;
+}
+/* Ajuste de tamaño para el texto "Choperas de Santa Fe..." en la hero */
+.hero .hero-eyebrow {
+    font-size: 0.65rem;   /* pon aquí el tamaño que quieras */
+}
+/* =========================================
+   AJUSTES PRO: botones + inputs + Brevo
+   (Pegar al FINAL de estilos.css)
+   ========================================= */
+
+/* 1) Inputs coherentes (radio, padding, focus marca) */
+input,
+textarea,
+select {
+    border-radius: var(--radio-base);
+    padding: 0.65rem 0.75rem;
+    background-color: #ffffff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #6b7280;
+    opacity: 0.9;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 4px rgba(194, 65, 12, 0.18);
+}
+
+/* 2) Sistema de botones (sin negro) */
+.btn-primario,
+.btn-secundario {
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+/* Primario = naranja marca (CTA principal) */
+.btn-primario {
+    background-color: var(--color-acento);
+    color: var(--color-blanco);
+    border-color: var(--color-acento);
+}
+
+.btn-primario:hover {
+    background-color: #9a3412;
+    border-color: #9a3412;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+    transform: translateY(-1px);
+}
+
+/* Secundario = crema/blanco con borde naranja (CTA secundario) */
+.btn-secundario {
+    background-color: rgba(255, 255, 255, 0.75);
+    color: var(--color-acento);
+    border-color: var(--color-acento);
+}
+
+.btn-secundario:hover {
+    background-color: var(--color-acento);
+    color: var(--color-blanco);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+    transform: translateY(-1px);
+}
+
+/* 3) FIX: botón hamburguesa (tu regla global de button lo oscurece) */
+.nav-toggle {
+    background-color: var(--color-bloque-fondo);
+    border: 1px solid var(--color-bloque-borde);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    color: var(--color-acento);
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.18);
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+    background-color: #fee2c5;
+    border-color: var(--color-acento);
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.22);
+    transform: translateY(-1px);
+}
+
+/* 4) Brevo: que no parezca incrustado (input + botón + tipografía) */
+.newsletter #sib-container,
+.newsletter #sib-container * {
+    font-family: inherit !important;
+}
+
+.newsletter #sib-container {
+    border-radius: var(--radio-base) !important;
+    border-color: var(--color-bloque-borde) !important;
+}
+
+.newsletter #sib-container input.input {
+    border-radius: var(--radio-base) !important;
+    padding: 0.65rem 0.75rem !important;
+}
+
+.newsletter #sib-container input.input::placeholder {
+    color: #6b7280 !important;
+    opacity: 0.9 !important;
+}
+
+.newsletter #sib-container input.input:focus {
+    border-color: var(--color-acento) !important;
+    box-shadow: 0 0 0 4px rgba(194, 65, 12, 0.18) !important;
+}
+
+/* Botón Suscribirse = naranja marca */
+.newsletter button.sib-form-block__button {
+    background-color: var(--color-acento) !important;
+    color: var(--color-blanco) !important;
+    border-radius: 999px !important;
+    border: none !important;
+    width: 100% !important;
+    max-width: 340px;
+}
+
+.newsletter button.sib-form-block__button:hover {
+    background-color: #9a3412 !important;
+}
+
+/* Brevo: mensajes de estado (error/éxito) */
+.newsletter #error-message,
+.newsletter #success-message {
+  display: none; /* sin !important para que Brevo pueda activarlos */
+}
+
+/* Si Brevo activa por clase */
+.newsletter #error-message.sib-form-message-panel--active,
+.newsletter #success-message.sib-form-message-panel--active {
+  display: block !important; /* esto sí puede llevar !important */
+}
+
+/* Newsletter Brevo: centrar el “cajón” en escritorio */
+@media (min-width: 768px) {
+  .newsletter #sib-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+@media (min-width: 768px) {
+  .newsletter #sib-form-container {
+    display: flex;
+    justify-content: center;
+  }
+}
+/* =========================================
+   HERO: Botón secundario en modo OUTLINE pro
+   (solo afecta a los botones dentro de .hero)
+   ========================================= */
+.hero .btn-secundario {
+    background-color: transparent;
+    color: var(--color-acento);
+    border: 2px solid var(--color-acento);
+    box-shadow: none;
+}
+
+.hero .btn-secundario:hover {
+    background-color: var(--color-acento);
+    color: var(--color-blanco);
+    border-color: var(--color-acento);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+    transform: translateY(-1px);
+}
+/* ViveConUve: mensaje propio tras suscripción */
+.vcv-newsletter-feedback{
+  margin-top: 0.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  border: 1px solid #5F8E0A;
+  background: rgba(95, 142, 10, 0.12);
+  color: #111827;
+  font-weight: 700;
+}
+
+.vcv-newsletter-feedback[hidden]{
+  display: none !important;
+}
