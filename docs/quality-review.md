@@ -2,7 +2,7 @@
 
 Validación: 23 páginas y 146 archivos; 17 pruebas de Node, formato y auditoría npm correctos. Se conservan URLs, títulos y encabezados principales. No se reportaron vulnerabilidades conocidas por npm en las dependencias del proyecto.
 
-Chrome aislado: portada, archivo, artículo de cambio físico y política de cookies, a 390 y 1440 px. Sin infracciones automáticas WCAG A/AA detectadas por axe-core en esas muestras; sin imágenes rotas ni desbordamientos. Probados enlace para saltar al contenido, cierre del menú con Escape y retorno del foco, persistencia del rechazo y ausencia de solicitudes externas durante la lectura. Envío del formulario interceptado localmente: no se creó una suscripción real. Esto no sustituye una evaluación manual completa de accesibilidad ni confirma la entrega de un correo real.
+Chrome aislado: las 23 páginas a 390 y 1440 px. La revisión ampliada detectó contraste insuficiente del texto en cursiva en varios artículos; se oscureció su verde y se amplió el control de CI a todas las páginas. Se comprueban infracciones automáticas WCAG A/AA con axe-core, imágenes rotas y desbordamientos. También se prueban el enlace para saltar al contenido, cierre del menú con Escape y retorno del foco, persistencia del rechazo y ausencia de solicitudes externas durante la lectura. Envío del formulario interceptado localmente: no se creó una suscripción real. Esto no sustituye una evaluación manual completa de accesibilidad ni confirma la entrega de un correo real.
 
 Lighthouse 13.5.0 contra el servidor local, sin consentimiento opcional, con los perfiles oficiales de móvil y escritorio:
 

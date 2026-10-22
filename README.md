@@ -43,7 +43,7 @@ npm run check:browser
 
 Las pruebas cubren la conservación de las 23 páginas iniciales, URLs, metadatos, enlaces, recursos, formularios y consentimiento. La compilación genera imágenes WebP adaptables y bundles con hash. No hay dependencias de ejecución para los visitantes.
 
-Las pruebas de navegador revisan páginas representativas a 390 y 1440 px con axe-core, comprueban teclado, imágenes, consentimiento y el POST del formulario mediante una interceptación local sin suscripciones reales. Se ejecutan antes de cada publicación.
+Las pruebas de navegador revisan las 23 páginas a 390 y 1440 px con axe-core, comprueban teclado, imágenes, consentimiento y el POST del formulario mediante una interceptación local sin suscripciones reales. Se ejecutan antes de cada publicación.
 
 ## Documentación
 

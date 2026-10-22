@@ -3,6 +3,9 @@ import AxeBuilder from '@axe-core/playwright';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
+import { loadPages } from './lib/content.mjs';
+import { resolve } from 'node:path';
+const pages = (await loadPages(resolve(import.meta.dirname, '..'))).map((page) => page.permalink);
 const port = '8082';
 const server = spawn(process.execPath, ['scripts/serve.mjs'], {
   env: { ...process.env, PORT: port },
@@ -27,13 +30,8 @@ try {
     page.on('request', (request) => {
       if (!request.url().startsWith(`http://127.0.0.1:${port}`)) external.push(request.url());
     });
-    for (const path of [
-      '/',
-      '/articulos.html',
-      '/cambio-fisico-a-los-50.html',
-      '/politica-cookies.html',
-    ]) {
-      await page.goto(`http://127.0.0.1:${port}${path}`);
+    for (const path of pages) {
+      await page.goto(new URL(path, `http://127.0.0.1:${port}`).href);
       await page.locator('img').evaluateAll(async (images) => {
         await Promise.all(
           images.map(async (img) => {
