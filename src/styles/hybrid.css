@@ -492,3 +492,33 @@ main > .h-prose {
     break-inside: avoid;
   }
 }
+.story-head {
+  margin-block: 24px 56px;
+}
+.story-photo {
+  margin: 0;
+  min-width: 0;
+}
+.story-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.story-photo figcaption {
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 14px 18px;
+  background: #e3ebe4;
+}
+main > .story-prose {
+  margin-inline: auto;
+}
+.story-secondary {
+  max-width: 440px;
+  margin: 36px auto;
+}
+@media (max-width: 768px) {
+  .story-head {
+    margin-bottom: 32px;
+  }
+}
