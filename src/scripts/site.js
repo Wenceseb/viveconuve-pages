@@ -1,6 +1,7 @@
 (() => {
   'use strict';
   const config = document.currentScript?.dataset || {};
+  document.querySelector('[data-print-checklist]')?.addEventListener('click', () => window.print());
   const storageKey = 'vcv_cookie_consent';
   const banner = document.getElementById('cookie-banner');
   const nav = document.getElementById('primary-navigation');

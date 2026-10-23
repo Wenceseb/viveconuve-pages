@@ -5,28 +5,24 @@
   "adsenseId": "ca-pub-1872823598589896",
   "navigation": [
     {
-      "label": "Inicio",
-      "href": "/index.html"
+      "label": "Entrenar",
+      "href": "/entrenar.html"
     },
     {
-      "label": "Empieza por aquí",
-      "href": "/index.html#empieza-aqui"
+      "label": "Competir",
+      "href": "/competiciones.html"
     },
     {
-      "label": "Método UVE",
-      "href": "/metodo-uve-ubica-verifica-experimenta.html"
+      "label": "Recuperar y vivir",
+      "href": "/recuperar-y-vivir.html"
     },
     {
-      "label": "Artículos",
-      "href": "/articulos.html"
-    },
-    {
-      "label": "Sobre mí",
+      "label": "Mi historia",
       "href": "/sobre-mi.html"
     },
     {
-      "label": "Newsletter",
-      "href": "/index.html#newsletter"
+      "label": "Recursos",
+      "href": "/recursos.html"
     }
   ]
 }

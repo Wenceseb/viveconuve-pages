@@ -22,6 +22,13 @@ await cp(join(root, 'public'), output, { recursive: true });
 const imageManifest = await buildImages(root, output);
 const read = (path) => readFile(join(root, path), 'utf8');
 const site = JSON.parse(await read('content/site.json'));
+const competitions = JSON.parse(await read('content/competitions.json'));
+const competitionValues = {
+  firstName: competitions.first.name,
+  firstDate: competitions.first.date,
+  firstDateLabel: competitions.first.dateLabel,
+  firstResult: competitions.first.result,
+};
 const layout = await read('src/templates/layout.html');
 const partials = Object.fromEntries(
   await Promise.all(
@@ -36,7 +43,9 @@ const css =
   '\n' +
   (await read('src/styles/base.css')) +
   '\n' +
-  (await read('src/styles/components.css'));
+  (await read('src/styles/components.css')) +
+  '\n' +
+  (await read('src/styles/hybrid.css'));
 const js = await read('src/scripts/site.js');
 const hash = (value) => createHash('sha256').update(value).digest('hex').slice(0, 12);
 const cssUrl = `/assets/styles/site.${hash(css)}.css`,
@@ -44,11 +53,22 @@ const cssUrl = `/assets/styles/site.${hash(css)}.css`,
 await writeFile(join(output, cssUrl), css);
 await writeFile(join(output, jsUrl), js);
 const pages = await loadPages(root);
+for (const page of pages) {
+  if (
+    page.canonical &&
+    !pages.some((target) => target.permalink === page.canonical && !target.canonical)
+  ) {
+    throw new Error(`${page.source}: canonical must reference an existing primary page`);
+  }
+}
 const feeds = createFeeds(site, pages);
 await writeFile(join(output, 'sitemap.xml'), feeds.sitemap);
 await writeFile(join(output, 'rss.xml'), feeds.rss);
 for (const page of pages) {
-  const content = page.content.replaceAll('{{> newsletter}}', partials.newsletter);
+  const content = render(
+    page.content.replaceAll('{{> newsletter}}', partials.newsletter),
+    competitionValues,
+  );
   const contentImages = nodes(parse(content), 'img');
   const firstImage = [
     ...contentImages.filter((node) => attr(node, 'fetchpriority') === 'high'),
@@ -68,7 +88,10 @@ for (const page of pages) {
     ...site,
     ...page,
     content,
-    canonical: new URL(page.permalink === '/index.html' ? '/' : page.permalink, site.url).href,
+    canonical: new URL(
+      page.canonical || (page.permalink === '/index.html' ? '/' : page.permalink),
+      site.url,
+    ).href,
     socialImage: site.url + socialImage,
     cssUrl,
     jsUrl,

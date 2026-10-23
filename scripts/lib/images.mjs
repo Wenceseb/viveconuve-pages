@@ -79,7 +79,7 @@ export function optimizeDocumentImages(document, manifest) {
     const compact = (attr(node.parentNode, 'class') || '').includes('hero-signature');
     const hero = (attr(node.parentNode, 'class') || '').includes('hero-imagen');
     const sizes = classes.includes('brand-logo')
-      ? '45px'
+      ? '(max-width:768px) 72px, 88px'
       : compact
         ? '48px'
         : hero

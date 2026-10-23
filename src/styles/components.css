@@ -500,7 +500,7 @@ main p.eyebrow {
   padding: 60px 0 0;
 }
 .newsletter {
-  background: #e9ecd9;
+  background: #e3ebe4;
   border: 0;
   border-radius: 4px;
   padding: 45px;
@@ -528,7 +528,7 @@ main p.eyebrow {
   color: var(--ink) !important;
   border-color: #89957d !important;
 }
-.newsletter button.sib-form-block__button {
+.newsletter #sib-container button.sib-form-block__button {
   background: var(--ink) !important;
   color: white !important;
   border-radius: 4px !important;
@@ -618,7 +618,7 @@ main > article h1 {
   font-size: 11px;
 }
 blockquote {
-  background: #e9ecd9;
+  background: #e3ebe4;
   border-left: 3px solid #6b8251;
   border-radius: 0;
   padding: 22px 30px;
@@ -729,7 +729,7 @@ input:focus-visible {
     border-radius: 3px;
   }
   .nav-toggle:hover {
-    background: #e9ecd9;
+    background: #e3ebe4;
     color: var(--ink);
     box-shadow: none;
   }

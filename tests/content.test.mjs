@@ -23,11 +23,25 @@ test('templates escape metadata and reject missing values', () => {
   );
   assert.throws(() => render('{{unknown}}', {}));
 });
-test('all original editorial pages retain URLs, titles and principal headings', async () => {
+test('original URLs remain available and unchanged editorial pages retain metadata and headings', async () => {
   const baseline = JSON.parse(await readFile(resolve(root, 'tests/content-baseline.json'), 'utf8'));
   const pages = await loadPages(root);
-  assert.equal(pages.length, Object.keys(baseline).length);
-  for (const page of pages) {
+  for (const url of Object.keys(baseline))
+    assert.ok(
+      pages.some((page) => page.permalink === url),
+      url,
+    );
+  const revised = JSON.parse(await readFile(resolve(root, 'docs/editorial-revision.json'), 'utf8'));
+  const redesigned = new Set([
+    '/index.html',
+    '/sobre-mi.html',
+    '/articulos.html',
+    '/10.000 pasos.html',
+    ...revised.map((item) => item.url),
+  ]);
+  for (const page of pages.filter(
+    (page) => baseline[page.permalink] && !redesigned.has(page.permalink),
+  )) {
     const expected = baseline[page.permalink];
     assert.ok(expected, page.permalink);
     assert.equal(page.title, expected.title);
@@ -44,7 +58,7 @@ test('all original editorial pages retain URLs, titles and principal headings', 
 test('generated production output has no broken links, invalid metadata, trackers or budget violations', async () => {
   const result = await validateSite(resolve(root, 'dist'));
   assert.deepEqual(result.errors, []);
-  assert.equal(result.pages, 23);
+  assert.equal(result.pages, (await loadPages(root)).length);
 });
 test('newsletter uses native submission without third-party scripts or styles', async () => {
   for (const page of await loadPages(root)) {
