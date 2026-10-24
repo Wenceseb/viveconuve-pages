@@ -45,7 +45,9 @@ const cssSource =
   '\n' +
   (await read('src/styles/components.css')) +
   '\n' +
-  (await read('src/styles/hybrid.css'));
+  (await read('src/styles/hybrid.css')) +
+  '\n' +
+  (await read('src/styles/design-v2.css'));
 const css = cssSource
   .split('\n')
   .map((line) => line.trim())

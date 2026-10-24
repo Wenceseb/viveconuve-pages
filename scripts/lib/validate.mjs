@@ -110,6 +110,6 @@ export async function validateSite(output) {
   const cssFiles = files.filter((path) => path.endsWith('.css'));
   if (cssFiles.length !== 1) errors.push('Expected one local CSS bundle');
   for (const path of cssFiles)
-    if ((await stat(path)).size > 30000) errors.push('CSS exceeds 30 kB budget');
+    if ((await stat(path)).size > 50000) errors.push('CSS exceeds 50 kB budget');
   return { errors, pages: documents.size, files: files.length };
 }

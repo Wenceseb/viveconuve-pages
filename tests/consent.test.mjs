@@ -15,6 +15,7 @@ function harness(saved = null, blockedStorage = false) {
   }));
   const banner = { hidden: true, querySelectorAll: () => buttons, querySelector: () => buttons[0] };
   const document = {
+    addEventListener: (type, fn) => (handlers[type] = fn),
     currentScript: { dataset: { analyticsId: 'G-TEST', adsenseId: 'ca-test' } },
     getElementById: (id) => (id === 'cookie-banner' ? banner : null),
     querySelector: () => null,
@@ -31,16 +32,41 @@ function harness(saved = null, blockedStorage = false) {
       memory.value = value;
     },
   };
+  const browserWindow = {};
   runInNewContext(source, {
     document,
-    window: {},
+    window: browserWindow,
     localStorage: storage,
-    location: { reload: () => reloads++ },
+    location: {
+      reload: () => reloads++,
+      href: 'https://viveconuve.com/?private=value',
+      pathname: '/',
+    },
+    URL,
     encodeURIComponent,
     Date,
   });
-  return { loaded, handlers, banner, memory, reloads: () => reloads };
+  return { loaded, handlers, banner, memory, browserWindow, reloads: () => reloads };
 }
+
+test('Instagram measurement requires consent and excludes URL queries', () => {
+  const h = harness();
+  const event = {
+    target: {
+      closest: () => ({ href: 'https://www.instagram.com/viveconuve71/', closest: () => null }),
+    },
+  };
+  h.handlers.click(event);
+  assert.equal(h.browserWindow.dataLayer, undefined);
+  h.handlers.accept();
+  h.handlers.click(event);
+  const sent = Array.from(h.browserWindow.dataLayer.at(-1));
+  assert.equal(sent[1], 'instagram_outbound');
+  assert.equal(sent[2].page_path, '/');
+  assert.equal(sent[2].placement, 'content');
+  assert.ok(!JSON.stringify(sent).includes('private'));
+  assert.equal(h.browserWindow.dataLayer.filter((e) => e[1] === 'instagram_outbound').length, 1);
+});
 test('optional services are not requested before consent', () => {
   const h = harness();
   assert.equal(h.banner.hidden, false);

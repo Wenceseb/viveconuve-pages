@@ -30,6 +30,22 @@
     });
   }
   let enabled = false;
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest?.('a[href]');
+    if (!link || !enabled || !config.analyticsId || typeof window.gtag !== 'function') return;
+    const target = new URL(link.href, location.href);
+    if (target.hostname !== 'www.instagram.com' || target.pathname !== '/viveconuve71/') return;
+    // Separate from GA4's generic outbound click; never send query strings or user inputs.
+    window.gtag('event', 'instagram_outbound', {
+      page_path: location.pathname,
+      placement: link.closest('.site-footer')
+        ? 'footer'
+        : link.closest('.author')
+          ? 'author'
+          : 'content',
+      transport_type: 'beacon',
+    });
+  });
   function enableOptionalServices() {
     if (enabled) return;
     enabled = true;

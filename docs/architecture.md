@@ -14,11 +14,11 @@ La plantilla `src/templates/layout.html` reúne metadatos, cabecera, pie y conse
 
 Las imágenes fuente se conservan en `assets/images/`. Sharp genera WebP de 96, 400, 640, 800 y 1200 píxeles sin ampliar originales, dimensiones intrínsecas, `srcset`, `sizes` y JPEG/PNG de respaldo para las redes sociales. La imagen principal tiene prioridad alta; el resto se carga de forma diferida. `.cache/` evita recomprimir entradas idénticas.
 
-CSS se separa en tokens, base y componentes. Se publica un solo CSS y un JavaScript general con hashes de contenido en sus nombres. La tipografía de cuerpo usa fuentes del sistema y los títulos Georgia, sin descargar fuentes externas. El resultado es determinista para los mismos archivos y año de publicación; no incluye fechas de compilación.
+CSS se separa en tokens, base y componentes. Se publica un solo CSS y un JavaScript general con hashes de contenido en sus nombres. La tipografía usa Manrope y Barlow Condensed alojadas localmente con sus licencias OFL y font-display: swap, sin solicitudes a proveedores de fuentes. El resultado es determinista para los mismos archivos y año de publicación; no incluye fechas de compilación.
 
 ## Controles
 
-`npm run check` compila, ejecuta pruebas y valida el resultado. Se comprueban URLs originales, títulos, descripciones y encabezados principales; enlaces y anclas; JSON-LD; identificadores duplicados; imágenes con tamaño y texto alternativo; ausencia de rastreadores directos y código fuente publicado; presupuestos de 65 kB por HTML, 30 kB de CSS y 12 kB por JavaScript. Estos presupuestos miden archivos locales sin compresión HTTP y no sustituyen una medición real de Core Web Vitals.
+`npm run check` compila, ejecuta pruebas y valida el resultado. Se comprueban URLs originales, títulos, descripciones y encabezados principales; enlaces y anclas; JSON-LD; identificadores duplicados; imágenes con tamaño y texto alternativo; ausencia de rastreadores directos y código fuente publicado; presupuestos de 65 kB por HTML, 50 kB de CSS (plantillas editoriales y V2) y 12 kB por JavaScript. Estos presupuestos miden archivos locales sin compresión HTTP y no sustituyen una medición real de Core Web Vitals.
 
 `npm run format:check` controla el formato. `npm audit --audit-level=low` bloquea cualquier vulnerabilidad conocida reportada por npm. Esta auditoría revisa dependencias npm, no el propio Node. `.node-version`, `engines`, `engine-strict` y la comprobación previa a compilar exigen Node 22.23.4 o un parche posterior de la rama 22. Actions utiliza la misma versión y acciones oficiales fijadas a commits concretos. Dependabot propone revisiones mensuales; no las fusiona automáticamente.
 
