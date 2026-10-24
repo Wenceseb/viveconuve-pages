@@ -1,17 +1,22 @@
 {
   "first": {
-    "name": "AtlhonX Córdoba (Caliphate)",
+    "name": "AthlonX Córdoba (Caliphate)",
     "date": "2026-06-13",
     "dateLabel": "13 de junio de 2026",
     "place": "Córdoba",
     "result": "1.º en su grupo de edad",
     "status": "completed",
-    "source": "Corrección expresa del titular de ViveConUve, 23 de octubre de 2026"
+    "source": "Relato del autor; sin enlace externo a petición de Uve, 24/10/2026"
   },
   "goal": {
-    "name": "HYROX Málaga",
-    "month": "2027-04",
-    "period": "Abril de 2027",
+    "name": "HYROX, idealmente Málaga",
+    "period": "2027",
     "status": "goal"
+  },
+  "next": {
+    "name": "AthlonX Fuengirola / Last Wave",
+    "date": "2026-11-21",
+    "status": "registered",
+    "source": "Confirmación expresa del autor en esta sesión, 24/10/2026"
   }
 }

@@ -8,7 +8,9 @@ import { nodes, attr } from '../scripts/lib/html.mjs';
 const root = resolve(import.meta.dirname, '..');
 test('sitemap contains exactly primary indexable HTTPS URLs and every page is reachable from home', async () => {
   const pages = await loadPages(root);
-  const indexed = pages.filter((p) => !p.canonical && !p.robots.includes('noindex'));
+  const indexed = pages.filter(
+    (p) => !p.canonical && !p.robots.includes('noindex') && p.editorialStatus !== 'archived',
+  );
   const xml = await readFile(resolve(root, 'dist/sitemap.xml'), 'utf8');
   const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
   const expected = indexed.map(

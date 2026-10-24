@@ -5,7 +5,10 @@ const dateFor = (page) =>
   page.published ||
   page.structuredData.find((item) => item['@type'] === 'BlogPosting')?.datePublished;
 export function createFeeds(site, pages) {
-  const indexed = pages.filter((page) => !page.robots.includes('noindex') && !page.canonical);
+  const indexed = pages.filter(
+    (page) =>
+      !page.robots.includes('noindex') && !page.canonical && page.editorialStatus !== 'archived',
+  );
   const sitemap =
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     indexed
@@ -22,7 +25,7 @@ export function createFeeds(site, pages) {
     .sort((a, b) => dateFor(b).localeCompare(dateFor(a)) || a.permalink.localeCompare(b.permalink));
   const rss =
     '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>' +
-    `<title>${escapeHtml(site.name)}</title><link>${escapeHtml(site.url)}/</link><description>Artículos de ViveConUve: cuerpo, mente y movimiento.</description><language>es-es</language><atom:link href="${escapeHtml(site.url)}/rss.xml" rel="self" type="application/rss+xml"/>` +
+    `<title>${escapeHtml(site.name)}</title><link>${escapeHtml(site.url)}/</link><description>Fuerza, carrera y competición después de los 50. Historias y recursos de Uve.</description><language>es-es</language><atom:link href="${escapeHtml(site.url)}/rss.xml" rel="self" type="application/rss+xml"/>` +
     articles
       .map(
         (page) =>

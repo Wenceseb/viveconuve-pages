@@ -517,6 +517,213 @@ main > .story-prose {
   max-width: 440px;
   margin: 36px auto;
 }
+.three-paths {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.resource-callout {
+  padding: 40px;
+  background: #e3ebe4;
+  border-left: 6px solid #bc360a;
+}
+.journal-entry {
+  max-width: 820px;
+  background: white;
+  padding: 36px;
+  border-top: 6px solid #bc360a;
+  margin-bottom: 64px;
+}
+.archive-note {
+  padding: 20px;
+  background: #e3ebe4;
+  margin-bottom: 28px;
+}
+.race-summary {
+  padding: 24px;
+  background: #f6f7f2;
+  margin-block: 32px;
+}
+.tool-panel {
+  max-width: 880px;
+  padding: 36px;
+  background: white;
+  border-top: 5px solid #193b32;
+  scroll-margin-top: 24px;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.tool-grid > div {
+  min-width: 0;
+}
+.tool-panel label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.tool-panel input:not([type='checkbox']),
+.tool-panel textarea {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #67796e;
+  border-radius: 4px;
+  padding: 12px;
+  font: inherit;
+  background: #fff;
+  color: #193b32;
+}
+.tool-panel textarea {
+  resize: vertical;
+}
+.tool-panel fieldset {
+  min-width: 0;
+  border: 1px solid #bbc9c0;
+  padding: 20px;
+  margin-block: 24px;
+}
+.tool-panel legend {
+  font-weight: 650;
+  padding-inline: 6px;
+}
+.tool-help {
+  font-size: 16px;
+}
+.tool-actions,
+.tool-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-block: 24px;
+}
+.tool-panel button,
+.tool-nav a {
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 1px solid #193b32;
+  background: #193b32;
+  color: white;
+  font: inherit;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.tool-panel button:hover {
+  background: #295346;
+}
+.tool-nav a {
+  text-decoration: none;
+}
+.tool-nav a:hover {
+  color: white;
+  background: #295346;
+}
+.tool-result {
+  border-left: 4px solid #bc360a;
+  padding: 10px 22px;
+  margin-top: 28px;
+  background: #f6f7f2;
+}
+.tool-error {
+  color: #9a2410;
+  font-weight: 600;
+}
+.tool-panel [aria-invalid='true'] {
+  border: 2px solid #9a2410;
+}
+.tool-panel.h-checklist label:has(input[type='checkbox']) {
+  display: flex;
+  font-weight: 400;
+  gap: 12px;
+}
+.tool-panel.h-checklist input[type='checkbox'] {
+  width: 24px;
+  height: 24px;
+}
+.tool-panel #custom-check {
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+}
+.print-only {
+  display: none;
+}
+textarea:focus-visible {
+  outline: 3px solid #193b32;
+  outline-offset: 4px;
+}
+@media (max-width: 768px) {
+  .three-paths,
+  .tool-grid {
+    grid-template-columns: 1fr;
+  }
+  .tool-panel,
+  .journal-entry,
+  .resource-callout {
+    padding: 22px 16px;
+  }
+  .tool-panel fieldset {
+    padding: 12px;
+  }
+  .tool-nav {
+    gap: 10px;
+  }
+  .tool-panel button {
+    max-width: 100%;
+  }
+}
+@media print {
+  .tool-nav,
+  .tool-actions,
+  .tool-panel button,
+  #storage-status,
+  #review-form,
+  #add-check-form,
+  .tool-panel > .tool-help,
+  #review-status,
+  #check-message,
+  .tool-error {
+    display: none !important;
+  }
+  .tool-panel {
+    max-width: none;
+    border: 0;
+    padding: 0;
+    break-before: page;
+  }
+  .tool-panel fieldset {
+    break-inside: avoid;
+  }
+  .tool-panel input {
+    color: black;
+  }
+  .print-only {
+    display: block;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  body[data-print-tool] main > :not(.tool-panel) {
+    display: none !important;
+  }
+  body[data-print-tool='revision'] .tool-panel:not(#revision),
+  body[data-print-tool='checklist'] .tool-panel:not(#checklist),
+  body[data-print-tool='calculadora'] .tool-panel:not(#calculadora) {
+    display: none !important;
+  }
+  body[data-print-tool] .tool-panel {
+    break-before: auto;
+  }
+  #pace-form {
+    display: none;
+  }
+  #review-print {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+}
 @media (max-width: 768px) {
   .story-head {
     margin-bottom: 32px;

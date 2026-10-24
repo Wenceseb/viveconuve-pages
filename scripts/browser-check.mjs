@@ -5,6 +5,7 @@ import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { loadPages } from './lib/content.mjs';
 import { resolve } from 'node:path';
+import { checkTools, captureReview, checkBlockedStorage } from './lib/tool-browser-checks.mjs';
 const pages = (await loadPages(resolve(import.meta.dirname, '..'))).map((page) => page.permalink);
 const port = '8082';
 const server = spawn(process.execPath, ['scripts/serve.mjs'], {
@@ -100,11 +101,14 @@ try {
     ]);
     assert.equal(submission.method, 'POST');
     assert.equal(new URLSearchParams(submission.data).get('EMAIL'), 'audit@example.com');
+    await checkTools(page, `http://127.0.0.1:${port}`, width);
+    if (width === 1440) await captureReview(page, `http://127.0.0.1:${port}`);
     await context.close();
     console.log(
       `Browser checks passed at ${width}px: accessibility, images, layout, keyboard, consent and intercepted form submission.`,
     );
   }
+  await checkBlockedStorage(browser, `http://127.0.0.1:${port}`);
 } finally {
   await browser?.close();
   server.kill();

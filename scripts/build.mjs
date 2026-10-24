@@ -38,7 +38,7 @@ const partials = Object.fromEntries(
     ]),
   ),
 );
-const css =
+const cssSource =
   (await read('src/styles/tokens.css')) +
   '\n' +
   (await read('src/styles/base.css')) +
@@ -46,6 +46,11 @@ const css =
   (await read('src/styles/components.css')) +
   '\n' +
   (await read('src/styles/hybrid.css'));
+const css = cssSource
+  .split('\n')
+  .map((line) => line.trim())
+  .filter(Boolean)
+  .join('\n');
 const js = await read('src/scripts/site.js');
 const hash = (value) => createHash('sha256').update(value).digest('hex').slice(0, 12);
 const cssUrl = `/assets/styles/site.${hash(css)}.css`,
@@ -53,6 +58,27 @@ const cssUrl = `/assets/styles/site.${hash(css)}.css`,
 await writeFile(join(output, cssUrl), css);
 await writeFile(join(output, jsUrl), js);
 const pages = await loadPages(root);
+const editorial = JSON.parse(await read('content/editorial.json'));
+const cardLinks = (slugs) =>
+  '<div class="h-links">' +
+  slugs
+    .map((slug) => {
+      const page = pages.find((item) => item.permalink === `/${slug}.html`);
+      if (!page || page.editorialStatus !== 'active')
+        throw new Error(`Invalid editorial selection: ${slug}`);
+      return `<a href="${escapeHtml(page.permalink)}"><strong>${escapeHtml(page.title.replace(' – ViveConUve', ''))}</strong><span>${escapeHtml(page.description)}</span></a>`;
+    })
+    .join('') +
+  '</div>';
+const editorialValues = Object.fromEntries(
+  Object.entries(editorial).map(([key, slugs]) => [`${key}Links`, cardLinks(slugs)]),
+);
+editorialValues.recuperarLinks = cardLinks(
+  editorial.habitos.filter((slug) => slug !== 'cambio-fisico-a-los-50'),
+);
+const toolsJs = await read('src/scripts/tools.js');
+const toolsUrl = `/assets/scripts/tools.${hash(toolsJs)}.js`;
+await writeFile(join(output, toolsUrl), toolsJs);
 for (const page of pages) {
   if (
     page.canonical &&
@@ -65,10 +91,10 @@ const feeds = createFeeds(site, pages);
 await writeFile(join(output, 'sitemap.xml'), feeds.sitemap);
 await writeFile(join(output, 'rss.xml'), feeds.rss);
 for (const page of pages) {
-  const content = render(
-    page.content.replaceAll('{{> newsletter}}', partials.newsletter),
-    competitionValues,
-  );
+  const content = render(page.content.replaceAll('{{> newsletter}}', partials.newsletter), {
+    ...competitionValues,
+    ...editorialValues,
+  });
   const contentImages = nodes(parse(content), 'img');
   const firstImage = [
     ...contentImages.filter((node) => attr(node, 'fetchpriority') === 'high'),
@@ -95,6 +121,8 @@ for (const page of pages) {
     socialImage: site.url + socialImage,
     cssUrl,
     jsUrl,
+    toolsScript:
+      page.permalink === '/recursos.html' ? `<script defer src="${toolsUrl}"></script>` : '',
     header: render(partials.header, { navigation }),
     footer: render(partials.footer, { year: new Date().getUTCFullYear() }),
     cookies: partials.cookies,
