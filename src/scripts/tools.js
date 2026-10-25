@@ -58,11 +58,10 @@
   });
   document.querySelectorAll('[data-preset]').forEach((button) =>
     button.addEventListener('click', () => {
-      const hyrox = button.dataset.preset === 'hyrox';
-      byId('segments').value = hyrox ? '8' : '10';
-      byId('distance').value = hyrox ? '1' : '0,4';
+      byId('segments').value = '8';
+      byId('distance').value = '1';
       byId('pace-min').value = '5';
-      byId('pace-sec').value = hyrox ? '30' : '00';
+      byId('pace-sec').value = '30';
       byId('pace-form').requestSubmit();
     }),
   );

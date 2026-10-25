@@ -9,13 +9,10 @@ export async function checkTools(page, origin, width) {
   await page.locator('[data-preset="hyrox"]').click();
   assert.equal(await page.locator('#run-total').textContent(), '44:00');
   assert.equal(await page.locator('#per-leg').textContent(), '5:30');
-  await page.locator('[data-preset="cordoba"]').click();
-  assert.equal(await page.locator('#run-total').textContent(), '20:00');
-  assert.equal(await page.locator('#per-leg').textContent(), '2:00');
   await page.locator('#extra-min').fill('3');
   await page.locator('#extra-sec').fill('15');
   await page.locator('#pace-form button[type="submit"]').click();
-  assert.equal(await page.locator('#combined-total').textContent(), '23:15');
+  assert.equal(await page.locator('#combined-total').textContent(), '47:15');
   for (const value of ['60', '-1', '', '1.5', 'abc']) {
     await page.locator('#pace-sec').fill(value);
     await page.locator('#pace-form button[type="submit"]').click();
