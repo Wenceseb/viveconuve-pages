@@ -60,6 +60,17 @@
       script.async = true;
       script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.analyticsId)}`;
       document.head.append(script);
+      // Empty analyticsId also excludes Metricool from private tools.
+      const metricool = document.createElement('script');
+      metricool.async = true;
+      metricool.src = 'https://tracker.metricool.com/resources/be.js';
+      let tracked = false;
+      metricool.onload = () => {
+        if (tracked || typeof window.beTracker?.t !== 'function') return;
+        tracked = true;
+        window.beTracker.t({ hash: 'c0405db629db5693b413626d53d6bcc4' });
+      };
+      document.head.append(metricool);
     }
     if (config.adsenseId) {
       const script = document.createElement('script');
