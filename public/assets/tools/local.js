@@ -11,12 +11,16 @@ export function download(name, value, type = 'application/json') {
 export async function imported(file, kind, validator, limit) {
   const maxBytes = kind === 'records' ? 8000000 : 1000000;
   if (!file || file.size > maxBytes)
-    throw new Error(`Elige un archivo JSON de hasta ${maxBytes / 1000000} MB.`);
+    throw new Error(
+      `Elige una copia de seguridad de ViveConUve de hasta ${maxBytes / 1000000} MB.`,
+    );
   let data;
   try {
     data = JSON.parse(await file.text());
   } catch {
-    throw new Error('El archivo no contiene JSON válido. No se ha cambiado nada.');
+    throw new Error(
+      'No podemos leer esta copia de seguridad. Elige una descargada desde ViveConUve. Tus datos no se han cambiado.',
+    );
   }
   return unpack(data, kind, validator, limit);
 }

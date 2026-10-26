@@ -78,7 +78,9 @@ try {
       buffer: Buffer.from('{broken'),
     });
     await page.waitForFunction(() =>
-      document.getElementById('planner-error').textContent.includes('JSON válido'),
+      document
+        .getElementById('planner-error')
+        .textContent.includes('No podemos leer esta copia de seguridad'),
     );
     assert.ok(await page.locator('#planner-error').textContent());
     assert.ok((await page.locator('#plan-count').textContent()).startsWith('4 de'));

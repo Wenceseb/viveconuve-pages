@@ -280,7 +280,7 @@ $('import-plans').addEventListener('change', async (event) => {
     store.replace([...store.items, ...values.map((v) => ({ ...v, id: id() }))]);
     refresh();
     $('planner-error').textContent =
-      'Importación añadida al archivo. Los escenarios anteriores se conservan.';
+      'Estrategias recuperadas. Las que ya tenías guardadas se conservan.';
   } catch (e) {
     $('planner-error').textContent = e.message;
   }
