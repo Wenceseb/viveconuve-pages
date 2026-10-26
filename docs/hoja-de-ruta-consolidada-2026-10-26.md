@@ -63,3 +63,12 @@ No se marcará como terminada una función por tener solo una pantalla o un enla
 - **Descartado por duplicidad:** nuevas versiones paralelas de calculadora rápida, checklist, revisión libre y calendario.
 
 Evidencias y límites: [entrega de esta fase](entrega-plataforma-2026-10-26.md).
+
+## Metricool: publicación autorizada del 26 de octubre
+
+- Tracker web publicado en main, commit `40299c3`, despliegue `40332801005` finalizado correctamente.
+- Hash proporcionado por el propietario. Activación tras consentimiento, inicialización única y exclusión de herramientas privadas.
+- Verificación real en https://viveconuve.com/: script `be.js` HTTP 200 y petición de visita `c3po.jpg` con el hash correcto HTTP 200. No hubo peticiones Metricool antes de aceptar.
+- Políticas informativas actualizadas. Prueba local de navegador con tracker interceptado y pruebas unitarias de consentimiento superadas. Tras integrar en la rama de plataforma: 36 pruebas superadas.
+- Esto confirma la instalación y recepción técnica de la visita; no confirma la visualización de estadísticas en el panel ni completa la conexión de Instagram.
+- Integración conservada en la rama de plataforma; vista previa reconstruida. Las funcionalidades mayores siguen sin publicarse.
