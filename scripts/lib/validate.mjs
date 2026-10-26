@@ -113,7 +113,11 @@ export async function validateSite(output) {
   for (const [page, { document }] of documents) {
     const styles = nodes(document, 'link').filter((node) => attr(node, 'rel') === 'stylesheet');
     const isTool = ['/planificador-hyrox.html', '/mi-progreso.html'].includes(page);
-    if (styles.length !== (isTool ? 2 : 1)) errors.push(`${page}: unexpected stylesheet count`);
+    const isLibrary = nodes(document, 'body').some((node) =>
+      attr(node, 'class')?.includes('station-library'),
+    );
+    if (styles.length !== (isTool || isLibrary ? 2 : 1))
+      errors.push(`${page}: unexpected stylesheet count`);
     if (!isTool && styles.some((node) => attr(node, 'href')?.includes('/assets/tools/')))
       errors.push(`${page}: tool CSS loaded outside tools`);
   }

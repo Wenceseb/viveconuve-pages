@@ -53,3 +53,11 @@ Portada, logo, lema, fotografía y siguiente dorsal intactos. Calculadora rápid
 `public/assets/tools/model.js`: lógica y validación compartidas; `local.js`: persistencia, importación y exportación; `planner.js` y `progress.js`: interfaz; `workshop.css`: estilos exclusivos. Pruebas en `tests/hybrid-tools.test.mjs` y `scripts/hybrid-browser-check.mjs`, integradas en CI. El validador mantiene el presupuesto por archivo y comprueba que el CSS adicional no se cargue fuera de las dos herramientas.
 
 Para un nuevo cuaderno del laboratorio, conservar los apartados de pregunta, referencia, cambio, fechas, observaciones, límites y siguiente paso. Cambiar a «en curso» únicamente con inicio confirmado y a «finalizado» con cierre y observaciones reales. No convertir propuestas editoriales en declaraciones del autor.
+
+## Comprobación final de esta iteración
+
+- 37 pruebas unitarias/de integración superadas; 47 páginas y 221 archivos validados (enlaces, metadatos, imágenes, scripts y presupuestos).
+- Revisión general de las 47 páginas en 390 y 1440 px superada: imágenes, desbordamientos, accesibilidad automatizada, consola y recorridos existentes. Portadas representativas también a 375/768 px.
+- Herramientas y agenda: pruebas en 390/768/1440 px; categorías, archivo, copias recuperables, impresión/PDF, persistencia, filtros y fecha de revisión. Estados de almacenamiento bloqueado, lleno y corrupto conservan trabajo y exportación.
+- Detectado y corregido un conflicto de contraste en los accesos secundarios de portada. Revisión repetida correctamente.
+- Esta ampliación está preparada para revisión en http://127.0.0.1:8097/ y continúa sin publicarse en producción. No implica que se hayan medido Core Web Vitals de usuarios reales ni certificado accesibilidad.

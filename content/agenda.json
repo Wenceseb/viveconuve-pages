@@ -1,0 +1,112 @@
+[
+  {
+    "name": "HYROX Tenerife",
+    "city": "Tenerife",
+    "country": "España",
+    "start": "2026-09-04",
+    "end": "2026-09-06",
+    "formats": [
+      "HYROX"
+    ],
+    "source": "https://support.hyrox.com/?seller=64c90999373bfdfbecf2a933",
+    "verified": "2026-10-26"
+  },
+  {
+    "name": "HYROX Valencia",
+    "city": "Valencia",
+    "country": "España",
+    "start": "2026-10-15",
+    "end": "2026-10-18",
+    "formats": [
+      "HYROX"
+    ],
+    "source": "https://support.hyrox.com/?seller=64c90999373bfdfbecf2a933",
+    "verified": "2026-10-26"
+  },
+  {
+    "name": "HYROX Barcelona",
+    "city": "Barcelona",
+    "country": "España",
+    "start": "2026-11-11",
+    "end": "2026-11-15",
+    "formats": [
+      "HYROX"
+    ],
+    "source": "https://support.hyrox.com/?seller=64c90999373bfdfbecf2a933",
+    "verified": "2026-10-26"
+  },
+  {
+    "name": "AthlonX Last Wave",
+    "city": "Fuengirola",
+    "country": "España",
+    "start": "2026-11-21",
+    "end": "2026-11-21",
+    "formats": [
+      "AthlonX"
+    ],
+    "source": "https://athlonx.es/last-wave/",
+    "verified": "2026-10-26"
+  },
+  {
+    "name": "DEKA Tenerife",
+    "city": "Santa Cruz de Tenerife",
+    "country": "España",
+    "start": "2026-11-21",
+    "end": "2026-11-22",
+    "formats": [
+      "DEKA FIT",
+      "DEKA MILE",
+      "DEKA STRONG"
+    ],
+    "source": "https://es.spartan.com/es/races/deka-tenerife",
+    "verified": "2026-10-26"
+  },
+  {
+    "name": "HYROX Bilbao",
+    "city": "Bilbao",
+    "country": "España",
+    "start": "2027-02-06",
+    "end": "2027-02-07",
+    "formats": [
+      "HYROX"
+    ],
+    "source": "https://support.hyrox.com/?seller=64c90999373bfdfbecf2a933",
+    "verified": "2026-10-26"
+  },
+  {
+    "name": "AthlonX Terra Mítica",
+    "city": "Benidorm",
+    "country": "España",
+    "start": "2027-02-20",
+    "end": "2027-02-20",
+    "formats": [
+      "AthlonX"
+    ],
+    "source": "https://athlonx.es/terra-mitica/",
+    "verified": "2026-10-26"
+  },
+  {
+    "name": "HYROX Madrid",
+    "city": "Madrid",
+    "country": "España",
+    "start": "2027-03-17",
+    "end": "2027-03-21",
+    "formats": [
+      "HYROX"
+    ],
+    "source": "https://support.hyrox.com/?seller=64c90999373bfdfbecf2a933",
+    "verified": "2026-10-26"
+  },
+  {
+    "name": "HYROX Málaga",
+    "city": "Málaga",
+    "country": "España",
+    "start": "2027-04-14",
+    "end": "2027-04-18",
+    "formats": [
+      "HYROX"
+    ],
+    "source": "https://support.hyrox.com/?seller=64c90999373bfdfbecf2a933",
+    "verified": "2026-10-26"
+  }
+]

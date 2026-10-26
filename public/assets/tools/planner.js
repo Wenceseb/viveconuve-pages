@@ -1,6 +1,8 @@
 import {
   stations,
   categories,
+  categoryLabels,
+  categoryHelp,
   time,
   clock,
   signed,
@@ -14,7 +16,12 @@ const store = localCollection('plans', scenario, 30, $('local-status'));
 let current = id(),
   result = null;
 const form = $('planner-form');
-categories.forEach((v) => $('category').add(new Option(v, v)));
+categories.forEach((v) => $('category').add(new Option(categoryLabels[v], v)));
+function updateCategory() {
+  $('category-help').textContent = categoryHelp($('category').value);
+}
+$('category').addEventListener('change', updateCategory);
+updateCategory();
 stations.forEach((name, i) => {
   const section = el('details', '', 'race-block'),
     legend = el('summary', `${i + 1}. ${name}`);
@@ -75,7 +82,8 @@ function summary(plan, target) {
   target.replaceChildren();
   target.append(
     el('p', plan.name, 'result-name'),
-    el('p', plan.category),
+    el('p', categoryLabels[plan.category]),
+    el('p', categoryHelp(plan.category)),
     el('p', clock(s.total), 'race-total'),
     el('p', `Objetivo ${clock(plan.target)} · diferencia ${signed(s.delta)}`),
   );
@@ -168,6 +176,7 @@ function load(plan) {
   current = plan.id;
   $('plan-name').value = plan.name;
   $('category').value = plan.category;
+  updateCategory();
   $('target').value = clock(plan.target);
   for (const key of ['runs', 'work', 'entry', 'exit'])
     plan[key].forEach((v, i) => ($(`${key}-${i}`).value = clock(v)));
@@ -196,6 +205,7 @@ $('new-plan').addEventListener('click', () => {
     return;
   current = id();
   form.reset();
+  updateCategory();
   result = null;
   $('planner-result').hidden = true;
   $('plan-name').focus();
@@ -279,9 +289,25 @@ $('import-plans').addEventListener('change', async (event) => {
 $('clear-plans').addEventListener('click', () => {
   if (store.clear()) refresh();
 });
+$('print-saved-plan').addEventListener('click', () =>
+  attempt(() => {
+    const plan = store.items.find((v) => v.id === $('saved-plans').value);
+    if (!plan) throw new Error('Selecciona una estrategia guardada para preparar su PDF.');
+    const previous = result;
+    renderResult(plan);
+    $('planner-result').querySelector('details').open = true;
+    window.print();
+    if (previous) renderResult(previous);
+    else {
+      result = null;
+      $('planner-result').hidden = true;
+    }
+  }),
+);
 $('print-plan').addEventListener('click', () =>
   attempt(() => {
     renderResult(read());
+    $('planner-result').querySelector('details').open = true;
     window.print();
   }),
 );

@@ -56,6 +56,9 @@ try {
     await page.locator('#plan-name').fill('B renombrada');
     await page.locator('#save-plan').click();
     const exportWait = page.waitForEvent('download');
+    await page.locator('#backup-plans').evaluate((node) => {
+      node.open = true;
+    });
     await page.locator('#export-plans').click();
     const file = await exportWait;
     const payload = JSON.parse(await readFile(await file.path(), 'utf8'));
@@ -222,6 +225,9 @@ try {
     await page.locator('#save-plan').click();
     assert.ok((await page.locator('#local-status').textContent()).includes('solo en esta sesión'));
     const wait = page.waitForEvent('download');
+    await page.locator('#backup-plans').evaluate((node) => {
+      node.open = true;
+    });
     await page.locator('#export-plans').click();
     const result = await wait;
     assert.equal(JSON.parse(await readFile(await result.path(), 'utf8')).items.length, 1);
@@ -269,6 +275,32 @@ try {
       `Storage ${mode}: usable in memory, warning visible, export works, original preserved.`,
     );
   }
+
+  const pdfContext = await browser.newContext();
+  const pdfPage = await pdfContext.newPage();
+  pdfPage.on('dialog', (dialog) => dialog.accept());
+  await pdfPage.goto(origin + '/planificador-hyrox.html');
+  await pdfPage.locator('#example').click();
+  const categoryValues = await pdfPage
+    .locator('#category option')
+    .evaluateAll((nodes) => nodes.map((node) => node.value));
+  assert.equal(categoryValues.length, 12);
+  for (const category of categoryValues) {
+    await pdfPage.selectOption('#category', category);
+    await pdfPage.locator('#save-plan').click();
+    assert.match(await pdfPage.locator('#plan-summary').textContent(), /72:00/);
+  }
+  await pdfPage.evaluate(() => {
+    window.print = () => {
+      window.printedStrategy = document.querySelector('#plan-summary').textContent;
+    };
+  });
+  await pdfPage.locator('#print-saved-plan').click();
+  assert.match(await pdfPage.evaluate(() => window.printedStrategy), /Equipo mixto/);
+  await pdfPage.emulateMedia({ media: 'print' });
+  assert.equal(await pdfPage.locator('#timeline-body tr:visible').count(), 32);
+  await pdfContext.close();
+  console.log('12 categories and selected-strategy PDF retain all 32 segments.');
 } finally {
   await browser.close();
   server?.kill();

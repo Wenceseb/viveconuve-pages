@@ -9,7 +9,28 @@ export const stations = [
   'Sandbag Lunges',
   'Wall Balls',
 ];
-export const categories = ['Women Open', 'Men Open', 'Women Pro', 'Men Pro'];
+export const categoryLabels = {
+  'Women Open': 'Individual femenino · Open',
+  'Men Open': 'Individual masculino · Open',
+  'Women Pro': 'Individual femenino · Pro',
+  'Men Pro': 'Individual masculino · Pro',
+  'Doubles Women Open': 'Dobles femenino · Open',
+  'Doubles Men Open': 'Dobles masculino · Open',
+  'Doubles Mixed Open': 'Dobles mixto · Open',
+  'Doubles Women Pro': 'Dobles femenino · Pro',
+  'Doubles Men Pro': 'Dobles masculino · Pro',
+  'Relay Women': 'Equipo femenino · Relevos',
+  'Relay Men': 'Equipo masculino · Relevos',
+  'Relay Mixed': 'Equipo mixto · Relevos',
+};
+export const categories = Object.keys(categoryLabels);
+export function categoryHelp(category) {
+  if (category.startsWith('Doubles'))
+    return 'Los dos corréis los 8 km juntos. Anota un tiempo de carrera de la pareja y un tiempo total por estación, con los cambios incluidos. No sumes los tiempos individuales ni dividas automáticamente los tiempos entre dos.';
+  if (category.startsWith('Relay'))
+    return 'Cuatro participantes: cada uno completa dos carreras de 1 km y sus dos estaciones. Anota los ocho bloques del equipo en orden, incluyendo los relevos en las transiciones una sola vez. El equipo mixto reúne a dos mujeres y dos hombres.';
+  return 'Anota tus ocho carreras y ocho estaciones. Las entradas y salidas se suman una sola vez. La categoría no calcula ritmos ni cargas automáticamente.';
+}
 export function time(value, allowZero = false) {
   const raw = String(value).trim();
   let seconds;

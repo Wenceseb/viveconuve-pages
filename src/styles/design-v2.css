@@ -1297,3 +1297,39 @@ main > .story-prose {
     font-size: clamp(44px, 12vw, 60px);
   }
 }
+
+.agenda-board {
+  padding-block: 2rem;
+}
+#agenda-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+  align-items: end;
+  padding: 1.4rem;
+  background: var(--h-surface, #e3ebe4);
+}
+#agenda-filters[hidden] {
+  display: none;
+}
+#agenda-filters p {
+  margin: 0;
+}
+#agenda-filters label {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+#agenda-filters input,
+#agenda-filters select {
+  width: 100%;
+  min-height: 44px;
+}
+#agenda-events article[hidden] {
+  display: none;
+}
+#agenda-events h3 {
+  margin-top: 0;
+}
+.v2 main .tool-nav a {
+  color: #fff;
+}

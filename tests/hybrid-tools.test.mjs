@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  categories,
+  categoryHelp,
   time,
   clock,
   scenario,
@@ -100,4 +102,16 @@ test('CSV quotes multiline notes and neutralizes spreadsheet formulas', () => {
   const result = csv([r]);
   assert.ok(result.includes('"\'=HYPERLINK(""x"")"'));
   assert.ok(result.includes('"line 1, ""quoted""\nline 2"'));
+});
+
+test('official Singles, Doubles and Relay categories preserve existing plans and reject fictitious divisions', () => {
+  assert.equal(categories.length, 12);
+  for (const category of categories) {
+    const item = scenario({ ...plan(), category });
+    assert.equal(sumPlan(item).total, 4320);
+    assert.ok(categoryHelp(category).length > 30);
+    assert.equal(scenario(JSON.parse(JSON.stringify(item))).category, category);
+  }
+  assert.throws(() => scenario({ ...plan(), category: 'Doubles Mixed Pro' }));
+  assert.throws(() => scenario({ ...plan(), category: 'Relay Pro' }));
 });

@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import { parse, serialize } from 'parse5';
 import { loadPages, render, escapeHtml } from './lib/content.mjs';
 import { buildImages, optimizeDocumentImages } from './lib/images.mjs';
+import { renderAgenda } from './lib/agenda.mjs';
 import { createFeeds } from './lib/feeds.mjs';
 import { nodes, attr } from './lib/html.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -22,6 +23,7 @@ await cp(join(root, 'public'), output, { recursive: true });
 const imageManifest = await buildImages(root, output);
 const read = (path) => readFile(join(root, path), 'utf8');
 const site = JSON.parse(await read('content/site.json'));
+const agenda = JSON.parse(await read('content/agenda.json'));
 const competitions = JSON.parse(await read('content/competitions.json'));
 const competitionValues = {
   firstName: competitions.first.name,
@@ -94,6 +96,7 @@ await writeFile(join(output, 'sitemap.xml'), feeds.sitemap);
 await writeFile(join(output, 'rss.xml'), feeds.rss);
 for (const page of pages) {
   const content = render(page.content.replaceAll('{{> newsletter}}', partials.newsletter), {
+    agendaEvents: renderAgenda(agenda),
     ...competitionValues,
     ...editorialValues,
   });
@@ -123,12 +126,15 @@ for (const page of pages) {
     socialImage: site.url + socialImage,
     cssUrl,
     jsUrl,
-    toolsScript:
-      page.permalink === '/recursos.html'
-        ? `<script defer src="${toolsUrl}"></script>`
-        : ['/planificador-hyrox.html', '/mi-progreso.html'].includes(page.permalink)
-          ? `<link rel="stylesheet" href="/assets/tools/workshop.css"><script type="module" src="/assets/tools/${page.permalink === '/planificador-hyrox.html' ? 'planner' : 'progress'}.js"></script>`
-          : '',
+    toolsScript: page.layout.includes('station-library')
+      ? '<link rel="stylesheet" href="/assets/library/library.css">'
+      : page.permalink === '/competiciones.html'
+        ? '<script defer src="/assets/tools/agenda.js"></script>'
+        : page.permalink === '/recursos.html'
+          ? `<script defer src="${toolsUrl}"></script>`
+          : ['/planificador-hyrox.html', '/mi-progreso.html'].includes(page.permalink)
+            ? `<link rel="stylesheet" href="/assets/tools/workshop.css"><script type="module" src="/assets/tools/${page.permalink === '/planificador-hyrox.html' ? 'planner' : 'progress'}.js"></script>`
+            : '',
     header: render(partials.header, { navigation }),
     footer: render(partials.footer, { year: new Date().getUTCFullYear() }),
     cookies: partials.cookies,

@@ -1,0 +1,114 @@
+.station-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+  margin: 2rem 0 3rem;
+}
+.station-diagram {
+  margin: 0;
+}
+.station-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.station-diagram figcaption,
+.station-source {
+  font-size: 0.9rem;
+  color: #5d6861;
+  line-height: 1.6;
+}
+.station-question {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.station-measure {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+.station-reading {
+  max-width: 48rem;
+  margin: 3rem auto;
+}
+.station-reading h2 {
+  margin-top: 2.2rem;
+}
+.station-reading dt {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+.station-reading dd {
+  margin-left: 0;
+}
+.station-index {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2rem;
+  counter-reset: station;
+}
+.station-index a {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid #cbd7ce;
+  text-decoration: none;
+  align-items: center;
+}
+.station-index strong {
+  display: block;
+  font-size: 1.3rem;
+}
+.station-index a > span > span {
+  display: block;
+  color: #5d6861;
+}
+.station-number {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #193b32;
+}
+.station-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-top: 1px solid #cbd7ce;
+  padding: 2rem 0;
+}
+.station-pagination a {
+  padding: 0.5rem 0;
+}
+.station-layout table {
+  width: 100%;
+  font-size: 0.95rem;
+}
+.station-layout td,
+.station-layout th {
+  padding: 0.6rem;
+  text-align: left;
+}
+@media (max-width: 700px) {
+  .station-layout,
+  .station-index {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .station-pagination {
+    flex-direction: column;
+  }
+  .station-diagram svg {
+    min-width: 0;
+  }
+  .station-layout table {
+    font-size: 0.88rem;
+  }
+  .station-library h1 {
+    overflow-wrap: break-word;
+  }
+}
