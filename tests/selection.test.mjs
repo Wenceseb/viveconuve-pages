@@ -15,7 +15,7 @@ test('active journeys cannot promote retired, merged or duplicate articles', asy
   );
   const selection = JSON.parse(await readFile(resolve(root, 'content/editorial.json'), 'utf8'));
   const active = pages.filter((p) => p.editorialStatus === 'active');
-  assert.equal(active.length, 10);
+  assert.equal(active.length, new Set(Object.values(selection).flat()).size);
   assert.deepEqual(
     active.map((p) => p.permalink).sort(),
     Object.values(selection)
