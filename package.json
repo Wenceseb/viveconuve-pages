@@ -12,10 +12,11 @@
     "dev": "node scripts/serve.mjs",
     "test": "node --test",
     "check": "npm run build && npm test && node scripts/check.mjs",
-    "format": "prettier --write \"scripts/**/*.mjs\" \"src/**/*.{js,css,html}\" \"tests/*.mjs\" \"*.json\" \".github/workflows/*.yml\"",
-    "format:check": "prettier --check \"scripts/**/*.mjs\" \"src/**/*.{js,css,html}\" \"tests/*.mjs\" \"*.json\" \".github/workflows/*.yml\"",
+    "format": "prettier --write \"scripts/**/*.mjs\" \"src/**/*.{js,css,html}\" \"public/assets/tools/*.{js,css}\" \"tests/*.mjs\" \"*.json\" \".github/workflows/*.yml\"",
+    "format:check": "prettier --check \"scripts/**/*.mjs\" \"src/**/*.{js,css,html}\" \"public/assets/tools/*.{js,css}\" \"tests/*.mjs\" \"*.json\" \".github/workflows/*.yml\"",
     "check:runtime": "node scripts/check-runtime.mjs",
     "check:browser": "node scripts/browser-check.mjs",
+    "check:hybrid": "node scripts/hybrid-browser-check.mjs",
     "prebuild": "npm run check:runtime"
   },
   "devDependencies": {

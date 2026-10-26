@@ -108,7 +108,15 @@ export async function validateSite(output) {
       errors.push(`${rel}: JavaScript exceeds 12 kB budget`);
   }
   const cssFiles = files.filter((path) => path.endsWith('.css'));
-  if (cssFiles.length !== 1) errors.push('Expected one local CSS bundle');
+  const sharedCss = cssFiles.filter((path) => /site\.[a-f0-9]+\.css$/.test(path));
+  if (sharedCss.length !== 1) errors.push('Expected one shared CSS bundle');
+  for (const [page, { document }] of documents) {
+    const styles = nodes(document, 'link').filter((node) => attr(node, 'rel') === 'stylesheet');
+    const isTool = ['/planificador-hyrox.html', '/mi-progreso.html'].includes(page);
+    if (styles.length !== (isTool ? 2 : 1)) errors.push(`${page}: unexpected stylesheet count`);
+    if (!isTool && styles.some((node) => attr(node, 'href')?.includes('/assets/tools/')))
+      errors.push(`${page}: tool CSS loaded outside tools`);
+  }
   for (const path of cssFiles)
     if ((await stat(path)).size > 50000) errors.push('CSS exceeds 50 kB budget');
   return { errors, pages: documents.size, files: files.length };

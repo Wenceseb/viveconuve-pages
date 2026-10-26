@@ -124,7 +124,11 @@ for (const page of pages) {
     cssUrl,
     jsUrl,
     toolsScript:
-      page.permalink === '/recursos.html' ? `<script defer src="${toolsUrl}"></script>` : '',
+      page.permalink === '/recursos.html'
+        ? `<script defer src="${toolsUrl}"></script>`
+        : ['/planificador-hyrox.html', '/mi-progreso.html'].includes(page.permalink)
+          ? `<link rel="stylesheet" href="/assets/tools/workshop.css"><script type="module" src="/assets/tools/${page.permalink === '/planificador-hyrox.html' ? 'planner' : 'progress'}.js"></script>`
+          : '',
     header: render(partials.header, { navigation }),
     footer: render(partials.footer, { year: new Date().getUTCFullYear() }),
     cookies: partials.cookies,

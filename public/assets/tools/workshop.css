@@ -1,0 +1,443 @@
+.workshop main {
+  max-width: none;
+  padding: 0;
+}
+.workshop-head {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 3.5rem max(5vw, calc((100vw - 1180px) / 2));
+}
+.workshop-head a {
+  color: var(--paper);
+}
+.workshop-head h1 {
+  color: inherit;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(3.7rem, 7vw, 7rem);
+  line-height: 0.95;
+  max-width: 16ch;
+  margin: 1.8rem 0;
+}
+.workshop-head p {
+  max-width: 50ch;
+  font-size: 1.2rem;
+}
+.workshop-head .workshop-subtitle {
+  font-size: 0.95rem;
+  border-top: 1px solid #78988b;
+  padding-top: 1rem;
+  margin-top: 2rem;
+}
+.workshop-content {
+  max-width: 1180px;
+  margin: auto;
+  padding: 2rem 5vw 4rem;
+}
+.workshop-content > section {
+  margin: 0;
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.workshop .workshop-section-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.workshop h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 1.05;
+  margin: 0 0 1rem;
+}
+.workshop h3 {
+  font-size: 1.4rem;
+}
+.local-notice {
+  border-left: 4px solid var(--ink);
+  padding: 1rem 1.3rem;
+  background: var(--lime);
+}
+.workshop #local-status {
+  font-size: 0.9rem;
+}
+.workshop label {
+  display: block;
+  font-weight: 650;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.workshop input:not([type='checkbox']),
+.workshop select,
+.workshop textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0.7rem;
+  border: 1px solid #65796d;
+  border-radius: 4px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  margin-bottom: 1rem;
+}
+.workshop input[type='file'] {
+  max-width: 100%;
+  font-size: 0.9rem;
+}
+.workshop textarea {
+  resize: vertical;
+}
+.workshop button {
+  font: inherit;
+  min-height: 48px;
+  padding: 0.65rem 1rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0.3rem 0;
+}
+.workshop button:hover {
+  background: var(--lime);
+}
+.workshop button.h-button {
+  background: var(--ink);
+  color: var(--paper);
+}
+.workshop :focus-visible {
+  outline: 3px solid #ad482c;
+  outline-offset: 4px;
+}
+.workshop [aria-invalid='true'] {
+  border: 2px solid #ad3523;
+}
+.workshop details {
+  margin: 1rem 0;
+}
+.workshop summary {
+  cursor: pointer;
+  font-weight: 650;
+  padding: 0.8rem 0;
+  min-height: 44px;
+}
+.planner-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+.race-block {
+  min-width: 0;
+  border: 0;
+  border-top: 2px solid var(--ink);
+  padding: 1.2rem 0;
+  margin: 1.8rem 0;
+}
+.race-block summary {
+  padding: 0.5rem 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+.race-block[open] summary {
+  margin-bottom: 1rem;
+}
+.race-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.race-inputs input {
+  font-variant-numeric: tabular-nums;
+  font-size: 1.25rem !important;
+  margin-bottom: 0 !important;
+}
+.race-inputs label {
+  font-size: 0.9rem;
+}
+.strategy-sheet {
+  background: var(--lime);
+  padding: 1.5rem;
+  border-top: 7px solid var(--ink);
+}
+.strategy-sheet h2 {
+  font-size: 2.3rem;
+}
+.race-total {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 4.8rem;
+  line-height: 1;
+  margin: 1rem 0 !important;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.result-name {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.composition {
+  margin: 1.5rem 0;
+}
+.composition > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.3rem;
+  margin: 0.8rem 0;
+}
+.composition dd {
+  margin: 0;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.composition meter {
+  grid-column: 1/-1;
+  width: 100%;
+  height: 14px;
+}
+.composition-meter {
+  grid-column: 1/-1;
+}
+.workshop meter::-webkit-meter-optimum-value {
+  background: var(--ink);
+}
+.workshop meter::-moz-meter-bar {
+  background: var(--ink);
+}
+.table-scroll {
+  max-width: 100%;
+  overflow: auto;
+  margin: 1rem 0;
+}
+.workshop table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+.workshop th,
+.workshop td {
+  text-align: left;
+  padding: 0.7rem 0.45rem;
+  border-bottom: 1px solid #aab9af;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.workshop caption {
+  text-align: left;
+  padding: 0.7rem 0;
+  font-weight: 650;
+}
+.workshop td {
+  font-variant-numeric: tabular-nums;
+}
+.comparison-sheets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.workshop .comparison-sheets section {
+  background: var(--lime);
+  padding: 1.5rem;
+  margin: 0;
+}
+.comparison-sheets h4 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+.comparison-verdict {
+  padding: 1rem 0;
+  border-block: 2px solid var(--ink);
+  font-weight: 650;
+}
+.workshop .local-archive {
+  background: var(--lime);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+.local-archive select {
+  max-width: 42rem;
+}
+.record-entry {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 3rem;
+}
+.record-entry form {
+  background: #fff;
+  padding: 1.5rem;
+  border-top: 5px solid var(--ink);
+}
+.workshop .check-label {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+.workshop input[type='checkbox'] {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  accent-color: var(--ink);
+}
+.record-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  border-top: 1px solid var(--line);
+  padding: 1.5rem 0;
+}
+.record-row .tool-actions {
+  flex-direction: column;
+  justify-content: start;
+  align-items: stretch;
+}
+.record-row h3 {
+  margin: 0.5rem 0;
+}
+.record-row p {
+  margin: 0.6rem 0;
+  overflow-wrap: anywhere;
+}
+.record-date {
+  font-size: 0.85rem;
+}
+.record-time {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.record-notes {
+  white-space: pre-wrap;
+}
+.empty-notebook {
+  padding: 2rem;
+  border-block: 1px solid var(--line);
+}
+.evolution-row {
+  display: grid;
+  grid-template-columns: 7rem 1fr 5rem;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+.evolution-row meter {
+  width: 100%;
+  height: 25px;
+}
+.workshop-next {
+  margin: 3rem 0 0;
+  max-width: 65ch;
+}
+.workshop .local-notice {
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+.workshop [hidden] {
+  display: none !important;
+}
+@media (max-width: 850px) {
+  .planner-layout,
+  .record-entry,
+  .workshop .workshop-section-head {
+    grid-template-columns: 1fr;
+  }
+  .workshop-content {
+    padding-inline: 5vw;
+  }
+  .workshop-head {
+    padding-block: 2.5rem;
+  }
+  .workshop .workshop-section-head {
+    gap: 0.5rem;
+  }
+  .strategy-sheet {
+    margin-top: 1rem;
+  }
+}
+@media (max-width: 500px) {
+  .comparison-sheets {
+    grid-template-columns: 1fr;
+  }
+  .record-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .record-row .tool-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .workshop .local-archive {
+    padding: 1.2rem;
+  }
+  .record-entry form {
+    padding: 1rem;
+  }
+  .evolution-row {
+    grid-template-columns: 6.5rem 1fr 4rem;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+  }
+}
+@media print {
+  .workshop #planner-result[hidden] {
+    display: none !important;
+  }
+}
+@media print {
+  .workshop-head,
+  .workshop .site-header,
+  .workshop .site-footer,
+  .workshop .cookie-banner,
+  .workshop-content > *,
+  .workshop button,
+  .workshop #planner-form,
+  .workshop .workshop-section-head {
+    display: none !important;
+  }
+  .workshop-content > #estrategia,
+  .workshop #planner-result {
+    display: block !important;
+  }
+  .workshop-content,
+  .workshop #estrategia,
+  .strategy-sheet {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0;
+    background: white;
+  }
+  .planner-layout {
+    display: block;
+  }
+  .strategy-sheet h2 {
+    font-size: 20pt;
+  }
+  .race-total {
+    font-size: 30pt;
+  }
+  .workshop table {
+    font-size: 9pt;
+  }
+  .workshop th,
+  .workshop td {
+    padding: 3px;
+  }
+  .workshop .table-scroll {
+    overflow: visible;
+  }
+  .workshop tr {
+    break-inside: avoid;
+  }
+  .workshop .composition {
+    display: flex;
+    gap: 2rem;
+  }
+  .workshop meter {
+    display: none;
+  }
+  .workshop #timeline-body {
+    display: table-row-group;
+  }
+}
