@@ -4,11 +4,30 @@ const $ = (s) => document.getElementById(s),
   form = $('record-form');
 const store = localCollection('records', record, 500, $('local-status'));
 let current = id();
+const stationPages = {
+  ski: 'skierg',
+  push: 'sled-push',
+  pull: 'sled-pull',
+  burpee: 'burpee-broad-jumps',
+  row: 'rowing',
+  carry: 'farmers-carry',
+  lunge: 'sandbag-lunges',
+  wall: 'wall-balls',
+};
 Object.entries(activities).forEach(([key, a]) => {
   for (const control of ['activity', 'filter-activity']) $(control).add(new Option(a.label, key));
 });
 function adapt() {
   const a = activities[$('activity').value];
+  const slug = stationPages[$('activity').value];
+  const guide = $('activity-guide');
+  guide.replaceChildren();
+  guide.hidden = !slug;
+  if (slug) {
+    const link = el('a', `Consultar la ficha de ${a.label}`);
+    link.href = `/hyrox-${slug}.html`;
+    guide.append(link);
+  }
   $('amount-field').hidden = !a.unit;
   $('load-field').hidden = !a.load;
   $('amount-label').textContent = `Cantidad (${a.unit || 'no procede'})`;
@@ -237,6 +256,8 @@ $('clear-records').addEventListener('click', () => {
     render();
   }
 });
+const requestedActivity = new URLSearchParams(location.search).get('actividad');
+if (Object.hasOwn(stationPages, requestedActivity)) $('activity').value = requestedActivity;
 adapt();
 render();
 

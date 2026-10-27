@@ -38,6 +38,12 @@ Revisión de las nueve páginas a 390/768/1440 px: enlaces de sección, ausencia
 - Cambios aún locales, pendientes de revisión del propietario y publicación de la ampliación. No hay datos nuevos de captación ni resultados reales del experimento.
 - La inspección en el panel estrecho detectó desbordamiento a 303 px: filtros adaptados al espacio disponible y tabla comparativa con desplazamiento interno. Comprobado sin desbordamiento de página a 303/320/390/768/1440 px; los dos anchos pequeños se añaden a la prueba permanente de agenda.
 
+### Recorrido biblioteca → cuaderno — 27 de octubre
+
+Las ocho fichas enlazan al formulario de progreso con la estación seleccionada. Se mantienen vacíos fecha, cantidad, tiempo y carga, y no se crea ningún registro al abrir el enlace. El selector ofrece un enlace a la ficha correspondiente; cambia también al editar o elegir otra actividad. Solo se aceptan las ocho claves conocidas en el enlace, nunca HTML o datos personales. Carrera y competición mantienen su formulario habitual. No cambia el formato de almacenamiento ni se añaden servicios externos. En vista previa, pendiente de publicación junto con la plataforma.
+
+Verificado: los ocho recorridos conservan exactamente la copia almacenada de los registros de prueba; valores desconocidos ignorados. Pruebas de herramientas a 390/768/1440 px, PDF, categorías y almacenamiento fallido superadas. 37 pruebas de integración/lógica, 47 páginas y 222 archivos validados; formato correcto.
+
 ## Decisiones de integración
 
 - Continuar el generador estático, HTML, CSS y JavaScript existentes. Sin framework, backend, cuentas ni nuevas dependencias.

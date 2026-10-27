@@ -355,7 +355,41 @@ try {
   assert.equal(await pdfPage.locator('#progress-print b').count(), 0);
   await pdfPage.emulateMedia({ media: 'screen' });
   assert.equal(await pdfPage.locator('#progress-print').isVisible(), false);
+  const savedRecords = await pdfPage.evaluate(() => localStorage.getItem('vcv_records_v1'));
+  for (const [slug, activity] of Object.entries({
+    skierg: 'ski',
+    'sled-push': 'push',
+    'sled-pull': 'pull',
+    'burpee-broad-jumps': 'burpee',
+    rowing: 'row',
+    'farmers-carry': 'carry',
+    'sandbag-lunges': 'lunge',
+    'wall-balls': 'wall',
+  })) {
+    await pdfPage.goto(`${origin}/hyrox-${slug}.html`);
+    await pdfPage.locator(`a[href="/mi-progreso.html?actividad=${activity}#anotar"]`).click();
+    await pdfPage.waitForFunction(
+      (value) => document.querySelector('#activity').value === value,
+      activity,
+    );
+    assert.equal(
+      await pdfPage.locator('#activity-guide a').getAttribute('href'),
+      `/hyrox-${slug}.html`,
+    );
+    for (const input of ['record-date', 'record-time', 'amount', 'load'])
+      assert.equal(await pdfPage.locator(`#${input}`).inputValue(), '');
+    assert.equal(
+      await pdfPage.evaluate(() => localStorage.getItem('vcv_records_v1')),
+      savedRecords,
+    );
+  }
+  await pdfPage.goto(`${origin}/mi-progreso.html?actividad=__proto__`);
+  await pdfPage.waitForFunction(() => document.querySelector('#activity').options.length > 0);
+  assert.equal(await pdfPage.locator('#activity').inputValue(), 'run');
+  assert.equal(await pdfPage.locator('#activity-guide').isVisible(), false);
+  assert.equal(await pdfPage.evaluate(() => localStorage.getItem('vcv_records_v1')), savedRecords);
   await pdfContext.close();
+  console.log('Eight station-to-record journeys preserve saved data and leave measurements blank.');
   console.log('12 categories and selected-strategy PDF retain all 32 segments.');
 } finally {
   await browser.close();
