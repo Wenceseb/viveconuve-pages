@@ -1,6 +1,27 @@
 # ViveConUve · hoja de ruta única
 
-Fecha de revisión: 26 de octubre de 2026. Integra el plan del 24/10, el trabajo publicado y el brief definitivo del 25/10. Este documento es la referencia de ejecución; los anteriores quedan como investigación y antecedentes.
+Fecha de revisión: 27 de octubre de 2026. Integra el plan del 24/10, el trabajo publicado y el brief definitivo del 25/10. Este documento es la referencia de ejecución; los anteriores quedan como investigación y antecedentes.
+
+## Estado vigente — 27 de octubre
+
+Esta tabla sustituye los estados históricos de las actualizaciones fechadas más abajo. «Vista previa» significa desarrollado localmente, todavía sin desplegar.
+
+| Bloque | Estado | Qué falta |
+|---|---|---|
+| Santa Fe, enlaces sociales y tracker web Metricool | Ya implementado y publicado | Comprobar estadísticas en el panel de Metricool; la conexión Instagram no está acreditada |
+| Portada elegida, Brevo y herramientas anteriores | Ya implementado | Conservar identidad, avisos a Gmail y bienvenida sin regalos |
+| Planificador HYROX | Ya implementado en vista previa | Revisión y publicación: 12 divisiones oficiales, 32 segmentos, comparación A/B, archivo local y PDF |
+| Mi progreso híbrido | Ya implementado en vista previa | Revisión y publicación: registros, comparación compatible, evolución, PDF de registros filtrados y copias recuperables |
+| Biblioteca HYROX | Ya implementado en vista previa | Revisión y publicación: índice y ocho fichas con fuentes, diagramas y navegación; cargas de individuales explícitamente delimitadas |
+| Agenda y comparador | Ya implementado en vista previa | Revisión y publicación; mantener comprobación de los nueve eventos con sus organizadores |
+| Laboratorio | Implementado parcialmente | Estructura y primera propuesta listas; faltan inicio y observaciones reales del autor |
+| Integración visual y SEO de nuevas rutas | Ya implementado en vista previa | Accesos en portada/Recursos, metadatos y navegación estructurada; revisión visual final |
+| Actualizaciones de archivos de herramientas | Ya implementado en vista previa | Nombres versionados de scripts, dependencias y estilos; no sustituye recargar una pestaña ya abierta |
+| Captación y medición de resultados | Pendiente | Línea base real de tráfico, seguidores y conversiones; cerrar comprobaciones de cuentas antes de atribuir resultados |
+| Validación manual de accesibilidad y dispositivos físicos | Pendiente | Lector de pantalla, Safari/iPhone y uso real; las pruebas automatizadas no certifican accesibilidad |
+| Segundo calendario/calculadora/checklist | Descartado por duplicidad | Se amplían las funciones y rutas existentes |
+
+Orden de cierre: comprobar esta versión → revisar la ampliación visual → publicar los cambios importantes conforme al procedimiento acordado → medir uso real y priorizar siguientes mejoras. No requiere nuevas dependencias ni servicios de pago.
 
 ## Decisiones de integración
 
@@ -19,7 +40,7 @@ Escritorio: encabezado editorial → formulario / resumen lateral → comparaci�
 Móvil: encabezado → formulario por bloques → resultado → comparación vertical → archivo local.
 Los gráficos representan únicamente datos introducidos. Las tablas conservan la información sin depender del color.
 
-## Inventario y orden
+## Inventario inicial — histórico, no estado actual
 
 | Trabajo | Estado al inicio | Integración y aceptación |
 |---|---|---|
@@ -54,7 +75,7 @@ Los gráficos representan únicamente datos introducidos. Las tablas conservan l
 
 No se marcará como terminada una función por tener solo una pantalla o un enlace. Los estados se actualizarán con pruebas y limitaciones reales al cerrar cada entrega.
 
-## Actualización tras la implementación
+## Primera actualización — histórico
 
 - **Ya implementado y publicado:** crónica Santa Fe; enlaces sociales Valhalla y AthlonX, este último corregido contra el enlace del organizador.
 - **Ya implementado en vista previa:** planificador HYROX y ficha de progreso, con persistencia, exportación/importación y pruebas de extremo a extremo. Pendiente revisión del propietario y publicación.

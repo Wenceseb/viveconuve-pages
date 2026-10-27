@@ -1,5 +1,17 @@
 # Entrega incremental · 26 de octubre de 2026
 
+## Ampliación del 27 de octubre
+
+El estado vigente está en la tabla inicial de `hoja-de-ruta-consolidada-2026-10-26.md`; los apartados posteriores conservan la evolución de la entrega.
+
+- Mi progreso incorpora «Guardar registros visibles en PDF». Respeta actividad y búsqueda, incluye las notas del usuario y excluye los botones de edición. Si no hay registros muestra una explicación. Utiliza la ventana de impresión del navegador con destino «Guardar como PDF», papel blanco y márgenes de 14 mm.
+- Recuperación y exportación hablan de copias de seguridad y hoja de cálculo; los mensajes de almacenamiento también evitan términos técnicos. Se conserva el formato recuperable existente.
+- Las nueve páginas de biblioteca incorporan datos estructurados de su ruta de navegación, coherentes con las páginas reales.
+- Scripts, dependencias compartidas y estilos de las herramientas reciben nombres versionados al compilar. La biblioteca tiene su CSS versionado. Esto evita reutilizar archivos de otra versión al cargar un nuevo documento; una pestaña ya abierta sigue necesitando recarga. No se recarga automáticamente para no interrumpir la escritura.
+- Sin nuevas dependencias, servicios de pago ni cambios de identidad de portada. Ampliación en vista previa, sin desplegar.
+- Comprobación de esta ampliación: 37 pruebas y 47 páginas/221 archivos válidos; formato correcto. Herramientas y agenda superan sus recorridos en 390/768/1440 px, incluyendo PDF filtrado, notas como texto seguro y almacenamiento bloqueado/lleno/corrupto. La captura móvil del cuaderno se ha inspeccionado.
+- Revisión general de navegador completada tras versionar archivos: 47 páginas a 390/1440 px, diseños representativos a 375/768 px, teclado, consentimiento y formulario de newsletter interceptado (sin enviar suscripciones reales). Sin errores detectados por estas pruebas.
+
 ## Producción comprobada
 
 - Santa Fe: https://viveconuve.com/10k-santa-fe-2026.html. Commit `4632dae`, despliegue `40291452358` correcto. Texto editorial comprobado íntegramente contra el Markdown suministrado. Fotos originales, no el retoque generativo. Integrado en selección de historias, sitemap, RSS y acceso a última crónica.
@@ -39,7 +51,7 @@ Portada, logo, lema, fotografía y siguiente dorsal intactos. Calculadora rápid
 - Axe WCAG 2 A/AA, 2.1 AA y 2.2 AA en las pantallas y estados probados, sin infracciones detectadas. No equivale a certificación de accesibilidad.
 - Capturas de herramientas en `.cache/hybrid-2026-10-26/`; crónica en `../entregas-2026-10-26/capturas/`.
 
-## Límites y siguiente trabajo
+## Límites de la primera entrega — histórico
 
 - Pendientes las ocho fichas completas de estaciones y la ampliación verificada de agenda/comparador. No hay enlaces vacíos para aparentar que existen.
 - Laboratorio pendiente de fecha de inicio, sesiones reales y observaciones del autor; la estructura editorial está preparada.

@@ -83,6 +83,38 @@ editorialValues.recuperarLinks = cardLinks(
 const toolsJs = await read('src/scripts/tools.js');
 const toolsUrl = `/assets/scripts/tools.${hash(toolsJs)}.js`;
 await writeFile(join(output, toolsUrl), toolsJs);
+// Version the complete module family together, including transitive imports.
+// A change in model/local must invalidate the entry points too.
+const featureNames = [
+  'model.js',
+  'local.js',
+  'planner.js',
+  'progress.js',
+  'agenda.js',
+  'workshop.css',
+];
+const featureSources = await Promise.all(
+  featureNames.map((name) => read(`public/assets/tools/${name}`)),
+);
+const featureVersion = hash(JSON.stringify(featureSources));
+const featureUrls = Object.fromEntries(
+  featureNames.map((name) => [
+    name,
+    `/assets/tools/${name.replace(/\.(js|css)$/, `.${featureVersion}.$1`)}`,
+  ]),
+);
+for (const [index, name] of featureNames.entries()) {
+  let source = featureSources[index];
+  for (const dependency of featureNames.filter((name) => name.endsWith('.js'))) {
+    source = source.replaceAll(`'./${dependency}'`, `'${featureUrls[dependency]}'`);
+  }
+  await writeFile(join(output, featureUrls[name]), source);
+  await rm(join(output, 'assets/tools', name));
+}
+const libraryCss = await read('public/assets/library/library.css');
+const libraryCssUrl = `/assets/library/library.${hash(libraryCss)}.css`;
+await writeFile(join(output, libraryCssUrl), libraryCss);
+await rm(join(output, 'assets/library/library.css'));
 for (const page of pages) {
   if (
     page.canonical &&
@@ -127,13 +159,13 @@ for (const page of pages) {
     cssUrl,
     jsUrl,
     toolsScript: page.layout.includes('station-library')
-      ? '<link rel="stylesheet" href="/assets/library/library.css">'
+      ? `<link rel="stylesheet" href="${libraryCssUrl}">`
       : page.permalink === '/competiciones.html'
-        ? '<script defer src="/assets/tools/agenda.js"></script>'
+        ? `<script defer src="${featureUrls['agenda.js']}"></script>`
         : page.permalink === '/recursos.html'
           ? `<script defer src="${toolsUrl}"></script>`
           : ['/planificador-hyrox.html', '/mi-progreso.html'].includes(page.permalink)
-            ? `<link rel="stylesheet" href="/assets/tools/workshop.css"><script type="module" src="/assets/tools/${page.permalink === '/planificador-hyrox.html' ? 'planner' : 'progress'}.js"></script>`
+            ? `<link rel="stylesheet" href="${featureUrls['workshop.css']}"><script type="module" src="${featureUrls[page.permalink === '/planificador-hyrox.html' ? 'planner.js' : 'progress.js']}"></script>`
             : '',
     header: render(partials.header, { navigation }),
     footer: render(partials.footer, { year: new Date().getUTCFullYear() }),

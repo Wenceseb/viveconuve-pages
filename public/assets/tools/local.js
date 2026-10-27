@@ -41,14 +41,14 @@ export function localCollection(kind, validator, limit, status) {
   } catch {
     locked = true;
     warn(
-      'No se puede leer o guardar el archivo local. Se conserva sin sobrescribir. Puedes trabajar en esta sesión y exportar antes de cerrar.',
+      'No se puede leer o guardar el archivo local. Se conserva sin sobrescribir. Puedes trabajar en esta sesión y descargar una copia de seguridad antes de cerrar.',
     );
   }
   window.addEventListener('storage', (event) => {
     if (event.key === key || event.key === null) {
       locked = true;
       warn(
-        'El archivo ha cambiado en otra pestaña. Exporta lo que necesites y recarga antes de volver a guardar.',
+        'El archivo ha cambiado en otra pestaña. Descarga una copia de seguridad y recarga antes de volver a guardar.',
       );
     }
   });
@@ -68,7 +68,7 @@ export function localCollection(kind, validator, limit, status) {
     replace(next) {
       if (next.length > limit)
         throw new Error(
-          `Puedes guardar hasta ${limit} elementos. Exporta y borra los que ya no necesites.`,
+          `Puedes guardar hasta ${limit} elementos. Descarga una copia de seguridad y borra los que ya no necesites.`,
         );
       items = next.map(validator);
       try {
@@ -76,12 +76,12 @@ export function localCollection(kind, validator, limit, status) {
         localStorage.setItem(key, JSON.stringify(pack(kind, items)));
         unsaved = false;
         warn(
-          'Guardado en este navegador. Exporta una copia para conservarla fuera de este dispositivo.',
+          'Guardado en este navegador. Descarga una copia de seguridad para conservarla fuera de este dispositivo.',
         );
       } catch {
         unsaved = true;
         warn(
-          'Cambios disponibles solo en esta sesión: el navegador no permite guardarlos. Exporta antes de cerrar.',
+          'Cambios disponibles solo en esta sesión: el navegador no permite guardarlos. Descarga una copia de seguridad antes de cerrar.',
         );
       }
     },
@@ -100,7 +100,11 @@ export function localCollection(kind, validator, limit, status) {
       }
     },
     clear() {
-      if (!confirm('¿Borrar todo este archivo local? Exporta antes si quieres conservarlo.'))
+      if (
+        !confirm(
+          '¿Borrar todo este archivo local? Descarga una copia de seguridad antes si quieres conservarlo.',
+        )
+      )
         return false;
       try {
         localStorage.removeItem(key);

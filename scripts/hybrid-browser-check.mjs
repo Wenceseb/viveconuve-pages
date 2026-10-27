@@ -143,6 +143,7 @@ try {
     assert.equal(await page.locator('#evolution-chart meter').count(), 2);
     assert.equal(await page.locator('#records-list img').count(), 0);
     await page.reload();
+    await page.locator('#records-list .record-row').first().waitFor();
     assert.equal(await page.locator('.record-row').count(), 2);
     await page
       .getByRole('button', { name: 'Editar: 5 km comprobados, 2026-10-26', exact: true })
@@ -301,6 +302,59 @@ try {
   assert.match(await pdfPage.evaluate(() => window.printedStrategy), /Equipo mixto/);
   await pdfPage.emulateMedia({ media: 'print' });
   assert.equal(await pdfPage.locator('#timeline-body tr:visible').count(), 32);
+  await pdfPage.emulateMedia({ media: 'screen' });
+  await pdfPage.goto(origin + '/mi-progreso.html');
+  await pdfPage.locator('#print-records').click();
+  assert.match(
+    await pdfPage.locator('#print-records-error').textContent(),
+    /No hay registros visibles/,
+  );
+  const printable = {
+    id: 'print-one',
+    activity: 'run',
+    date: '2026-10-26',
+    name: 'Mi referencia visible',
+    amount: 1000,
+    load: null,
+    seconds: 300,
+    context: 'fresh',
+    conditions: 'Asfalto',
+    notes: 'Nota <b>literal</b>',
+    verified: true,
+  };
+  await pdfPage.locator('#import-records').setInputFiles({
+    name: 'backup.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(
+      JSON.stringify({
+        application: 'viveconuve',
+        version: 1,
+        kind: 'records',
+        items: [printable, { ...printable, id: 'print-two', name: 'Otro registro' }],
+      }),
+    ),
+  });
+  await pdfPage.locator('#filter-text').fill('Mi referencia visible');
+  await pdfPage.emulateMedia({ media: 'print' });
+  await pdfPage.evaluate(() => {
+    window.print = () => {
+      window.printCheck = {
+        text: document.querySelector('#progress-print').textContent,
+        visible: getComputedStyle(document.querySelector('#progress-print')).display,
+        buttons: document.querySelectorAll('#progress-print button').length,
+      };
+    };
+  });
+  await pdfPage.locator('#print-records').dispatchEvent('click');
+  const printed = await pdfPage.evaluate(() => window.printCheck);
+  assert.equal(printed.visible, 'block');
+  assert.equal(printed.buttons, 0);
+  assert.match(printed.text, /Mi referencia visible/);
+  assert.ok(!printed.text.includes('Otro registro'));
+  assert.ok(printed.text.includes('Nota <b>literal</b>'));
+  assert.equal(await pdfPage.locator('#progress-print b').count(), 0);
+  await pdfPage.emulateMedia({ media: 'screen' });
+  assert.equal(await pdfPage.locator('#progress-print').isVisible(), false);
   await pdfContext.close();
   console.log('12 categories and selected-strategy PDF retain all 32 segments.');
 } finally {

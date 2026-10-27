@@ -441,3 +441,38 @@
     display: table-row-group;
   }
 }
+
+@media print {
+  .workshop.progress-print .workshop-content > #progress-print {
+    display: block !important;
+  }
+  #progress-print .record-row {
+    display: block;
+    break-inside: avoid;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #aaa;
+  }
+  #progress-print h1 {
+    font-size: 20pt;
+  }
+  #progress-print h3 {
+    font-size: 14pt;
+  }
+  #progress-print p {
+    font-size: 10pt;
+    margin: 0.3rem 0;
+  }
+  #progress-print .record-notes {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  .workshop.progress-print {
+    background: white;
+  }
+}
