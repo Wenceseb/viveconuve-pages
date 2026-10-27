@@ -116,7 +116,8 @@ export async function validateSite(output) {
     const isLibrary = nodes(document, 'body').some((node) =>
       attr(node, 'class')?.includes('station-library'),
     );
-    if (styles.length !== (isTool || isLibrary ? 2 : 1))
+    const isSection = ['/competiciones.html', '/laboratorio.html'].includes(page);
+    if (styles.length !== (isTool || isLibrary || isSection ? 2 : 1))
       errors.push(`${page}: unexpected stylesheet count`);
     if (!isTool && styles.some((node) => attr(node, 'href')?.includes('/assets/tools/')))
       errors.push(`${page}: tool CSS loaded outside tools`);

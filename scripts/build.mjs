@@ -115,6 +115,10 @@ const libraryCss = await read('public/assets/library/library.css');
 const libraryCssUrl = `/assets/library/library.${hash(libraryCss)}.css`;
 await writeFile(join(output, libraryCssUrl), libraryCss);
 await rm(join(output, 'assets/library/library.css'));
+const sectionsCss = await read('public/assets/editorial/sections.css');
+const sectionsCssUrl = `/assets/editorial/sections.${hash(sectionsCss)}.css`;
+await writeFile(join(output, sectionsCssUrl), sectionsCss);
+await rm(join(output, 'assets/editorial/sections.css'));
 for (const page of pages) {
   if (
     page.canonical &&
@@ -161,12 +165,14 @@ for (const page of pages) {
     toolsScript: page.layout.includes('station-library')
       ? `<link rel="stylesheet" href="${libraryCssUrl}">`
       : page.permalink === '/competiciones.html'
-        ? `<script defer src="${featureUrls['agenda.js']}"></script>`
-        : page.permalink === '/recursos.html'
-          ? `<script defer src="${toolsUrl}"></script>`
-          : ['/planificador-hyrox.html', '/mi-progreso.html'].includes(page.permalink)
-            ? `<link rel="stylesheet" href="${featureUrls['workshop.css']}"><script type="module" src="${featureUrls[page.permalink === '/planificador-hyrox.html' ? 'planner.js' : 'progress.js']}"></script>`
-            : '',
+        ? `<link rel="stylesheet" href="${sectionsCssUrl}"><script defer src="${featureUrls['agenda.js']}"></script>`
+        : page.permalink === '/laboratorio.html'
+          ? `<link rel="stylesheet" href="${sectionsCssUrl}">`
+          : page.permalink === '/recursos.html'
+            ? `<script defer src="${toolsUrl}"></script>`
+            : ['/planificador-hyrox.html', '/mi-progreso.html'].includes(page.permalink)
+              ? `<link rel="stylesheet" href="${featureUrls['workshop.css']}"><script type="module" src="${featureUrls[page.permalink === '/planificador-hyrox.html' ? 'planner.js' : 'progress.js']}"></script>`
+              : '',
     header: render(partials.header, { navigation }),
     footer: render(partials.footer, { year: new Date().getUTCFullYear() }),
     cookies: partials.cookies,

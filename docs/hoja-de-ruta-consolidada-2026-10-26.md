@@ -29,6 +29,14 @@ Orden de cierre: comprobar esta versión → revisar la ampliación visual → p
 
 Revisión de las nueve páginas a 390/768/1440 px: enlaces de sección, ausencia de desbordamiento y Axe sin infracciones detectadas. Capturas examinadas y alineación de filas ajustada. No equivale a evaluación con lector de pantalla ni móvil físico. Pendiente revisión del propietario del conjunto antes de publicación.
 
+### Agenda y Laboratorio — revisión posterior del 27 de octubre
+
+- Agenda con columna de fecha de inicio, datos del evento y fuente/revisión. Las fechas completas siguen visibles y accesibles; el recuadro de fecha es una ayuda visual redundante, oculta al lector de pantalla. No se modifican fechas ni se declara disponibilidad de plazas.
+- Laboratorio con índice de cuatro apartados. Se mantiene el estado propuesto y la fotografía original. La ficha de progreso se revisa sin modificar sus datos ni funciones.
+- Estilos específicos en `public/assets/editorial/sections.css`, versionados y cargados solo en agenda y Laboratorio; presupuesto global conservado. Incluidos en el control de formato.
+- Validación: 37 pruebas, 47 páginas y 222 archivos; filtros/archivo/fechas antiguas de agenda superados a 390/768/1440 px. Agenda, Laboratorio y progreso sin infracciones Axe, desbordamiento ni errores de consola en esos tamaños. Enlaces del índice del Laboratorio verificados. Fotografía comprobada tras decodificar la imagen; la primera captura prematura no se considera evidencia de fallo de la web.
+- Cambios aún locales, pendientes de revisión del propietario y publicación de la ampliación. No hay datos nuevos de captación ni resultados reales del experimento.
+
 ## Decisiones de integración
 
 - Continuar el generador estático, HTML, CSS y JavaScript existentes. Sin framework, backend, cuentas ni nuevas dependencias.

@@ -18,7 +18,10 @@ export function renderAgenda(events) {
       for (const key of ['start', 'end', 'verified'])
         if (!/^\d{4}-\d{2}-\d{2}$/.test(item[key]) || Number.isNaN(Date.parse(item[key])))
           throw Error('Invalid event date');
-      return `<article class="h-split" data-event data-start="${e(item.start)}" data-end="${e(item.end)}" data-city="${e(item.city)}" data-formats="${e(item.formats.join('|'))}" data-verified="${e(item.verified)}"><div><p>${e(item.formats.join(' · '))}</p><h3>${e(item.name)}</h3><p>${e(item.city)}, ${e(item.country)}</p></div><div><p><time datetime="${item.start}">${date(item.start)}</time>${item.end !== item.start ? ` — <time datetime="${item.end}">${date(item.end)}</time>` : ''}</p><p>Revisado: ${date(item.verified)}. Plazas sin comprobar.</p><a href="${e(item.source)}">Consultar ${e(item.name)} en la web oficial</a></div></article>`;
+      const month = new Intl.DateTimeFormat('es-ES', { month: 'short', timeZone: 'UTC' }).format(
+        new Date(item.start + 'T12:00:00Z'),
+      );
+      return `<article class="agenda-event" data-event data-start="${e(item.start)}" data-end="${e(item.end)}" data-city="${e(item.city)}" data-formats="${e(item.formats.join('|'))}" data-verified="${e(item.verified)}"><div class="agenda-date" aria-hidden="true"><span>Inicio</span><strong>${Number(item.start.slice(8))}</strong><span>${e(month)} ${item.start.slice(0, 4)}</span></div><div class="agenda-event-main"><p class="agenda-format">${e(item.formats.join(' · '))}</p><h3>${e(item.name)}</h3><p>${e(item.city)}, ${e(item.country)}</p><p class="agenda-range"><time datetime="${item.start}">${date(item.start)}</time>${item.end !== item.start ? ` — <time datetime="${item.end}">${date(item.end)}</time>` : ''}</p></div><div class="agenda-event-source"><p>Revisado: ${date(item.verified)}.</p><p>Plazas sin comprobar.</p><a href="${e(item.source)}">Consultar ${e(item.name)} en la web oficial</a></div></article>`;
     })
     .join('\n');
 }
