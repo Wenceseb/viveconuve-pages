@@ -1,4 +1,15 @@
 /* Editorial sections share the approved type and palette, with route-only CSS. */
+#agenda-filters {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+}
+#agenda-filters input,
+#agenda-filters select {
+  min-width: 0;
+}
+#formatos .table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
 .agenda-event {
   display: grid;
   grid-template-columns: 6.5rem minmax(0, 1fr) minmax(12rem, 0.65fr);

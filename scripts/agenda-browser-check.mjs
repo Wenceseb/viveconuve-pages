@@ -11,7 +11,7 @@ let browser;
 try {
   await once(server.stdout, 'data');
   browser = await chromium.launch({ channel: process.env.BROWSER_CHANNEL || 'msedge' });
-  for (const width of [390, 768, 1440]) {
+  for (const width of [303, 320, 390, 768, 1440]) {
     const context = await browser.newContext({ viewport: { width, height: 900 } });
     const page = await context.newPage();
     await page.clock.setFixedTime(new Date('2026-10-26T12:00:00Z'));

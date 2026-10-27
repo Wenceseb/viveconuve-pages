@@ -36,6 +36,7 @@ Revisión de las nueve páginas a 390/768/1440 px: enlaces de sección, ausencia
 - Estilos específicos en `public/assets/editorial/sections.css`, versionados y cargados solo en agenda y Laboratorio; presupuesto global conservado. Incluidos en el control de formato.
 - Validación: 37 pruebas, 47 páginas y 222 archivos; filtros/archivo/fechas antiguas de agenda superados a 390/768/1440 px. Agenda, Laboratorio y progreso sin infracciones Axe, desbordamiento ni errores de consola en esos tamaños. Enlaces del índice del Laboratorio verificados. Fotografía comprobada tras decodificar la imagen; la primera captura prematura no se considera evidencia de fallo de la web.
 - Cambios aún locales, pendientes de revisión del propietario y publicación de la ampliación. No hay datos nuevos de captación ni resultados reales del experimento.
+- La inspección en el panel estrecho detectó desbordamiento a 303 px: filtros adaptados al espacio disponible y tabla comparativa con desplazamiento interno. Comprobado sin desbordamiento de página a 303/320/390/768/1440 px; los dos anchos pequeños se añaden a la prueba permanente de agenda.
 
 ## Decisiones de integración
 
