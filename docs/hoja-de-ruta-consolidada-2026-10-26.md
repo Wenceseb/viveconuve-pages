@@ -4,6 +4,8 @@ Fecha de revisión: 27 de octubre de 2026. Integra el plan del 24/10, el trabajo
 
 ## Estado vigente — 27 de octubre
 
+Versión preparada para revisión conjunta: [alcance, comprobaciones y reversión](version-lista-para-revision-2026-10-27.md). Código `0cd107d`; auditoría npm sin vulnerabilidades conocidas y base remota comprobada. La publicación de la ampliación sigue pendiente.
+
 Esta tabla sustituye los estados históricos de las actualizaciones fechadas más abajo. «Vista previa» significa desarrollado localmente, todavía sin desplegar.
 
 | Bloque | Estado | Qué falta |
