@@ -23,6 +23,12 @@ Esta tabla sustituye los estados históricos de las actualizaciones fechadas má
 
 Orden de cierre: comprobar esta versión → revisar la ampliación visual → publicar los cambios importantes conforme al procedimiento acordado → medir uso real y priorizar siguientes mejoras. No requiere nuevas dependencias ni servicios de pago.
 
+### Revisión visual de biblioteca — 27 de octubre
+
+Índice convertido en recorrido de carrera: ocho bloques con el kilómetro previo, nombre oficial, explicación en español y distancia/repeticiones. Verde bosque #193b32, papel #f6f7f2, texto secundario #5d6861 y divisores #afc4b8; Barlow para jerarquía y Manrope para lectura. Numeración funcional que corresponde al orden de estaciones; dos columnas en escritorio y una en móvil. Sin fotografía genérica ni nueva dependencia. Fichas con accesos a reglas, práctica y registro.
+
+Revisión de las nueve páginas a 390/768/1440 px: enlaces de sección, ausencia de desbordamiento y Axe sin infracciones detectadas. Capturas examinadas y alineación de filas ajustada. No equivale a evaluación con lector de pantalla ni móvil físico. Pendiente revisión del propietario del conjunto antes de publicación.
+
 ## Decisiones de integración
 
 - Continuar el generador estático, HTML, CSS y JavaScript existentes. Sin framework, backend, cuentas ni nuevas dependencias.

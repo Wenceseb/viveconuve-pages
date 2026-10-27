@@ -49,24 +49,95 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0 2rem;
-  counter-reset: station;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+.station-index > li {
+  margin: 0;
+}
+.station-course {
+  background: #193b32;
+  color: #fff;
+  padding: clamp(1.2rem, 4vw, 3rem);
+  margin-top: 2.5rem;
+}
+.station-course h2 {
+  color: #fff;
+  margin: 0;
+}
+.station-course-head p {
+  margin-bottom: 0;
+}
+.station-run {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0 0 0.65rem;
+  font-size: 0.9rem;
+  border-bottom: 2px solid #afc4b8;
 }
 .station-index a {
-  display: flex;
-  gap: 1.5rem;
-  padding: 1.6rem 0;
-  border-bottom: 1px solid #cbd7ce;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.35rem 1rem;
+  padding: 1.3rem;
+  background: #f6f7f2;
+  color: #193b32;
   text-decoration: none;
   align-items: center;
+}
+.station-index a:hover {
+  background: #e3ebe4;
+}
+.station-index a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 5px;
 }
 .station-index strong {
   display: block;
   font-size: 1.3rem;
 }
-.station-index a > span > span {
+.station-name > span {
   display: block;
   color: #5d6861;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-top: 0.3rem;
+}
+.station-distance {
+  grid-column: 2;
+  font-weight: 700;
+}
+.station-open {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.station-number {
+  grid-row: 1 / 3;
+  align-self: start;
+  line-height: 1;
+}
+.station-finish {
+  border-top: 2px solid #afc4b8;
+  padding-top: 1rem;
+  margin-bottom: 0;
+  font-weight: 700;
+}
+.station-library .station-finish {
+  max-width: none;
+}
+.station-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding: 1rem 0;
+  border-block: 1px solid #cbd7ce;
+}
+.station-jump a {
+  padding: 0.5rem 0;
 }
 .station-number {
   font-family: 'Barlow Condensed', sans-serif;
@@ -110,5 +181,13 @@
   }
   .station-library h1 {
     overflow-wrap: break-word;
+  }
+  .station-index a {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 1.1rem;
+  }
+  .station-open {
+    grid-column: 2;
+    grid-row: auto;
   }
 }
