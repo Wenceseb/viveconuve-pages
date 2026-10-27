@@ -4,7 +4,9 @@ Fecha de revisión: 27 de octubre de 2026. Integra el plan del 24/10, el trabajo
 
 ## Estado vigente — 27 de octubre
 
-Versión preparada para revisión conjunta: [alcance, comprobaciones y reversión](version-lista-para-revision-2026-10-27.md). Código `0cd107d`; auditoría npm sin vulnerabilidades conocidas y base remota comprobada. La publicación de la ampliación sigue pendiente.
+**Actualización de publicación:** el propietario autorizó expresamente publicar y continuar las mejoras. La plataforma revisada está publicada desde el commit `b0308ca`, ejecución `40564501056` finalizada correctamente. Las menciones a «vista previa» de la tabla siguiente describen el estado anterior a esta publicación. La guía HYROX ampliada en la rama `codex/guia-hyrox-editorial` es una mejora posterior y sigue local.
+
+Alcance publicado y reversión: [documento de versión](version-lista-para-revision-2026-10-27.md). Auditoría npm sin vulnerabilidades conocidas. Verificación posterior: 14 rutas y archivos JS/CSS HTTP 200; planificador con 12 divisiones, cálculo y persistencia tras recarga; cuaderno contextual; filtro de Fuengirola; accesos de portada y ausencia de rastreadores en herramientas privadas. Pruebas en un contexto aislado, sin enviar formularios ni tocar registros del usuario. Evidencia local: `.cache/live-platform-20261027.json`.
 
 Esta tabla sustituye los estados históricos de las actualizaciones fechadas más abajo. «Vista previa» significa desarrollado localmente, todavía sin desplegar.
 

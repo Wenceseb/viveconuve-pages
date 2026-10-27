@@ -1,0 +1,26 @@
+# Siguiente iteración: guía HYROX después de los 50
+
+Estado: desarrollada en vista previa, posterior a la publicación de plataforma `b0308ca`. Ruta existente conservada: `/hyrox-despues-de-los-50.html`.
+
+## Aportación y criterio editorial
+
+La búsqueda de «HYROX después de los 50» devuelve explicaciones del formato y tablas de marcas por edad. La guía de Doctor Deporte presenta divulgación especializada y su trabajo de investigación, una autoridad que ViveConUve no debe atribuirse. Diferencial de esta página: conectar la experiencia ya documentada de Uve con decisiones de modalidad, registro y estimación que el lector pueda llevar directamente a herramientas funcionales, sin prometer marcas o plazos de preparación.
+
+Referencias consultadas el 27/10/2026:
+
+- https://doctordeporte.es/ y https://doctordeporte.es/hyrox-segun-la-ciencia/ (estructura y posicionamiento; no se copia texto ni se usa como prueba de reglas).
+- https://maintain.hyrox.com/rulebooks/HYROX_RulebookSingles_EN.pdf (formato, divisiones y grupos de edad; temporada 26/27).
+- https://maintain.hyrox.com/rulebooks/HYROX_RulebookDoubles_EN.pdf (carrera conjunta y reparto de trabajo).
+- https://maintain.hyrox.com/rulebooks/HYROX_RulebookRelay_EN.pdf (cuatro participantes, dos tramos y dos estaciones por participante).
+
+## Cambios desarrollados
+
+Encabezado editorial con fotografía existente de Valhalla, pie que identifica el lugar y tipografía de marca. Mantiene las declaraciones personales anteriores; no añade vivencias ni resultados. Comparativa accesible de modalidades y explicación de grupo de edad frente a división. Ejemplo aritmético explícitamente inventado: 44 + 24 + 6 = 74 minutos; añadir 15 segundos a cada uno de ocho tramos suma dos minutos. No es predicción ni objetivo recomendado.
+
+Guía de registro de contexto y condiciones, enlaces al cuaderno y al planificador; acceso a Instagram y newsletter sin prometer regalos. Metadatos e imagen social actualizados, fuentes primarias junto al texto. Hoja de estilo específica compartida solo con las secciones editoriales seleccionadas. Ninguna dependencia nueva.
+
+## Verificación y siguientes pasos
+
+37 pruebas de lógica/integración, 47 páginas/222 archivos válidos; formato correcto. Nueva guía revisada a 320/390/768/1440 px: imagen decodificada, índice válido, sin desbordamiento de página ni infracciones Axe detectadas. Capturas de encabezado y ejemplo inspeccionadas. Esto no sustituye pruebas con lectores reales ni certifica accesibilidad.
+
+Siguiente revisión: lectura editorial del propietario y valoración visual; después incorporar esta mejora. En paralelo siguen pendientes métricas reales y acceso/vinculación de cuentas. No se ha publicado en Instagram ni enviado ninguna newsletter. No se declara volumen de búsquedas, ranking o crecimiento sin datos de Search Console.

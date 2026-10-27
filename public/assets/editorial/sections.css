@@ -1,4 +1,106 @@
 /* Editorial sections share the approved type and palette, with route-only CSS. */
+.hyrox-guide main > .guide-article {
+  max-width: none;
+  padding: 0;
+  background: transparent;
+}
+.guide-article > * {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.guide-article > .guide-header {
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.guide-header h1 {
+  font-size: clamp(2.7rem, 4.5vw, 4.3rem);
+  line-height: 1.04;
+}
+.guide-photo {
+  margin: 0;
+}
+.guide-photo img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+}
+.guide-photo figcaption {
+  font-size: 0.85rem;
+  padding: 0.8rem 0;
+  line-height: 1.6;
+}
+.guide-table {
+  overflow-x: auto;
+}
+.guide-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.guide-table td,
+.guide-table th {
+  text-align: left;
+  vertical-align: top;
+  padding: 1rem 0.75rem;
+  border-bottom: 1px solid #bbc9c0;
+}
+.guide-table thead {
+  background: #e3ebe4;
+}
+.guide-example {
+  background: #193b32;
+  color: white;
+  padding: clamp(1.2rem, 4vw, 2.5rem);
+  margin-block: 3rem;
+}
+.guide-example h3,
+.guide-example a,
+.guide-example a:hover {
+  color: white;
+}
+.guide-example a:focus-visible {
+  outline-color: white;
+}
+.guide-example .guide-note {
+  font-size: 0.85rem;
+}
+.guide-example dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #afc4b8;
+}
+.guide-example dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.guide-total {
+  font-size: 1.3rem;
+}
+.guide-next {
+  padding-block: 1rem;
+  border-block: 2px solid #193b32;
+  margin-block: 3rem;
+}
+@media (max-width: 768px) {
+  .guide-article > .guide-header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .guide-photo img {
+    height: 360px;
+  }
+  .guide-table table {
+    min-width: 560px;
+  }
+}
 #agenda-filters {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
 }

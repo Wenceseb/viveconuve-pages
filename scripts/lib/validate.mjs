@@ -116,7 +116,11 @@ export async function validateSite(output) {
     const isLibrary = nodes(document, 'body').some((node) =>
       attr(node, 'class')?.includes('station-library'),
     );
-    const isSection = ['/competiciones.html', '/laboratorio.html'].includes(page);
+    const isSection = [
+      '/competiciones.html',
+      '/laboratorio.html',
+      '/hyrox-despues-de-los-50.html',
+    ].includes(page);
     if (styles.length !== (isTool || isLibrary || isSection ? 2 : 1))
       errors.push(`${page}: unexpected stylesheet count`);
     if (!isTool && styles.some((node) => attr(node, 'href')?.includes('/assets/tools/')))
