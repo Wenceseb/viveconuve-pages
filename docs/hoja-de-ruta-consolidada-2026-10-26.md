@@ -4,7 +4,7 @@ Fecha de revisión: 27 de octubre de 2026. Integra el plan del 24/10, el trabajo
 
 ## Estado vigente — 27 de octubre
 
-**Actualización de publicación:** el propietario autorizó expresamente publicar y continuar las mejoras. La plataforma revisada está publicada desde el commit `b0308ca`, ejecución `40564501056` finalizada correctamente. Las menciones a «vista previa» de la tabla siguiente describen el estado anterior a esta publicación. La guía HYROX ampliada en la rama `codex/guia-hyrox-editorial` es una mejora posterior y sigue local.
+**Actualización de publicación:** plataforma publicada desde `b0308ca`, ejecución `40564501056` finalizada correctamente. La guía HYROX ampliada en `codex/guia-hyrox-editorial` sigue en vista previa local.
 
 Alcance publicado y reversión: [documento de versión](version-lista-para-revision-2026-10-27.md). Auditoría npm sin vulnerabilidades conocidas. Verificación posterior: 14 rutas y archivos JS/CSS HTTP 200; planificador con 12 divisiones, cálculo y persistencia tras recarga; cuaderno contextual; filtro de Fuengirola; accesos de portada y ausencia de rastreadores en herramientas privadas. Pruebas en un contexto aislado, sin enviar formularios ni tocar registros del usuario. Evidencia local: `.cache/live-platform-20261027.json`.
 
@@ -14,26 +14,26 @@ Esta tabla sustituye los estados históricos de las actualizaciones fechadas má
 |---|---|---|
 | Santa Fe, enlaces sociales y tracker web Metricool | Ya implementado y publicado | Comprobar estadísticas en el panel de Metricool; la conexión Instagram no está acreditada |
 | Portada elegida, Brevo y herramientas anteriores | Ya implementado | Conservar identidad, avisos a Gmail y bienvenida sin regalos |
-| Planificador HYROX | Ya implementado en vista previa | Revisión y publicación: 12 divisiones oficiales, 32 segmentos, comparación A/B, archivo local y PDF |
-| Mi progreso híbrido | Ya implementado en vista previa | Revisión y publicación: registros, comparación compatible, evolución, PDF de registros filtrados y copias recuperables |
-| Biblioteca HYROX | Ya implementado en vista previa | Revisión y publicación: índice y ocho fichas con fuentes, diagramas y navegación; cargas de individuales explícitamente delimitadas |
-| Agenda y comparador | Ya implementado en vista previa | Revisión y publicación; mantener comprobación de los nueve eventos con sus organizadores |
+| Planificador HYROX | Ya implementado y publicado | 12 divisiones oficiales, 32 segmentos, comparación A/B, archivo local y PDF |
+| Mi progreso híbrido | Ya implementado y publicado | registros, comparación compatible, evolución, PDF de registros filtrados y copias recuperables |
+| Biblioteca HYROX | Ya implementado y publicado | índice y ocho fichas con fuentes, diagramas y navegación; cargas de individuales explícitamente delimitadas |
+| Agenda y comparador | Ya implementado y publicado | Mantener comprobación de los nueve eventos con sus organizadores |
 | Laboratorio | Implementado parcialmente | Estructura y primera propuesta listas; faltan inicio y observaciones reales del autor |
-| Integración visual y SEO de nuevas rutas | Ya implementado en vista previa | Accesos en portada/Recursos, metadatos y navegación estructurada; revisión visual final |
-| Actualizaciones de archivos de herramientas | Ya implementado en vista previa | Nombres versionados de scripts, dependencias y estilos; no sustituye recargar una pestaña ya abierta |
+| Integración visual y SEO de nuevas rutas | Ya implementado y publicado | Accesos en portada/Recursos, metadatos y navegación estructurada; continuar mejora editorial y visual |
+| Actualizaciones de archivos de herramientas | Ya implementado y publicado | Nombres versionados de scripts, dependencias y estilos; no sustituye recargar una pestaña ya abierta |
 | Captación y medición de resultados | Pendiente | Línea base real de tráfico, seguidores y conversiones; cerrar comprobaciones de cuentas antes de atribuir resultados |
 | Validación manual de accesibilidad y dispositivos físicos | Pendiente | Lector de pantalla, Safari/iPhone y uso real; las pruebas automatizadas no certifican accesibilidad |
 | Segundo calendario/calculadora/checklist | Descartado por duplicidad | Se amplían las funciones y rutas existentes |
 
-Orden de cierre: comprobar esta versión → revisar la ampliación visual → publicar los cambios importantes conforme al procedimiento acordado → medir uso real y priorizar siguientes mejoras. No requiere nuevas dependencias ni servicios de pago.
+Orden actual: completar la guía editorial y probar el recorrido hacia herramientas → revisar su presentación → incorporar la iteración → medir uso real. Sin dependencias nuevas ni servicios de pago.
 
 ### Próximos hitos y dependencias
 
-1. Revisión visual del conjunto por Uve: planificador, progreso, biblioteca, agenda y Laboratorio en `http://127.0.0.1:8097/`. Las mejoras desarrolladas siguen sin desplegar; la aceptación de una pantalla no se interpreta como aprobación de toda la ampliación.
-2. Preparación y publicación de la versión revisada, conservando el despliegue anterior para reversión y comprobando después rutas, imágenes, herramientas, privacidad y newsletter en producción.
-3. Comprobar panel Metricool y vinculación Instagram; revisar acceso y datos de Search Console. Obtener una línea base real antes de evaluar captación o conversiones.
-4. Profundizar contenidos y distribución editorial conectados a herramientas e Instagram. No publicar en redes sin encargo explícito ni atribuir resultados de tráfico sin datos.
-5. Completar el Laboratorio cuando el autor aporte inicio, sesiones y observaciones reales. Validación manual con lector de pantalla y dispositivos físicos sigue pendiente; no se presenta la revisión automática como certificación.
+1. Guía HYROX después de los 50: ampliación editorial y visual en vista previa. Ejemplo de 72 minutos alineado con el planificador, gráfico proporcional y prueba del cambio a 74 minutos.
+2. Verificar Metricool e Instagram y acceso a Search Console para obtener una línea base de tráfico y conversiones. No atribuir crecimiento sin datos.
+3. Profundizar contenidos conectados a herramientas e Instagram, preservando la portada aprobada. No publicar en redes sin encargo explícito.
+4. Completar el Laboratorio con inicio, sesiones y observaciones reales del autor.
+5. Validación manual con lector de pantalla y dispositivos físicos; la revisión automática no certifica accesibilidad.
 
 ### Protección del trabajo sin guardar — 27 de octubre
 
@@ -117,7 +117,7 @@ No se marcará como terminada una función por tener solo una pantalla o un enla
 ## Primera actualización — histórico
 
 - **Ya implementado y publicado:** crónica Santa Fe; enlaces sociales Valhalla y AthlonX, este último corregido contra el enlace del organizador.
-- **Ya implementado en vista previa:** planificador HYROX y ficha de progreso, con persistencia, exportación/importación y pruebas de extremo a extremo. Pendiente revisión del propietario y publicación.
+- **Ya implementado y publicado:** planificador HYROX y ficha de progreso, con persistencia, exportación/importación y pruebas de extremo a extremo. Pendiente revisión del propietario y publicación.
 - **Implementado parcialmente:** Laboratorio, primer cuaderno completo como propuesta, pendiente de observaciones y fechas reales. Agenda sigue limitada a la estructura personal anterior.
 - **Pendiente:** ocho fichas de estaciones, agenda/comparador verificados, integración final de accesos bajo el hero, evaluación manual con tecnologías de apoyo y métricas reales de captación/rendimiento.
 - **Descartado por duplicidad:** nuevas versiones paralelas de calculadora rápida, checklist, revisión libre y calendario.

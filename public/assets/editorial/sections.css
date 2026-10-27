@@ -69,6 +69,32 @@
 .guide-example .guide-note {
   font-size: 0.85rem;
 }
+.guide-time-bar {
+  display: grid;
+  grid-template-columns: 44fr 24fr 4fr;
+  min-height: 3rem;
+  margin-top: 1.5rem;
+  border: 1px solid white;
+  color: #193b32;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.guide-time-bar span {
+  display: grid;
+  place-items: center;
+  background: #e3ebe4;
+}
+.guide-time-bar span:nth-child(2) {
+  background: #afc4b8;
+  border-inline: 2px solid #193b32;
+}
+.guide-time-bar span:last-child {
+  background: repeating-linear-gradient(135deg, white 0 3px, #193b32 3px 6px);
+}
+.guide-example .guide-bar-caption {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
 .guide-example dl > div {
   display: flex;
   justify-content: space-between;
@@ -78,6 +104,7 @@
 }
 .guide-example dd {
   margin: 0;
+  flex-shrink: 0;
   font-variant-numeric: tabular-nums;
   font-weight: 700;
 }

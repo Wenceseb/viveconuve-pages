@@ -18,7 +18,8 @@
     "check:browser": "node scripts/browser-check.mjs",
     "check:hybrid": "node scripts/hybrid-browser-check.mjs",
     "prebuild": "npm run check:runtime",
-    "check:agenda": "node scripts/agenda-browser-check.mjs"
+    "check:agenda": "node scripts/agenda-browser-check.mjs",
+    "check:guide": "node scripts/guide-browser-check.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

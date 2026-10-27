@@ -15,7 +15,9 @@ Referencias consultadas el 27/10/2026:
 
 ## Cambios desarrollados
 
-Encabezado editorial con fotografía existente de Valhalla, pie que identifica el lugar y tipografía de marca. Mantiene las declaraciones personales anteriores; no añade vivencias ni resultados. Comparativa accesible de modalidades y explicación de grupo de edad frente a división. Ejemplo aritmético explícitamente inventado: 44 + 24 + 6 = 74 minutos; añadir 15 segundos a cada uno de ocho tramos suma dos minutos. No es predicción ni objetivo recomendado.
+Encabezado editorial con fotografía existente de Valhalla, pie que identifica el lugar y tipografía de marca. Mantiene las declaraciones personales anteriores; no añade vivencias ni resultados. Comparativa accesible de modalidades y explicación de grupo de edad frente a división. Ejemplo aritmético explícitamente inventado: 44 + 24 + 4 = 72 minutos, idéntico al ejemplo del planificador; añadir 15 segundos a cada uno de ocho tramos suma dos minutos. No es predicción ni objetivo recomendado.
+
+Barra proporcional de tiempos con desglose textual y recorrido guiado al ejemplo existente: cambiar las ocho carreras de 5:30 a 5:45 lleva el total a 74 minutos. No se cargan datos automáticamente al abrir el enlace.
 
 Guía de registro de contexto y condiciones, enlaces al cuaderno y al planificador; acceso a Instagram y newsletter sin prometer regalos. Metadatos e imagen social actualizados, fuentes primarias junto al texto. Hoja de estilo específica compartida solo con las secciones editoriales seleccionadas. Ninguna dependencia nueva.
 
@@ -24,3 +26,5 @@ Guía de registro de contexto y condiciones, enlaces al cuaderno y al planificad
 37 pruebas de lógica/integración, 47 páginas/222 archivos válidos; formato correcto. Nueva guía revisada a 320/390/768/1440 px: imagen decodificada, índice válido, sin desbordamiento de página ni infracciones Axe detectadas. Capturas de encabezado y ejemplo inspeccionadas. Esto no sustituye pruebas con lectores reales ni certifica accesibilidad.
 
 Siguiente revisión: lectura editorial del propietario y valoración visual; después incorporar esta mejora. En paralelo siguen pendientes métricas reales y acceso/vinculación de cuentas. No se ha publicado en Instagram ni enviado ninguna newsletter. No se declara volumen de búsquedas, ranking o crecimiento sin datos de Search Console.
+
+Recorrido verificado con `npm run check:guide`, incluido en la validación previa al despliegue: 320/390/768/1440 px, enlace de la guía al ejemplo, apertura sin rellenar campos, cancelación que conserva el borrador, aceptación que reproduce 72:00 y ajuste a 5:45/km que produce 74:00. Sin errores JavaScript. Capturas de escritorio y móvil inspeccionadas; no se detectan infracciones Axe en la guía. La publicación de esta iteración sigue pendiente.
