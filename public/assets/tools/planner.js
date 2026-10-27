@@ -182,6 +182,7 @@ function load(plan) {
     plan[key].forEach((v, i) => ($(`${key}-${i}`).value = clock(v)));
   renderResult(plan);
   $('plan-name').focus();
+  store.clean();
 }
 function refresh() {
   options($('saved-plans'), store.items, 'Escenarios guardados');
@@ -195,6 +196,7 @@ $('save-plan').addEventListener('click', () =>
     const plan = read(),
       next = store.items.filter((v) => v.id !== plan.id);
     store.replace([...next, plan]);
+    store.clean();
     refresh();
     $('saved-plans').value = plan.id;
     renderResult(plan);
@@ -205,6 +207,7 @@ $('new-plan').addEventListener('click', () => {
     return;
   current = id();
   form.reset();
+  store.clean();
   updateCategory();
   result = null;
   $('planner-result').hidden = true;
@@ -234,7 +237,10 @@ $('delete-plan').addEventListener('click', () =>
     if (!value) throw new Error('Selecciona el escenario que quieres borrar.');
     if (confirm('¿Borrar este escenario del archivo local?')) {
       store.replace(store.items.filter((v) => v.id !== value));
-      if (current === value) current = id();
+      if (current === value) {
+        current = id();
+        store.dirty();
+      }
       refresh();
     }
   }),
@@ -287,7 +293,10 @@ $('import-plans').addEventListener('change', async (event) => {
   event.target.value = '';
 });
 $('clear-plans').addEventListener('click', () => {
-  if (store.clear()) refresh();
+  if (store.clear()) {
+    if ($('plan-name').value || $('runs-0').value || $('work-0').value) store.dirty();
+    refresh();
+  }
 });
 $('print-saved-plan').addEventListener('click', () =>
   attempt(() => {

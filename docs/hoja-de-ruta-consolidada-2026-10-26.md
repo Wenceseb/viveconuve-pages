@@ -23,6 +23,20 @@ Esta tabla sustituye los estados históricos de las actualizaciones fechadas má
 
 Orden de cierre: comprobar esta versión → revisar la ampliación visual → publicar los cambios importantes conforme al procedimiento acordado → medir uso real y priorizar siguientes mejoras. No requiere nuevas dependencias ni servicios de pago.
 
+### Próximos hitos y dependencias
+
+1. Revisión visual del conjunto por Uve: planificador, progreso, biblioteca, agenda y Laboratorio en `http://127.0.0.1:8097/`. Las mejoras desarrolladas siguen sin desplegar; la aceptación de una pantalla no se interpreta como aprobación de toda la ampliación.
+2. Preparación y publicación de la versión revisada, conservando el despliegue anterior para reversión y comprobando después rutas, imágenes, herramientas, privacidad y newsletter en producción.
+3. Comprobar panel Metricool y vinculación Instagram; revisar acceso y datos de Search Console. Obtener una línea base real antes de evaluar captación o conversiones.
+4. Profundizar contenidos y distribución editorial conectados a herramientas e Instagram. No publicar en redes sin encargo explícito ni atribuir resultados de tráfico sin datos.
+5. Completar el Laboratorio cuando el autor aporte inicio, sesiones y observaciones reales. Validación manual con lector de pantalla y dispositivos físicos sigue pendiente; no se presenta la revisión automática como certificación.
+
+### Protección del trabajo sin guardar — 27 de octubre
+
+Separados el borrador del formulario y los registros que solo existen en memoria. Editar/duplicar otra referencia avisa antes de sustituir un borrador; cancelar conserva sus campos. Modificar el archivo guardado no desactiva el aviso de salida del formulario. Guardar o descartar explícitamente limpia su estado, sin ocultar el aviso por almacenamiento bloqueado. El planificador conserva el aviso si se borra la copia guardada de la estrategia que aún está en pantalla. No se introduce guardado automático ni sincronización.
+
+Pruebas completadas: 37 pruebas de lógica/integración y validación de 47 páginas/222 archivos; herramientas a 390/768/1440 px; borrador conservado al cancelar edición y al borrar otra referencia; aviso de salida activo para registros solo en memoria incluso al abrir un formulario limpio, en almacenamiento bloqueado, lleno y corrupto. PDF, categorías y recorridos desde biblioteca también superados. El aviso de salida depende del soporte y las restricciones del navegador; no garantiza recuperación tras cerrar forzosamente la aplicación.
+
 ### Revisión visual de biblioteca — 27 de octubre
 
 Índice convertido en recorrido de carrera: ocho bloques con el kilómetro previo, nombre oficial, explicación en español y distancia/repeticiones. Verde bosque #193b32, papel #f6f7f2, texto secundario #5d6861 y divisores #afc4b8; Barlow para jerarquía y Manrope para lectura. Numeración funcional que corresponde al orden de estaciones; dos columnas en escritorio y una en móvil. Sin fotografía genérica ni nueva dependencia. Fichas con accesos a reglas, práctica y registro.

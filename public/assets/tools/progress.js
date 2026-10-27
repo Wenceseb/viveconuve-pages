@@ -78,8 +78,14 @@ function reset() {
   form.reset();
   adapt();
   $('edit-state').textContent = 'Nueva referencia';
+  store.clean();
 }
 function load(r, clone = false) {
+  if (
+    store.hasDraft &&
+    !confirm('Tienes cambios sin guardar. ¿Descartarlos y abrir esta referencia?')
+  )
+    return;
   current = clone ? id() : r.id;
   $('activity').value = r.activity;
   $('record-name').value = r.name;
@@ -96,6 +102,8 @@ function load(r, clone = false) {
     ? 'Copia: cambia la fecha y el resultado antes de guardar.'
     : 'Editando una referencia guardada';
   $('record-name').focus();
+  if (clone) store.dirty();
+  else store.clean();
 }
 const description = (r) => `${r.date} · ${r.name} · ${clock(r.seconds)}`;
 const sorted = () => store.items.slice().sort((a, b) => a.date.localeCompare(b.date));

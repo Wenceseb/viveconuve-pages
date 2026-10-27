@@ -264,6 +264,19 @@ try {
     });
     await page.waitForFunction(() => document.querySelectorAll('.record-row').length === 1);
     assert.ok((await page.locator('#local-status').textContent()).includes('solo en esta sesión'));
+    await page
+      .getByRole('button', { name: /^Editar:/ })
+      .first()
+      .click();
+    assert.equal(
+      await page.evaluate(() => {
+        const event = new Event('beforeunload', { cancelable: true });
+        window.dispatchEvent(event);
+        return event.defaultPrevented;
+      }),
+      true,
+      'Opening a clean form must not clear the warning for memory-only records',
+    );
     const exportWait = page.waitForEvent('download');
     await page.locator('#export-records').click();
     const exportFile = await exportWait;
@@ -388,7 +401,47 @@ try {
   assert.equal(await pdfPage.locator('#activity').inputValue(), 'run');
   assert.equal(await pdfPage.locator('#activity-guide').isVisible(), false);
   assert.equal(await pdfPage.evaluate(() => localStorage.getItem('vcv_records_v1')), savedRecords);
+  const warnsOnLeave = () =>
+    pdfPage.evaluate(() => {
+      const event = new Event('beforeunload', { cancelable: true });
+      window.dispatchEvent(event);
+      return event.defaultPrevented;
+    });
+  await pdfPage.locator('#record-name').fill('Borrador que debo conservar');
+  assert.equal(await warnsOnLeave(), true);
+  // Deleting a different saved record must not mark the current form as saved.
+  await pdfPage
+    .getByRole('button', { name: /^Borrar:/ })
+    .last()
+    .click();
+  assert.equal(await pdfPage.locator('#record-name').inputValue(), 'Borrador que debo conservar');
+  assert.equal(await warnsOnLeave(), true);
+  pdfPage.removeAllListeners('dialog');
+  pdfPage.once('dialog', (dialog) => dialog.dismiss());
+  await pdfPage
+    .getByRole('button', { name: /^Editar:/ })
+    .first()
+    .click();
+  assert.equal(await pdfPage.locator('#record-name').inputValue(), 'Borrador que debo conservar');
+  assert.equal(await warnsOnLeave(), true);
+  pdfPage.once('dialog', (dialog) => dialog.accept());
+  await pdfPage
+    .getByRole('button', { name: /^Editar:/ })
+    .first()
+    .click();
+  assert.equal(await warnsOnLeave(), false);
+  await pdfPage
+    .getByRole('button', { name: /^Duplicar:/ })
+    .first()
+    .click();
+  assert.equal(await warnsOnLeave(), true);
+  pdfPage.once('dialog', (dialog) => dialog.accept());
+  await pdfPage.locator('#new-record').click();
+  assert.equal(await warnsOnLeave(), false);
   await pdfContext.close();
+  console.log(
+    'Draft survives archive changes and cancelled edits; explicit discard clears only the draft.',
+  );
   console.log('Eight station-to-record journeys preserve saved data and leave measurements blank.');
   console.log('12 categories and selected-strategy PDF retain all 32 segments.');
 } finally {

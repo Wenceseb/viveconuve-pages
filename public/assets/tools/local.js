@@ -28,7 +28,8 @@ export function localCollection(kind, validator, limit, status) {
   const key = `vcv_${kind}_v1`;
   let items = [],
     locked = false,
-    unsaved = false;
+    unsaved = false,
+    draft = false;
   const warn = (message) => {
     status.textContent = message;
   };
@@ -53,7 +54,7 @@ export function localCollection(kind, validator, limit, status) {
     }
   });
   window.addEventListener('beforeunload', (event) => {
-    if (unsaved) {
+    if (unsaved || draft) {
       event.preventDefault();
       event.returnValue = '';
     }
@@ -63,7 +64,13 @@ export function localCollection(kind, validator, limit, status) {
       return items;
     },
     dirty() {
-      unsaved = true;
+      draft = true;
+    },
+    clean() {
+      draft = false;
+    },
+    get hasDraft() {
+      return draft;
     },
     replace(next) {
       if (next.length > limit)
