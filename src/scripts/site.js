@@ -47,7 +47,9 @@
     });
   });
   function enableOptionalServices() {
-    if (enabled) return;
+    // Never mix previews or development visits with production analytics.
+    const production = ['https://viveconuve.com', 'https://www.viveconuve.com'];
+    if (enabled || !production.includes(new URL(location.href).origin)) return;
     enabled = true;
     if (config.analyticsId) {
       window.dataLayer = window.dataLayer || [];

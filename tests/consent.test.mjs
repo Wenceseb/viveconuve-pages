@@ -3,7 +3,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 const source = readFileSync(new URL('../src/scripts/site.js', import.meta.url), 'utf8');
-function harness(saved = null, blockedStorage = false, privateTool = false) {
+function harness(
+  saved = null,
+  blockedStorage = false,
+  privateTool = false,
+  origin = 'https://viveconuve.com',
+) {
   const loaded = [],
     scripts = [],
     handlers = {},
@@ -50,7 +55,7 @@ function harness(saved = null, blockedStorage = false, privateTool = false) {
     localStorage: storage,
     location: {
       reload: () => reloads++,
-      href: 'https://viveconuve.com/?private=value',
+      href: origin + '/?private=value',
       pathname: '/',
     },
     URL,
@@ -82,6 +87,29 @@ test('optional services are not requested before consent', () => {
   const h = harness();
   assert.equal(h.banner.hidden, false);
   assert.deepEqual(h.loaded, []);
+});
+
+test('previews never send analytics or advertising, even with saved or new consent', () => {
+  for (const origin of [
+    'http://127.0.0.1:8097',
+    'http://localhost:8081',
+    'https://preview.example.com',
+    'http://viveconuve.com',
+    'https://viveconuve.com:8097',
+  ]) {
+    for (const consent of [null, 'accepted']) {
+      const h = harness(consent, false, false, origin);
+      h.handlers.accept();
+      h.handlers.click({
+        target: {
+          closest: () => ({ href: 'https://www.instagram.com/viveconuve71/', closest: () => null }),
+        },
+      });
+      assert.deepEqual(h.loaded, [], origin);
+      assert.equal(h.browserWindow.dataLayer, undefined);
+    }
+  }
+  assert.equal(harness('accepted', false, false, 'https://www.viveconuve.com').loaded.length, 3);
 });
 test('rejecting consent persists the choice and requests no trackers', () => {
   const h = harness();

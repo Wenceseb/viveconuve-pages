@@ -12,7 +12,7 @@ Esta tabla sustituye los estados históricos de las actualizaciones fechadas má
 
 | Bloque | Estado | Qué falta |
 |---|---|---|
-| Santa Fe, enlaces sociales y tracker web Metricool | Ya implementado y publicado | Comprobar estadísticas en el panel de Metricool; la conexión Instagram no está acreditada |
+| Santa Fe, enlaces sociales y tracker web Metricool | Ya implementado y publicado | Metricool e Instagram verificados el 28/10; dominio corregido de 127.0.0.1 a viveconuve.com. Histórico web no fiable como línea base por mezcla de pruebas |
 | Portada elegida, Brevo y herramientas anteriores | Ya implementado | Conservar identidad, avisos a Gmail y bienvenida sin regalos |
 | Planificador HYROX | Ya implementado y publicado | 12 divisiones oficiales, 32 segmentos, comparación A/B, archivo local y PDF |
 | Mi progreso híbrido | Ya implementado y publicado | registros, comparación compatible, evolución, PDF de registros filtrados y copias recuperables |
@@ -34,7 +34,7 @@ Presentación de historias en vista previa (28/10): tres crónicas con imágenes
 Mejora adicional en vista previa (28/10): comparadores que retiran el resultado anterior al cambiar selección, errores del planificador junto al comparador y recuperación de una búsqueda sin coincidencias en el cuaderno. Regresiones verificadas; detalles en [claridad de herramientas](herramientas-claridad-2026-10-28.md).
 
 1. Recursos: nueva entrada por necesidades (entender, planificar, revisar), accesos rápidos conservados y explicación del almacenamiento local. Revisar su vista previa. La guía HYROX con ejemplo de 72 minutos ya está publicada.
-2. Verificar Metricool e Instagram y acceso a Search Console para obtener una línea base de tráfico y conversiones. No atribuir crecimiento sin datos.
+2. Metricool e Instagram verificados el 28/10. Protección de vistas previas implementada y dominio corregido. Establecer una línea base nueva de tráfico público y revisar Search Console; no atribuir el histórico mezclado a crecimiento.
 3. Profundizar contenidos conectados a herramientas e Instagram, preservando la portada aprobada. No publicar en redes sin encargo explícito.
 4. Completar el Laboratorio con inicio, sesiones y observaciones reales del autor.
 5. Validación manual con lector de pantalla y dispositivos físicos; la revisión automática no certifica accesibilidad.
