@@ -1,5 +1,7 @@
 # Medición: verificación y separación de vistas previas
 
+**Actualización:** publicado y verificado en producción en `853cf78`, ejecución `40756219129` (28/10/2026). Las menciones a vista previa o publicación pendiente que siguen describen el estado durante el desarrollo.
+
 Se accedió a la sesión existente de Metricool. Instagram `viveconuve71` figura conectado como cuenta profesional y presenta datos. No se modificaron permisos, conexiones sociales ni planes de pago.
 
 La conexión web identificaba el dominio como `127.0.0.1`; el panel mostraba visitas y fuentes de tráfico que incluían pruebas locales. Se corrigió mediante el editor de conexión a `https://viveconuve.com` y se verificó el nombre resultante. No se borró el histórico: no debe emplearse como línea base limpia ni atribuirse a crecimiento orgánico. Cambiar el nombre no demuestra que se hayan filtrado retroactivamente los datos.

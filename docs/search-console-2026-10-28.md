@@ -1,5 +1,7 @@
 # Search Console: revisión y acciones
 
+**Actualización:** publicado y verificado en producción en `853cf78`, ejecución `40756219129` (28/10/2026). Las menciones a vista previa o publicación pendiente que siguen describen el estado durante el desarrollo.
+
 Acceso confirmado a la propiedad `https://viveconuve.com/`. Sitemap `/sitemap.xml` correcto, leído el 28/10, con 34 URLs descubiertas; coincide con el sitemap público. No es necesario enviarlo otra vez. El informe de indexación estaba actualizado al 23/10, por lo que no representa todavía el despliegue más reciente. Core Web Vitals no dispone de datos suficientes en el panel: no se declara que la web supere sus métricas de campo.
 
 ## Exclusiones contrastadas

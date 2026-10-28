@@ -1,5 +1,7 @@
 # Recursos: elegir una herramienta por su utilidad
 
+**Actualización:** publicado y verificado en producción en `853cf78`, ejecución `40756219129` (28/10/2026). Las menciones a vista previa o publicación pendiente que siguen describen el estado durante el desarrollo.
+
 Estado: vista previa local, posterior al despliegue de la guía HYROX `86c9bc8`.
 
 La página conservaba la calculadora, la lista editable y la revisión de carrera, pero presentaba los nuevos accesos sin explicar cómo elegir. Se reorganiza la entrada en tres necesidades: entender la prueba, preparar una estrategia y revisar lo aprendido. Cada una enlaza a dos páginas existentes. No se crea otra herramienta ni se duplican datos.

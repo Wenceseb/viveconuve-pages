@@ -4,7 +4,9 @@ Fecha de revisión: 28 de octubre de 2026. Integra el plan del 24/10, el trabajo
 
 ## Estado vigente — 28 de octubre
 
-**Actualización de publicación:** plataforma publicada desde `b0308ca`, ejecución `40564501056` finalizada correctamente. La guía HYROX ampliada está publicada desde `86c9bc8`, ejecución `40648977993` correcta. Verificación pública: página y recursos HTTP 200, fotografía y móvil correctos, enlace al planificador y cálculo de 72 a 74 minutos comprobados. La reorganización de Recursos del 28/10 permanece en vista previa.
+**Actualización de publicación:** lote integral publicado desde `853cf78`, ejecución `40756219129` completada correctamente. Incluye Recursos, presentación de historias, correcciones de comparadores y filtros, exclusión de analítica en vistas previas y reparaciones de datos estructurados. Verificado en producción a 390 y 1440 px; evidencia `.cache/live-release-20261028.json`. Portada y relatos de Santa Fe, Córdoba y Valhalla conservados. La guía HYROX ya estaba publicada en `86c9bc8`.
+
+Esta actualización sustituye las menciones históricas a vista previa de los documentos anteriores. Detalle y reversión en [entrega del lote](publicacion-integral-2026-10-28.md).
 
 Alcance publicado y reversión: [documento de versión](version-lista-para-revision-2026-10-27.md). Auditoría npm sin vulnerabilidades conocidas. Verificación posterior: 14 rutas y archivos JS/CSS HTTP 200; planificador con 12 divisiones, cálculo y persistencia tras recarga; cuaderno contextual; filtro de Fuengirola; accesos de portada y ausencia de rastreadores en herramientas privadas. Pruebas en un contexto aislado, sin enviar formularios ni tocar registros del usuario. Evidencia local: `.cache/live-platform-20261027.json`.
 
@@ -21,25 +23,19 @@ Esta tabla sustituye los estados históricos de las actualizaciones fechadas má
 | Laboratorio | Implementado parcialmente | Estructura y primera propuesta listas; faltan inicio y observaciones reales del autor |
 | Integración visual y SEO de nuevas rutas | Ya implementado y publicado | Accesos en portada/Recursos, metadatos y navegación estructurada; continuar mejora editorial y visual |
 | Actualizaciones de archivos de herramientas | Ya implementado y publicado | Nombres versionados de scripts, dependencias y estilos; no sustituye recargar una pestaña ya abierta |
-| Captación y medición de resultados | Pendiente | Línea base real de tráfico, seguidores y conversiones; cerrar comprobaciones de cuentas antes de atribuir resultados |
+| Captación y medición de resultados | Implementado parcialmente | Metricool, Instagram y Search Console verificados; medir un periodo posterior al despliegue sin mezclar visitas de prueba |
 | Validación manual de accesibilidad y dispositivos físicos | Pendiente | Lector de pantalla, Safari/iPhone y uso real; las pruebas automatizadas no certifican accesibilidad |
 | Segundo calendario/calculadora/checklist | Descartado por duplicidad | Se amplían las funciones y rutas existentes |
 
-Orden actual: completar la guía editorial y probar el recorrido hacia herramientas → revisar su presentación → incorporar la iteración → medir uso real. Sin dependencias nuevas ni servicios de pago.
+Orden actual: medir uso real de la versión publicada → profundizar contenidos y diseño según necesidades observadas → completar validación con usuarios y dispositivos físicos. Sin servicios de pago.
 
 ### Próximos hitos y dependencias
 
-Search Console revisado el 28/10: sitemap correcto, guía HYROX indexada y validación del 404 histórico iniciada. Solicitud de actualización de la guía pendiente por error del servicio reCAPTCHA de Google. Corregidas en vista previa referencias de imágenes y canonical en datos estructurados antiguos, con prueba de regresión. Ver [auditoría y acciones](search-console-2026-10-28.md).
-
-Presentación de historias en vista previa (28/10): tres crónicas con imágenes existentes, índice de lecturas y conexión con la guía y Recursos, sin duplicar enlaces ni modificar relatos. Ver [entrada visual de historias](historias-visuales-2026-10-28.md).
-
-Mejora adicional en vista previa (28/10): comparadores que retiran el resultado anterior al cambiar selección, errores del planificador junto al comparador y recuperación de una búsqueda sin coincidencias en el cuaderno. Regresiones verificadas; detalles en [claridad de herramientas](herramientas-claridad-2026-10-28.md).
-
-1. Recursos: nueva entrada por necesidades (entender, planificar, revisar), accesos rápidos conservados y explicación del almacenamiento local. Revisar su vista previa. La guía HYROX con ejemplo de 72 minutos ya está publicada.
-2. Metricool e Instagram verificados el 28/10. Protección de vistas previas implementada y dominio corregido. Establecer una línea base nueva de tráfico público y revisar Search Console; no atribuir el histórico mezclado a crecimiento.
+1. Revisar la validación del 404 histórico iniciada en Search Console y reintentar la actualización de la guía cuando responda el servicio reCAPTCHA. El sitemap está correcto y la guía ya está indexada.
+2. Establecer una línea base nueva de tráfico público y evolución de Instagram; no atribuir el histórico mezclado a crecimiento. Clic hacia Instagram no equivale a nuevo seguidor.
 3. Profundizar contenidos conectados a herramientas e Instagram, preservando la portada aprobada. No publicar en redes sin encargo explícito.
-4. Completar el Laboratorio con inicio, sesiones y observaciones reales del autor.
-5. Validación manual con lector de pantalla y dispositivos físicos; la revisión automática no certifica accesibilidad.
+4. Completar el Laboratorio con inicio, sesiones y observaciones reales del autor; no inventar resultados.
+5. Validación manual con lector de pantalla y dispositivos físicos. Las comprobaciones automáticas no certifican accesibilidad y Search Console aún no ofrece datos suficientes de Core Web Vitals.
 
 ### Protección del trabajo sin guardar — 27 de octubre
 

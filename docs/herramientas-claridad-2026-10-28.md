@@ -1,5 +1,7 @@
 # Comparaciones y búsquedas sin resultados
 
+**Actualización:** publicado y verificado en producción en `853cf78`, ejecución `40756219129` (28/10/2026). Las menciones a vista previa o publicación pendiente que siguen describen el estado durante el desarrollo.
+
 Estado: implementado en vista previa; producción permanece en `86c9bc8`.
 
 Al cambiar la selección del comparador, el resultado anterior permanecía visible. Ahora se oculta en el planificador y en el cuaderno, se limpia el error anterior y una indicación pide volver a comparar. El planificador muestra sus errores junto al comparador, en lugar de enviarlos al formulario de estrategia. También se retira cualquier resultado anterior antes de intentar una comparación nueva.

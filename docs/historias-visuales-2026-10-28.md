@@ -1,5 +1,7 @@
 # Entrada visual a las historias
 
+**Actualización:** publicado y verificado en producción en `853cf78`, ejecución `40756219129` (28/10/2026). Las menciones a vista previa o publicación pendiente que siguen describen el estado durante el desarrollo.
+
 Estado: vista previa en `/articulos.html`. Producción continúa en `86c9bc8`; se suma a Recursos y a las correcciones de herramientas pendientes de publicación.
 
 La selección de artículos pasa de enlaces exclusivamente textuales a tres crónicas con sus imágenes existentes: Santa Fe, AthlonX Córdoba y Valhalla. No se alteran los relatos originales ni la portada. Cada crónica aparece una sola vez. Las imágenes conservan su proporción completa y pasan por la optimización responsive existente; la composición de Valhalla se identifica como tal en su texto alternativo.
