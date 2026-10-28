@@ -1,10 +1,10 @@
 # ViveConUve · hoja de ruta única
 
-Fecha de revisión: 27 de octubre de 2026. Integra el plan del 24/10, el trabajo publicado y el brief definitivo del 25/10. Este documento es la referencia de ejecución; los anteriores quedan como investigación y antecedentes.
+Fecha de revisión: 28 de octubre de 2026. Integra el plan del 24/10, el trabajo publicado y el brief definitivo del 25/10. Este documento es la referencia de ejecución; los anteriores quedan como investigación y antecedentes.
 
-## Estado vigente — 27 de octubre
+## Estado vigente — 28 de octubre
 
-**Actualización de publicación:** plataforma publicada desde `b0308ca`, ejecución `40564501056` finalizada correctamente. La guía HYROX ampliada en `codex/guia-hyrox-editorial` sigue en vista previa local.
+**Actualización de publicación:** plataforma publicada desde `b0308ca`, ejecución `40564501056` finalizada correctamente. La guía HYROX ampliada está publicada desde `86c9bc8`, ejecución `40648977993` correcta. Verificación pública: página y recursos HTTP 200, fotografía y móvil correctos, enlace al planificador y cálculo de 72 a 74 minutos comprobados. La reorganización de Recursos del 28/10 permanece en vista previa.
 
 Alcance publicado y reversión: [documento de versión](version-lista-para-revision-2026-10-27.md). Auditoría npm sin vulnerabilidades conocidas. Verificación posterior: 14 rutas y archivos JS/CSS HTTP 200; planificador con 12 divisiones, cálculo y persistencia tras recarga; cuaderno contextual; filtro de Fuengirola; accesos de portada y ausencia de rastreadores en herramientas privadas. Pruebas en un contexto aislado, sin enviar formularios ni tocar registros del usuario. Evidencia local: `.cache/live-platform-20261027.json`.
 
@@ -29,7 +29,7 @@ Orden actual: completar la guía editorial y probar el recorrido hacia herramien
 
 ### Próximos hitos y dependencias
 
-1. Guía HYROX después de los 50: ampliación editorial y visual en vista previa. Ejemplo de 72 minutos alineado con el planificador, gráfico proporcional y prueba del cambio a 74 minutos.
+1. Recursos: nueva entrada por necesidades (entender, planificar, revisar), accesos rápidos conservados y explicación del almacenamiento local. Revisar su vista previa. La guía HYROX con ejemplo de 72 minutos ya está publicada.
 2. Verificar Metricool e Instagram y acceso a Search Console para obtener una línea base de tráfico y conversiones. No atribuir crecimiento sin datos.
 3. Profundizar contenidos conectados a herramientas e Instagram, preservando la portada aprobada. No publicar en redes sin encargo explícito.
 4. Completar el Laboratorio con inicio, sesiones y observaciones reales del autor.

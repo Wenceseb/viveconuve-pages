@@ -1,6 +1,6 @@
 # Siguiente iteración: guía HYROX después de los 50
 
-Estado: desarrollada en vista previa, posterior a la publicación de plataforma `b0308ca`. Ruta existente conservada: `/hyrox-despues-de-los-50.html`.
+Estado actualizado el 28/10: publicada en `86c9bc8`, ejecución `40648977993` correcta. Verificación pública de carga y recorrido al planificador completada; evidencia `.cache/live-guide-20261028.json`. Ruta existente conservada: `/hyrox-despues-de-los-50.html`.
 
 ## Aportación y criterio editorial
 
@@ -25,6 +25,6 @@ Guía de registro de contexto y condiciones, enlaces al cuaderno y al planificad
 
 37 pruebas de lógica/integración, 47 páginas/222 archivos válidos; formato correcto. Nueva guía revisada a 320/390/768/1440 px: imagen decodificada, índice válido, sin desbordamiento de página ni infracciones Axe detectadas. Capturas de encabezado y ejemplo inspeccionadas. Esto no sustituye pruebas con lectores reales ni certifica accesibilidad.
 
-Siguiente revisión: lectura editorial del propietario y valoración visual; después incorporar esta mejora. En paralelo siguen pendientes métricas reales y acceso/vinculación de cuentas. No se ha publicado en Instagram ni enviado ninguna newsletter. No se declara volumen de búsquedas, ranking o crecimiento sin datos de Search Console.
+El propietario dio su visto bueno y se publicó la mejora. En paralelo siguen pendientes métricas reales y acceso/vinculación de cuentas. No se ha publicado en Instagram ni enviado ninguna newsletter. No se declara volumen de búsquedas, ranking o crecimiento sin datos de Search Console.
 
-Recorrido verificado con `npm run check:guide`, incluido en la validación previa al despliegue: 320/390/768/1440 px, enlace de la guía al ejemplo, apertura sin rellenar campos, cancelación que conserva el borrador, aceptación que reproduce 72:00 y ajuste a 5:45/km que produce 74:00. Sin errores JavaScript. Capturas de escritorio y móvil inspeccionadas; no se detectan infracciones Axe en la guía. La publicación de esta iteración sigue pendiente.
+Recorrido verificado con `npm run check:guide`, incluido en la validación previa al despliegue: 320/390/768/1440 px, enlace de la guía al ejemplo, apertura sin rellenar campos, cancelación que conserva el borrador, aceptación que reproduce 72:00 y ajuste a 5:45/km que produce 74:00. Sin errores JavaScript. Capturas de escritorio y móvil inspeccionadas; no se detectan infracciones Axe en la guía. Publicación completada y verificada el 28/10/2026.

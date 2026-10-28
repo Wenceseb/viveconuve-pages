@@ -117,6 +117,7 @@ export async function validateSite(output) {
       attr(node, 'class')?.includes('station-library'),
     );
     const isSection = [
+      '/recursos.html',
       '/competiciones.html',
       '/laboratorio.html',
       '/hyrox-despues-de-los-50.html',

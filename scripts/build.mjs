@@ -169,7 +169,7 @@ for (const page of pages) {
         : ['/laboratorio.html', '/hyrox-despues-de-los-50.html'].includes(page.permalink)
           ? `<link rel="stylesheet" href="${sectionsCssUrl}">`
           : page.permalink === '/recursos.html'
-            ? `<script defer src="${toolsUrl}"></script>`
+            ? `<link rel="stylesheet" href="${sectionsCssUrl}"><script defer src="${toolsUrl}"></script>`
             : ['/planificador-hyrox.html', '/mi-progreso.html'].includes(page.permalink)
               ? `<link rel="stylesheet" href="${featureUrls['workshop.css']}"><script type="module" src="${featureUrls[page.permalink === '/planificador-hyrox.html' ? 'planner.js' : 'progress.js']}"></script>`
               : '',
