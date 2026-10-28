@@ -1,4 +1,56 @@
 /* Editorial sections share the approved type and palette, with route-only CSS. */
+.story-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  margin-block: 2rem;
+}
+.story-gallery article {
+  min-width: 0;
+}
+.story-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.story-gallery .story-place {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-block: 1.2rem 0.5rem;
+}
+.story-gallery h3 {
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  line-height: 1.15;
+  margin: 0;
+}
+.story-gallery h3 a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+.story-gallery article > p:last-child {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.story-guide {
+  border-left: 4px solid #193b32;
+  background: #e3ebe4;
+  padding: 1.5rem 2rem;
+}
+.story-guide h3 {
+  margin-top: 0;
+}
+.story-guide p {
+  margin-bottom: 0;
+}
+@media (max-width: 768px) {
+  .story-gallery {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .story-gallery article {
+    max-width: 480px;
+  }
+}
 .resource-start {
   display: grid;
   grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);

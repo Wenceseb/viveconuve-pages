@@ -166,7 +166,9 @@ for (const page of pages) {
       ? `<link rel="stylesheet" href="${libraryCssUrl}">`
       : page.permalink === '/competiciones.html'
         ? `<link rel="stylesheet" href="${sectionsCssUrl}"><script defer src="${featureUrls['agenda.js']}"></script>`
-        : ['/laboratorio.html', '/hyrox-despues-de-los-50.html'].includes(page.permalink)
+        : ['/laboratorio.html', '/hyrox-despues-de-los-50.html', '/articulos.html'].includes(
+              page.permalink,
+            )
           ? `<link rel="stylesheet" href="${sectionsCssUrl}">`
           : page.permalink === '/recursos.html'
             ? `<link rel="stylesheet" href="${sectionsCssUrl}"><script defer src="${toolsUrl}"></script>`
