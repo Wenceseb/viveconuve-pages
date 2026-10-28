@@ -1,11 +1,37 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, access } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { parse } from 'parse5';
 import { loadPages } from '../scripts/lib/content.mjs';
 import { nodes, attr } from '../scripts/lib/html.mjs';
 const root = resolve(import.meta.dirname, '..');
+
+test('article structured data uses the canonical page and existing local images', async () => {
+  for (const page of await loadPages(root)) {
+    const html = parse(await readFile(resolve(root, 'dist', page.permalink.slice(1)), 'utf8'));
+    const schemas = nodes(html, 'script').filter(
+      (node) => attr(node, 'type') === 'application/ld+json',
+    );
+    for (const node of schemas) {
+      const schema = JSON.parse(node.childNodes.map((child) => child.value || '').join(''));
+      if (schema['@type'] !== 'BlogPosting') continue;
+      const entity =
+        typeof schema.mainEntityOfPage === 'string'
+          ? schema.mainEntityOfPage
+          : schema.mainEntityOfPage?.['@id'];
+      if (entity)
+        assert.equal(
+          entity,
+          'https://viveconuve.com' + (page.canonical || page.permalink),
+          page.source,
+        );
+      if (typeof schema.image === 'string' && schema.image.startsWith('https://viveconuve.com/')) {
+        await access(resolve(root, 'dist', new URL(schema.image).pathname.slice(1)));
+      }
+    }
+  }
+});
 test('sitemap contains exactly primary indexable HTTPS URLs and every page is reachable from home', async () => {
   const pages = await loadPages(root);
   const indexed = pages.filter(

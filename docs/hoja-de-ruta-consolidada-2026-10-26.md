@@ -29,6 +29,8 @@ Orden actual: completar la guía editorial y probar el recorrido hacia herramien
 
 ### Próximos hitos y dependencias
 
+Search Console revisado el 28/10: sitemap correcto, guía HYROX indexada y validación del 404 histórico iniciada. Solicitud de actualización de la guía pendiente por error del servicio reCAPTCHA de Google. Corregidas en vista previa referencias de imágenes y canonical en datos estructurados antiguos, con prueba de regresión. Ver [auditoría y acciones](search-console-2026-10-28.md).
+
 Presentación de historias en vista previa (28/10): tres crónicas con imágenes existentes, índice de lecturas y conexión con la guía y Recursos, sin duplicar enlaces ni modificar relatos. Ver [entrada visual de historias](historias-visuales-2026-10-28.md).
 
 Mejora adicional en vista previa (28/10): comparadores que retiran el resultado anterior al cambiar selección, errores del planificador junto al comparador y recuperación de una búsqueda sin coincidencias en el cuaderno. Regresiones verificadas; detalles en [claridad de herramientas](herramientas-claridad-2026-10-28.md).
