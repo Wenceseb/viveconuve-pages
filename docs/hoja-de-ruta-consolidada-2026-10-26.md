@@ -29,6 +29,8 @@ Orden actual: completar la guía editorial y probar el recorrido hacia herramien
 
 ### Próximos hitos y dependencias
 
+Mejora adicional en vista previa (28/10): comparadores que retiran el resultado anterior al cambiar selección, errores del planificador junto al comparador y recuperación de una búsqueda sin coincidencias en el cuaderno. Regresiones verificadas; detalles en [claridad de herramientas](herramientas-claridad-2026-10-28.md).
+
 1. Recursos: nueva entrada por necesidades (entender, planificar, revisar), accesos rápidos conservados y explicación del almacenamiento local. Revisar su vista previa. La guía HYROX con ejemplo de 72 minutos ya está publicada.
 2. Verificar Metricool e Instagram y acceso a Search Console para obtener una línea base de tráfico y conversiones. No atribuir crecimiento sin datos.
 3. Profundizar contenidos conectados a herramientas e Instagram, preservando la portada aprobada. No publicar en redes sin encargo explícito.

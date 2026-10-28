@@ -54,8 +54,7 @@ function read() {
     }
     return Number(raw);
   };
-  if (!$('record-name').value.trim())
-    throw new Error('Pon un nombre a la referencia para reconocerla después.');
+  if (!$('record-name').value.trim()) throw new Error('Pon un nombre a la referencia.');
   if (!$('record-date').value) throw new Error('Indica la fecha del registro.');
   const activity = $('activity').value,
     a = activities[activity];
@@ -121,6 +120,7 @@ function render() {
   $('record-count').textContent =
     `${list.length} referencias visibles · ${store.items.length} guardadas de un máximo de 500.`;
   $('empty-records').hidden = store.items.length > 0;
+  $('no-matching-records').hidden = !store.items.length || list.length > 0;
   for (const r of list) {
     const article = el('article', '', 'record-row'),
       head = el('div'),
@@ -178,6 +178,7 @@ function render() {
   options($('reference-a'), choices, 'Referencia A');
   options($('reference-b'), choices, 'Referencia B');
   $('progress-comparison').hidden = true;
+  $('comparison-error').textContent = '';
 }
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -197,6 +198,17 @@ $('new-record').addEventListener('click', () => {
   if (confirm('¿Vaciar el formulario? Guarda primero los cambios que quieras conservar.')) reset();
 });
 for (const key of ['filter-activity', 'filter-text']) $(key).addEventListener('input', render);
+$('reset-filters').addEventListener('click', () => {
+  $('filter-activity').value = '';
+  $('filter-text').value = '';
+  render();
+  $('history-heading').focus();
+});
+for (const key of ['reference-a', 'reference-b'])
+  $(key).addEventListener('change', () => {
+    $('progress-comparison').hidden = true;
+    $('comparison-error').textContent = '';
+  });
 $('compare-records').addEventListener('click', () => {
   const a = store.items.find((r) => r.id === $('reference-a').value),
     b = store.items.find((r) => r.id === $('reference-b').value);
@@ -207,16 +219,16 @@ $('compare-records').addEventListener('click', () => {
   }
   if (!comparable(a, b)) {
     $('comparison-error').textContent =
-      'No son comparables: deben coincidir actividad, cantidad, carga, contexto y condiciones anotadas; en competiciones, también el nombre/formato. No se calcula una diferencia engañosa.';
+      'No son comparables: revisa actividad, cantidad, carga, contexto y condiciones. En competiciones debe coincidir también el nombre/formato.';
     return;
   }
   $('comparison-error').textContent = '';
   $('progress-difference').textContent =
-    `${description(a)} → ${description(b)}. Diferencia B − A: ${signed(b.seconds - a.seconds)}. Menos tiempo no demuestra por sí solo una mejora: revisa las condiciones y tus notas.`;
+    `${description(a)} → ${description(b)}. Diferencia B − A: ${signed(b.seconds - a.seconds)}. Menos tiempo no demuestra una mejora: revisa condiciones y notas.`;
   const series = sorted().filter((r) => comparable(a, r)),
     verified = series.filter((r) => r.verified);
   $('best-record').textContent = verified.length
-    ? `Menor tiempo entre los datos comprobados por ti de esta referencia: ${clock(Math.min(...verified.map((r) => r.seconds)))}. Comparación local; no es una certificación ni un récord oficial.`
+    ? `Menor tiempo comprobado por ti: ${clock(Math.min(...verified.map((r) => r.seconds)))}. Referencia local, no récord oficial.`
     : 'Aún no has marcado como comprobado ningún resultado de esta referencia.';
   const body = $('evolution-body'),
     chart = $('evolution-chart');

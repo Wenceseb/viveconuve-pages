@@ -121,12 +121,12 @@ function renderResult(plan) {
   $('planner-result').hidden = false;
   $('planner-error').textContent = '';
 }
-const attempt = (fn) => {
+const attempt = (fn, errorId = 'planner-error') => {
   try {
     fn();
-    $('planner-error').textContent = '';
+    $(errorId).textContent = '';
   } catch (e) {
-    $('planner-error').textContent = e.message;
+    $(errorId).textContent = e.message;
   }
 };
 form.addEventListener('submit', (event) => {
@@ -190,6 +190,7 @@ function refresh() {
   options($('compare-b'), store.items, 'Escenario B');
   $('plan-count').textContent = `${store.items.length} de 30 escenarios guardados.`;
   $('comparison').hidden = true;
+  $('compare-error').textContent = '';
 }
 $('save-plan').addEventListener('click', () =>
   attempt(() => {
@@ -245,8 +246,14 @@ $('delete-plan').addEventListener('click', () =>
     }
   }),
 );
+for (const key of ['compare-a', 'compare-b'])
+  $(key).addEventListener('change', () => {
+    $('comparison').hidden = true;
+    $('compare-error').textContent = '';
+  });
 $('compare').addEventListener('click', () =>
   attempt(() => {
+    $('comparison').hidden = true;
     const a = store.items.find((v) => v.id === $('compare-a').value),
       b = store.items.find((v) => v.id === $('compare-b').value);
     if (!a || !b || a.id === b.id)
@@ -276,7 +283,7 @@ $('compare').addEventListener('click', () =>
     $('same-plan').hidden = comparison.rows.some((v) => v.delta !== 0);
     $('comparison').hidden = false;
     $('comparison-heading').focus();
-  }),
+  }, 'compare-error'),
 );
 $('export-plans').addEventListener('click', () => store.export());
 $('recover-plans').addEventListener('click', () => store.raw());
