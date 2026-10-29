@@ -1,0 +1,154 @@
+[
+  {
+    "slug": "skierg",
+    "doubles": [
+      "1.000 m",
+      "1.000 m",
+      "1.000 m",
+      "1.000 m",
+      "1.000 m"
+    ],
+    "relay": [
+      "1.000 m",
+      "1.000 m"
+    ],
+    "doublePage": 27,
+    "relayPage": 15,
+    "question": "El ritmo que puedes repetir",
+    "practice": "Anota el parcial de cada 250 m si lo conoces. Un tiempo total no cuenta si saliste demasiado rápido ni cuánto cambió el ritmo al final.",
+    "record": "Distancia, tiempo, modelo y ajuste del ergómetro; en fresco o después de correr."
+  },
+  {
+    "slug": "sled-push",
+    "doubles": [
+      "102 kg",
+      "152 kg",
+      "152 kg",
+      "152 kg",
+      "202 kg"
+    ],
+    "relay": [
+      "102 kg",
+      "152 kg"
+    ],
+    "doublePage": 28,
+    "relayPage": 16,
+    "question": "El recorrido también consume tiempo",
+    "practice": "Separa en tus notas el empuje y la preparación de cada largo. Así podrás revisar si la dificultad está en mover el trineo o en reorganizarte.",
+    "record": "Peso total, modelo de trineo, superficie, calzado y largos completados."
+  },
+  {
+    "slug": "sled-pull",
+    "doubles": [
+      "78 kg",
+      "103 kg",
+      "103 kg",
+      "103 kg",
+      "153 kg"
+    ],
+    "relay": [
+      "78 kg",
+      "103 kg"
+    ],
+    "doublePage": 30,
+    "relayPage": 17,
+    "question": "La cuerda forma parte del trabajo",
+    "practice": "Anota dónde tuviste que parar y qué estabas haciendo: tirar, recolocarte o recoger cuerda. El tiempo final por sí solo no distingue esas situaciones.",
+    "record": "Peso total, superficie, longitud de los largos y pausas."
+  },
+  {
+    "slug": "burpee-broad-jumps",
+    "doubles": [
+      "80 m",
+      "80 m",
+      "80 m",
+      "80 m",
+      "80 m"
+    ],
+    "relay": [
+      "80 m",
+      "80 m"
+    ],
+    "doublePage": 30,
+    "relayPage": 18,
+    "question": "Cuenta metros, no solo repeticiones",
+    "practice": "Si comparas dos referencias, usa el mismo recorrido. Una cantidad de burpees no equivale a una distancia fija.",
+    "record": "Metros, tiempo, superficie y pausas; carrera previa si la hubo."
+  },
+  {
+    "slug": "rowing",
+    "doubles": [
+      "1.000 m",
+      "1.000 m",
+      "1.000 m",
+      "1.000 m",
+      "1.000 m"
+    ],
+    "relay": [
+      "1.000 m",
+      "1.000 m"
+    ],
+    "doublePage": 32,
+    "relayPage": 19,
+    "question": "Llegar al remo cambia la referencia",
+    "practice": "Etiqueta si el registro llega después de correr o de otra estación. Guarda el contexto antes de comparar el resultado con una sesión en fresco.",
+    "record": "Distancia, tiempo, modelo, ajuste y trabajo realizado antes de remar."
+  },
+  {
+    "slug": "farmers-carry",
+    "doubles": [
+      "2 × 16 kg",
+      "2 × 24 kg",
+      "2 × 24 kg",
+      "2 × 24 kg",
+      "2 × 32 kg"
+    ],
+    "relay": [
+      "2 × 16 kg",
+      "2 × 24 kg"
+    ],
+    "doublePage": 34,
+    "relayPage": 21,
+    "question": "El peso de cada pesa importa",
+    "practice": "Escribe la carga por mano. Anota también cuántas veces apoyaste las pesas, sin convertir esas pausas en una nota de aprobado o suspenso.",
+    "record": "Metros, carga por mano, giros, apoyos y tiempo total."
+  },
+  {
+    "slug": "sandbag-lunges",
+    "doubles": [
+      "10 kg",
+      "20 kg",
+      "20 kg",
+      "20 kg",
+      "30 kg"
+    ],
+    "relay": [
+      "10 kg",
+      "20 kg"
+    ],
+    "doublePage": 35,
+    "relayPage": 22,
+    "question": "Un mismo saco, contextos diferentes",
+    "practice": "Comprueba que la distancia y la carga coinciden entre registros. Añade si venías de correr y si hubo interrupciones; el tiempo no explica todo.",
+    "record": "Metros, peso del saco, pausas, superficie y contexto."
+  },
+  {
+    "slug": "wall-balls",
+    "doubles": [
+      "4 kg",
+      "6 kg",
+      "6 kg",
+      "6 kg",
+      "9 kg"
+    ],
+    "relay": [
+      "4 kg",
+      "6 kg"
+    ],
+    "doublePage": 37,
+    "relayPage": 24,
+    "question": "Cuenta las repeticiones válidas",
+    "practice": "Distingue las repeticiones intentadas de las aceptadas. Si entrenas sin juez, indica cómo comprobaste el estándar en lugar de darlo por supuesto.",
+    "record": "Repeticiones válidas, balón, altura de diana, tiempo y pausas."
+  }
+]

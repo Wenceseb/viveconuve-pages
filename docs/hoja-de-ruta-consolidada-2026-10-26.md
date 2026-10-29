@@ -4,6 +4,8 @@ Fecha de revisión: 29 de octubre de 2026. Integra el plan del 24/10, el trabajo
 
 ## Estado vigente — 29 de octubre
 
+Ampliación de cierre de fase: ocho fichas con tablas de dobles/relevos y esquemas del material, mejoras visuales de Entrenar, Recuperar y vivir y Mi historia, y plan operativo de captación. Implementado y verificado localmente; pendiente de confirmar despliegue. [Detalle y límites](biblioteca-ampliacion-2026-10-29.md). El usuario confirma que el Laboratorio aún no ha comenzado; se mantiene propuesto.
+
 Página de artículos mejorada y publicada en `3065348`: guía HYROX destacada con entradas por pregunta, secciones de lectura con jerarquía por tema e invitación contextual a Instagram. Galería y siete lecturas existentes conservadas; sin nuevos scripts o imágenes. Verificada localmente a 320/390/768/1440 px y en producción a 390/1440 px. [Detalle](lecturas-diseno-2026-10-29.md).
 
 Mejora del cuaderno publicada en `b79ed40` (despliegue `40841205201`, verificado también en producción a 390 y 1440 px): al guardar o editar se muestra la referencia afectada; solo se retiran los filtros que la ocultarían. La confirmación distingue entre persistencia local y datos disponibles únicamente durante la sesión. Verificación a 390, 768 y 1440 px, almacenamiento bloqueado/lleno/corrupto y exportación PDF. Detalle: [guardado y filtros](progreso-guardado-2026-10-29.md).

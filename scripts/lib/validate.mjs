@@ -118,6 +118,9 @@ export async function validateSite(output) {
     );
     const isSection = [
       '/articulos.html',
+      '/sobre-mi.html',
+      '/entrenar.html',
+      '/recuperar-y-vivir.html',
       '/recursos.html',
       '/competiciones.html',
       '/laboratorio.html',

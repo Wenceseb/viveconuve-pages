@@ -447,3 +447,45 @@
     margin-top: 1rem;
   }
 }
+
+.section-portrait {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  margin-bottom: 4rem;
+}
+.section-portrait h1 {
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  margin-top: 0.5rem;
+}
+.section-portrait figure {
+  margin: 0;
+}
+.section-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.section-portrait figcaption {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  padding-top: 0.8rem;
+}
+.section-portrait.portrait {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+}
+.personal-chapter {
+  border-top: 1px solid #bbc9c0;
+  padding-top: 2rem;
+}
+@media (max-width: 768px) {
+  .section-portrait,
+  .section-portrait.portrait {
+    grid-template-columns: 1fr;
+  }
+  .section-portrait.portrait figure {
+    max-width: 400px;
+  }
+}

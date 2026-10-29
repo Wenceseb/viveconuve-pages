@@ -7,6 +7,7 @@ import { loadPages, render, escapeHtml } from './lib/content.mjs';
 import { buildImages, optimizeDocumentImages } from './lib/images.mjs';
 import { renderAgenda } from './lib/agenda.mjs';
 import { createFeeds } from './lib/feeds.mjs';
+import { stationDetails } from './lib/station-details.mjs';
 import { nodes, attr } from './lib/html.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const output = resolve(root, 'dist');
@@ -63,6 +64,7 @@ await writeFile(join(output, cssUrl), css);
 await writeFile(join(output, jsUrl), js);
 const pages = await loadPages(root);
 const editorial = JSON.parse(await read('content/editorial.json'));
+const stationData = JSON.parse(await read('content/station-details.json'));
 const cardLinks = (slugs) =>
   '<div class="h-links">' +
   slugs
@@ -136,6 +138,7 @@ for (const page of pages) {
     agendaEvents: renderAgenda(agenda),
     ...competitionValues,
     ...editorialValues,
+    ...stationDetails(page, stationData),
   });
   const contentImages = nodes(parse(content), 'img');
   const firstImage = [
@@ -167,9 +170,14 @@ for (const page of pages) {
       ? `<link rel="stylesheet" href="${libraryCssUrl}">`
       : page.permalink === '/competiciones.html'
         ? `<link rel="stylesheet" href="${sectionsCssUrl}"><script defer src="${featureUrls['agenda.js']}"></script>`
-        : ['/laboratorio.html', '/hyrox-despues-de-los-50.html', '/articulos.html'].includes(
-              page.permalink,
-            )
+        : [
+              '/laboratorio.html',
+              '/hyrox-despues-de-los-50.html',
+              '/articulos.html',
+              '/sobre-mi.html',
+              '/entrenar.html',
+              '/recuperar-y-vivir.html',
+            ].includes(page.permalink)
           ? `<link rel="stylesheet" href="${sectionsCssUrl}">`
           : page.permalink === '/recursos.html'
             ? `<link rel="stylesheet" href="${sectionsCssUrl}"><script defer src="${toolsUrl}"></script>`
