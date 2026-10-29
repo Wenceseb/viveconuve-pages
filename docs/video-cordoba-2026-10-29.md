@@ -11,3 +11,5 @@ Autorización: el propietario aprobó incorporar el montaje proporcionado en la 
 - Metadatos de modificación actualizados. Portada principal y enlace de Instagram sin cambios.
 
 Verificación: compilación y 42 pruebas automáticas; validación de 47 páginas. Comprobación específica de reproducción, avance al segundo 25, ausencia de descarga MP4 previa, axe y desbordamiento en 320, 768 y 1440 px. El test de reproducción silencia el audio; no equivale a una revisión auditiva.
+
+Publicado: fc9d67d5bd07848f4f5af7ec477a3fc9ae5c2be2. GitHub Actions 40952335843: build y deploy correctos. Verificación en https://viveconuve.com completada en 320, 768 y 1440 px: reproducción, salto a 25 s, carga bajo demanda, axe y diseño correctos. Revisión general local de navegador también superada.
