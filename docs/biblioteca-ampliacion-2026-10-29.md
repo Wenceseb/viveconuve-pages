@@ -23,4 +23,4 @@ Vídeo de Córdoba: archivo aportado, 37,9 s, 720×1280, H.264/AAC. Copia optimi
 
 Captación: plan ejecutable de mantenimiento y difusión en `captacion-ejecucion-2026-10-29.md`. No se enviaron correos ni publicaciones sociales. Search Console pendiente por bloqueo de cuota de revisión automática. Laboratorio pendiente de datos reales, confirmado por el usuario.
 
-Publicación de este lote: pendiente de comprobar el despliegue.
+Publicado en `71dc959e2fd32007bf46f53f89e5b24b254861e5`. GitHub Actions https://github.com/Wenceseb/viveconuve-pages/actions/runs/40896069401 completado correctamente. Comprobación posterior en producción de las ocho fichas y tres secciones a 390 y 1440 px: tablas, ilustraciones, fotografía, diseño sin desbordamiento, Axe y ausencia de errores JavaScript aprobados. Capturas `.cache/live-new-*` y `.cache/live-teams-*`. Portada y las tres crónicas originales sin cambios en este lote.
