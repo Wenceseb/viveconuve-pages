@@ -119,6 +119,7 @@ export async function validateSite(output) {
     const isSection = [
       '/articulos.html',
       '/sobre-mi.html',
+      '/desde-instagram.html',
       '/valhalla-box-mucho-mas-que-entrenar.html',
       '/atlhonx-cordoba-caliphate-2026.html',
       '/10k-santa-fe-2026.html',

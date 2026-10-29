@@ -561,3 +561,44 @@
     max-width: 260px;
   }
 }
+
+.bio-shortcuts {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.bio-shortcuts a {
+  display: block;
+  border-bottom: 1px solid #6c877a;
+  padding: 0.75rem 0;
+  font-weight: 700;
+  text-underline-offset: 0.25em;
+}
+.bio-video-link {
+  margin: 0.75rem 0 2rem;
+  font-size: 0.95rem;
+}
+.bio-video-link a,
+.bio-more a {
+  display: inline-block;
+  padding-block: 0.5rem;
+}
+.bio-newsletter {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #6c877a;
+}
+.social-page main .bio-newsletter h2 {
+  color: inherit;
+  font-size: 2rem;
+  margin-top: 0;
+}
+.bio-newsletter p,
+.bio-more {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.social-page main a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 5px;
+}
