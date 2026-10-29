@@ -90,6 +90,7 @@ const featureNames = [
   'local.js',
   'planner.js',
   'progress.js',
+  'progress-print.js',
   'agenda.js',
   'workshop.css',
 ];

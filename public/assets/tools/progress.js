@@ -1,3 +1,4 @@
+import './progress-print.js';
 import { activities, time, clock, signed, record, comparable, csv } from './model.js';
 import { id, localCollection, imported, download, el, options } from './local.js';
 const $ = (s) => document.getElementById(s),
@@ -106,19 +107,24 @@ function load(r, clone = false) {
 }
 const description = (r) => `${r.date} · ${r.name} · ${clock(r.seconds)}`;
 const sorted = () => store.items.slice().sort((a, b) => a.date.localeCompare(b.date));
-function render() {
+function matches(r) {
   const kind = $('filter-activity').value,
     query = $('filter-text').value.trim().toLocaleLowerCase('es');
-  const list = sorted()
-    .reverse()
-    .filter(
-      (r) =>
-        (!kind || r.activity === kind) &&
-        (!query || `${r.name} ${r.conditions} ${r.notes}`.toLocaleLowerCase('es').includes(query)),
-    );
+  return (
+    (!kind || r.activity === kind) &&
+    (!query || `${r.name} ${r.conditions} ${r.notes}`.toLocaleLowerCase('es').includes(query))
+  );
+}
+function clearFilters() {
+  $('filter-activity').value = '';
+  $('filter-text').value = '';
+}
+function render(focusId) {
+  const list = sorted().reverse().filter(matches);
+  $('save-feedback').textContent = '';
   $('records-list').replaceChildren();
   $('record-count').textContent =
-    `${list.length} referencias visibles · ${store.items.length} guardadas de un máximo de 500.`;
+    `Visibles: ${list.length} · En tu cuaderno: ${store.items.length} de 500.`;
   $('empty-records').hidden = store.items.length > 0;
   $('no-matching-records').hidden = !store.items.length || list.length > 0;
   for (const r of list) {
@@ -173,6 +179,11 @@ function render() {
     }
     article.append(head, actions);
     $('records-list').append(article);
+    if (r.id === focusId) {
+      article.tabIndex = -1;
+      article.setAttribute('aria-label', description(r));
+      article.focus();
+    }
   }
   const choices = sorted().map((r) => ({ ...r, name: description(r) }));
   options($('reference-a'), choices, 'Referencia A');
@@ -185,10 +196,13 @@ form.addEventListener('submit', (event) => {
   try {
     const r = read();
     store.replace([...store.items.filter((v) => v.id !== r.id), r]);
+    const hidden = !matches(r);
+    if (hidden) clearFilters();
     reset();
-    render();
+    render(r.id);
+    $('save-feedback').textContent =
+      `${r.name}. ${$('local-status').textContent}${hidden ? ' Hemos quitado los filtros para mostrar esta referencia.' : ''}`;
     $('record-error').textContent = '';
-    $('history-heading').focus();
   } catch (e) {
     $('record-error').textContent = e.message;
   }
@@ -199,8 +213,7 @@ $('new-record').addEventListener('click', () => {
 });
 for (const key of ['filter-activity', 'filter-text']) $(key).addEventListener('input', render);
 $('reset-filters').addEventListener('click', () => {
-  $('filter-activity').value = '';
-  $('filter-text').value = '';
+  clearFilters();
   render();
   $('history-heading').focus();
 });
@@ -280,32 +293,3 @@ const requestedActivity = new URLSearchParams(location.search).get('actividad');
 if (Object.hasOwn(stationPages, requestedActivity)) $('activity').value = requestedActivity;
 adapt();
 render();
-
-$('print-records').addEventListener('click', () => {
-  const rows = [...$('records-list').children];
-  if (!rows.length) {
-    $('print-records-error').textContent =
-      'No hay registros visibles para guardar. Añade una referencia o cambia los filtros.';
-    return;
-  }
-  $('print-records-error').textContent = '';
-  const sheet = $('progress-print');
-  sheet.replaceChildren(
-    el('h1', 'Mi cuaderno de progreso · ViveConUve'),
-    el(
-      'p',
-      `${rows.length} ${rows.length === 1 ? 'referencia seleccionada' : 'referencias seleccionadas'}. Tiempos en minutos:segundos. Datos y notas introducidos por su autor.`,
-    ),
-  );
-  for (const row of rows) {
-    const copy = row.cloneNode(true);
-    copy.querySelector('.tool-actions')?.remove();
-    sheet.append(copy);
-  }
-  document.body.classList.add('progress-print');
-  try {
-    window.print();
-  } finally {
-    document.body.classList.remove('progress-print');
-  }
-});

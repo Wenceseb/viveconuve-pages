@@ -1,8 +1,10 @@
 # ViveConUve · hoja de ruta única
 
-Fecha de revisión: 28 de octubre de 2026. Integra el plan del 24/10, el trabajo publicado y el brief definitivo del 25/10. Este documento es la referencia de ejecución; los anteriores quedan como investigación y antecedentes.
+Fecha de revisión: 29 de octubre de 2026. Integra el plan del 24/10, el trabajo publicado y el brief definitivo del 25/10. Este documento es la referencia de ejecución; los anteriores quedan como investigación y antecedentes.
 
-## Estado vigente — 28 de octubre
+## Estado vigente — 29 de octubre
+
+Mejora del cuaderno: al guardar o editar se muestra la referencia afectada; solo se retiran los filtros que la ocultarían. La confirmación distingue entre persistencia local y datos disponibles únicamente durante la sesión. Verificación a 390, 768 y 1440 px, almacenamiento bloqueado/lleno/corrupto y exportación PDF. Detalle: [guardado y filtros](progreso-guardado-2026-10-29.md).
 
 **Actualización de publicación:** lote integral publicado desde `853cf78`, ejecución `40756219129` completada correctamente. Incluye Recursos, presentación de historias, correcciones de comparadores y filtros, exclusión de analítica en vistas previas y reparaciones de datos estructurados. Verificado en producción a 390 y 1440 px; evidencia `.cache/live-release-20261028.json`. Portada y relatos de Santa Fe, Córdoba y Valhalla conservados. La guía HYROX ya estaba publicada en `86c9bc8`.
 

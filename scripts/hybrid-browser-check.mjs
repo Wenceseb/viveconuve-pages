@@ -127,6 +127,10 @@ try {
       ['2026-10-25', '25:00'],
       ['2026-10-26', '24:30'],
     ]) {
+      await page.locator('#filter-activity').selectOption(date.endsWith('25') ? 'ski' : 'run');
+      await page
+        .locator('#filter-text')
+        .fill(date.endsWith('25') ? 'Oculta este registro' : '5 km');
       await page.locator('#record-name').fill('5 km comprobados');
       await page.locator('#record-date').fill(date);
       await page.locator('#amount').fill('5000');
@@ -139,6 +143,27 @@ try {
           .click();
       await page.locator('#notes').fill('<img src=x onerror=alert(1)> Notas reales');
       await page.locator('#record-form button[type=submit]').click();
+      assert.equal(
+        await page.locator('#filter-activity').inputValue(),
+        date.endsWith('25') ? '' : 'run',
+      );
+      assert.equal(
+        await page.locator('#filter-text').inputValue(),
+        date.endsWith('25') ? '' : '5 km',
+      );
+      assert.match(
+        await page.locator('#save-feedback').textContent(),
+        /Guardado en este navegador/,
+      );
+      assert.equal(
+        (await page.locator('#save-feedback').textContent()).includes('quitado los filtros'),
+        date.endsWith('25'),
+      );
+      assert.equal(await page.locator('#records-list .record-row:focus').count(), 1);
+      assert.match(
+        await page.locator('#records-list .record-row:focus').textContent(),
+        new RegExp(date),
+      );
     }
     const ids = await page
       .locator('#reference-a option')
@@ -170,8 +195,11 @@ try {
     await page
       .getByRole('button', { name: 'Editar: 5 km comprobados, 2026-10-26', exact: true })
       .click();
+    await page.locator('#filter-text').fill('Ocultar al editar');
     await page.locator('#amount').fill('1000');
     await page.locator('#record-form button[type=submit]').click();
+    assert.equal(await page.locator('#filter-text').inputValue(), '');
+    assert.equal(await page.locator('.record-row').count(), 2);
     await page.locator('#reference-a').selectOption(ids[0]);
     await page.locator('#reference-b').selectOption(ids[1]);
     await page.locator('#compare-records').click();
@@ -290,6 +318,14 @@ try {
       .getByRole('button', { name: /^Editar:/ })
       .first()
       .click();
+    await page.locator('#filter-text').fill('Sin coincidencias');
+    await page.locator('#record-form button[type=submit]').click();
+    assert.match(await page.locator('#save-feedback').textContent(), /solo en esta sesi/);
+    assert.doesNotMatch(
+      await page.locator('#save-feedback').textContent(),
+      /Guardado en este navegador/,
+    );
+    assert.equal(await page.locator('#records-list .record-row:focus').count(), 1);
     assert.equal(
       await page.evaluate(() => {
         const event = new Event('beforeunload', { cancelable: true });
