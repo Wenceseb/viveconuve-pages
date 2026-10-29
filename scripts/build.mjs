@@ -175,6 +175,9 @@ for (const page of pages) {
               '/hyrox-despues-de-los-50.html',
               '/articulos.html',
               '/sobre-mi.html',
+              '/valhalla-box-mucho-mas-que-entrenar.html',
+              '/atlhonx-cordoba-caliphate-2026.html',
+              '/10k-santa-fe-2026.html',
               '/entrenar.html',
               '/recuperar-y-vivir.html',
             ].includes(page.permalink)
