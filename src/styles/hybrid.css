@@ -729,3 +729,36 @@ textarea:focus-visible {
     margin-bottom: 32px;
   }
 }
+
+.story-video {
+  max-width: 390px;
+  margin: 48px auto;
+}
+.story-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  background: #193b32;
+}
+.story-video video:focus-visible {
+  outline: 3px solid #193b32;
+  outline-offset: 5px;
+}
+.story-video figcaption {
+  padding-top: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.story-video figcaption strong {
+  display: block;
+}
+.story-video .story-video-access {
+  font-size: 15px;
+  margin-top: 12px;
+}
+@media print {
+  .story-video video {
+    display: none;
+  }
+}
