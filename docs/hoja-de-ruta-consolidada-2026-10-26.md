@@ -26,7 +26,7 @@ Esta tabla sustituye los estados históricos de las actualizaciones fechadas má
 | Portada elegida, Brevo y herramientas anteriores | Ya implementado | Conservar identidad, avisos a Gmail y bienvenida sin regalos |
 | Planificador HYROX | Ya implementado y publicado | 12 divisiones oficiales, 32 segmentos, comparación A/B, archivo local y PDF |
 | Mi progreso híbrido | Ya implementado y publicado | registros, comparación compatible, evolución, PDF de registros filtrados y copias recuperables |
-| Biblioteca HYROX | Ya implementado y publicado | índice y ocho fichas con fuentes, diagramas y navegación; cargas de individuales explícitamente delimitadas |
+| Biblioteca HYROX | Ya implementado y publicado | índice y ocho fichas con fuentes, diagramas, navegación y tablas separadas de individuales, dobles y relevos; limitación del relevo mixto explícita |
 | Agenda y comparador | Ya implementado y publicado | Mantener comprobación de los nueve eventos con sus organizadores |
 | Laboratorio | Implementado parcialmente | Estructura y primera propuesta listas; faltan inicio y observaciones reales del autor |
 | Integración visual y SEO de nuevas rutas | Ya implementado y publicado | Accesos en portada/Recursos, metadatos y navegación estructurada; continuar mejora editorial y visual |

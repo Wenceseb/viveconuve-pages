@@ -10,3 +10,5 @@ Se reemplaza la presentación de los pies editoriales de Valhalla, Córdoba y Sa
 - Comprobaciones: 42 pruebas y 47 páginas validadas; formato correcto. Tres páginas a 320/390/768/1440 px, imágenes decodificadas, sin desbordamiento, sin errores JS y sin infracciones axe detectadas. Capturas revisadas en móvil y escritorio. No sustituye validación manual con tecnologías de apoyo.
 
 Objetivo: facilitar la continuación de lectura y el paso hacia herramientas e Instagram. No se afirma mejora de conversión sin datos posteriores.
+
+Versión publicada: c60a3fd7116f9a43e9c4d78fc73543adc72f8bb7, ejecución 40953573576. Comprobaciones completas de CI superadas. Verificación posterior en viveconuve.com: las tres crónicas pasan imágenes, enlaces de continuación, axe y desbordamiento a 320/390/768/1440 px.
