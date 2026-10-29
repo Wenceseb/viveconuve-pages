@@ -337,3 +337,113 @@
     font-size: 2.8rem;
   }
 }
+
+.reading-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(1.25rem, 4vw, 3rem);
+  background: #193b32;
+  color: white;
+}
+.reading-feature h2,
+.reading-feature a,
+.reading-feature a:hover {
+  color: white;
+}
+.reading-feature h2 {
+  margin-top: 0;
+  font-size: clamp(2.3rem, 4vw, 3.5rem);
+  line-height: 1.1;
+}
+.reading-feature p {
+  max-width: 40ch;
+}
+.reading-feature nav {
+  align-self: center;
+}
+.reading-feature nav a {
+  display: block;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #bbc9c0;
+  text-decoration: none;
+}
+.reading-feature nav a:first-child {
+  border-top: 1px solid #bbc9c0;
+}
+.reading-feature strong {
+  display: block;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.reading-feature span {
+  display: block;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+.reading-feature a:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 5px;
+}
+.reading-main-link {
+  display: inline-block;
+  padding-block: 0.6rem;
+  font-weight: 700;
+}
+.reading-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: start;
+}
+.reading-section h2 {
+  margin-top: 0;
+  font-size: clamp(2.1rem, 3.5vw, 3rem);
+  line-height: 1.1;
+}
+.reading-section header p {
+  max-width: 32ch;
+}
+.reading-section .h-links {
+  margin: 0;
+}
+.reading-section .h-links a:first-child {
+  border-top: 1px solid #bbc9c0;
+}
+.reading-social {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-top: 2px solid #193b32;
+  padding-block: 2rem;
+}
+.reading-social h2 {
+  margin-top: 0;
+  font-size: 2rem;
+}
+.reading-social p {
+  max-width: 55ch;
+  margin-bottom: 0;
+}
+.reading-social > a {
+  padding-block: 0.75rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .reading-feature,
+  .reading-section {
+    grid-template-columns: 1fr;
+  }
+  .reading-section header p {
+    max-width: none;
+  }
+  .reading-social {
+    display: block;
+  }
+  .reading-social > a {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+}
