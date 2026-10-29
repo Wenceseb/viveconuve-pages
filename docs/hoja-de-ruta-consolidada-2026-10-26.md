@@ -4,6 +4,8 @@ Fecha de revisión: 29 de octubre de 2026. Integra el plan del 24/10, el trabajo
 
 ## Estado vigente — 29 de octubre
 
+Entrada desde Instagram actualizada y publicada en `25accc8`: accesos directos a herramientas, vídeo de Córdoba, Santa Fe y newsletter. Comprobada en producción en cuatro tamaños. [Detalle](entrada-instagram-2026-10-29.md).
+
 Nueva mejora de navegación editorial: finales visuales de las tres crónicas, con fotografías reales, herramientas contextuales e Instagram. [Detalle y comprobaciones](continuacion-cronicas-2026-10-29.md). El vídeo de Córdoba ya está publicado y verificado: [registro](video-cordoba-2026-10-29.md).
 
 Ampliación de cierre de fase: ocho fichas con tablas de dobles/relevos y esquemas del material, mejoras visuales de Entrenar, Recuperar y vivir y Mi historia, y plan operativo de captación. Publicado en `71dc959`, ejecución `40896069401` correcta. Verificado en producción a 390 y 1440 px. [Detalle y límites](biblioteca-ampliacion-2026-10-29.md). El usuario confirma que el Laboratorio aún no ha comenzado; se mantiene propuesto.
