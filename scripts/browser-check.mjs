@@ -1,4 +1,5 @@
 import { chromium } from 'playwright';
+import { checkNavigation } from './lib/navigation-browser-checks.mjs';
 import AxeBuilder from '@axe-core/playwright';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -108,6 +109,18 @@ try {
       `Browser checks passed at ${width}px: accessibility, images, layout, keyboard, consent and intercepted form submission.`,
     );
   }
+  const navContext = await browser.newContext();
+  await checkNavigation(await navContext.newPage(), `http://127.0.0.1:${port}`);
+  await navContext.close();
+  const noScriptContext = await browser.newContext({
+    javaScriptEnabled: false,
+    viewport: { width: 320, height: 844 },
+  });
+  const noScriptPage = await noScriptContext.newPage();
+  await noScriptPage.goto(`http://127.0.0.1:${port}/`);
+  assert.equal(await noScriptPage.locator('#primary-navigation a').first().isVisible(), true);
+  await noScriptContext.close();
+
   await checkBlockedStorage(browser, `http://127.0.0.1:${port}`);
 } finally {
   await browser?.close();

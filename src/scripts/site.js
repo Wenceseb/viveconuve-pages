@@ -22,6 +22,27 @@
       toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     });
     nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+    let lastMenuFocus = null;
+    const outsideMenu = (target) => !nav.contains(target) && !toggle.contains(target);
+    document.addEventListener('pointerdown', (event) => {
+      if (outsideMenu(event.target)) {
+        lastMenuFocus = null;
+        close();
+      }
+    });
+    document.addEventListener('focusin', (event) => {
+      lastMenuFocus = outsideMenu(event.target) ? null : event.target;
+      if (outsideMenu(event.target)) close();
+    });
+    const mobileNavigation = window.matchMedia('(max-width: 768px)');
+    mobileNavigation.addEventListener('change', () => {
+      const active =
+        document.activeElement === document.body ? lastMenuFocus : document.activeElement;
+      close();
+      if (mobileNavigation.matches && nav.contains(active)) toggle.focus();
+      else if (!mobileNavigation.matches && active === toggle) nav.querySelector('a')?.focus();
+    });
+
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && nav.classList.contains('nav-abierto')) {
         close();
