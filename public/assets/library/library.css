@@ -271,3 +271,182 @@
 .station-material figcaption {
   padding-top: 0.75rem;
 }
+.race-sheet {
+  margin-block: 3rem;
+  padding: clamp(1.2rem, 3vw, 2.5rem);
+  background: #e3ebe4;
+  border-top: 4px solid #193b32;
+}
+.race-sheet header {
+  max-width: 65ch;
+}
+.race-sheet h2 {
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1.1;
+}
+.race-sheet-controls {
+  max-width: 42rem;
+  margin-block: 1.5rem;
+}
+.race-sheet-controls label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.race-sheet-controls select {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  background: #fff;
+  color: #193b32;
+  border: 1px solid #5d6861;
+  font: inherit;
+}
+.race-sheet-controls button {
+  margin-top: 1rem;
+}
+.race-sheet-controls p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.race-sheet-panels details {
+  margin-block: 1rem;
+}
+.race-sheet-panels summary {
+  padding: 0.8rem 0;
+  cursor: pointer;
+  font-weight: 700;
+}
+.race-sheet-selected summary {
+  display: none;
+}
+.race-sheet-result h3 {
+  font-size: 1.7rem;
+}
+.race-sheet table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  table-layout: fixed;
+}
+.race-sheet th,
+.race-sheet td {
+  padding: 0.9rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid #aabdb0;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+.race-sheet thead th {
+  background: #193b32;
+  color: #fff;
+}
+.race-sheet th:first-child {
+  width: 40%;
+}
+.race-sheet caption {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+.race-order {
+  display: inline-block;
+  min-width: 1.2em;
+  font-variant-numeric: tabular-nums;
+}
+.race-sheet-notes,
+.race-sheet-source {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.race-sheet-warning {
+  border-left: 4px solid #193b32;
+  padding-left: 1rem;
+}
+@media (max-width: 420px) {
+  .race-sheet {
+    padding: 1rem 0.5rem;
+  }
+  .race-sheet th,
+  .race-sheet td {
+    padding: 0.7rem 0.3rem;
+    font-size: 0.85rem;
+  }
+}
+@media print {
+  body:has(.race-sheet-selected) > :not(main) {
+    display: none !important;
+  }
+  body:has(.race-sheet-selected) main > :not(#race-sheet) {
+    display: none !important;
+  }
+  .race-sheet-selected {
+    background: white;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: black;
+  }
+  .race-sheet-selected .race-sheet-controls,
+  .race-sheet-selected .race-sheet-next,
+  .race-sheet-selected > header {
+    display: none !important;
+  }
+  .race-sheet-selected .race-sheet-panels details {
+    margin: 0;
+  }
+  .race-sheet-selected h3 {
+    margin: 0 0 0.6rem;
+  }
+  .race-sheet-selected th,
+  .race-sheet-selected td {
+    padding: 0.4rem;
+    font-size: 10pt;
+    color: black;
+    background: white;
+  }
+  .race-sheet-selected tr {
+    break-inside: avoid;
+  }
+  .race-sheet-selected .race-sheet-notes,
+  .race-sheet-selected .race-sheet-source {
+    font-size: 9pt;
+  }
+}
+@media print {
+  body:has(.race-sheet-selected) {
+    min-height: 0;
+  }
+  .race-sheet-selected .race-sheet-result {
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+  .race-sheet-selected .race-sheet-result h3 {
+    font-size: 19pt;
+  }
+  .race-sheet-selected thead th {
+    color: #000 !important;
+    background: #fff !important;
+  }
+  .race-sheet-selected caption {
+    font-size: 10pt;
+  }
+}
+.race-sheet-controls button {
+  background: #193b32;
+  color: #fff;
+  border: 1px solid #193b32;
+  padding: 0.75rem 1rem;
+  min-height: 44px;
+  font-weight: 700;
+}
+.race-sheet-controls button:hover {
+  background: #285445;
+}
+.race-sheet-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

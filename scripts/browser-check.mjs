@@ -1,4 +1,5 @@
 import { chromium } from 'playwright';
+import { checkRaceSheets } from './lib/race-sheet-browser-checks.mjs';
 import { checkNavigation } from './lib/navigation-browser-checks.mjs';
 import AxeBuilder from '@axe-core/playwright';
 import assert from 'node:assert/strict';
@@ -111,6 +112,7 @@ try {
   }
   const navContext = await browser.newContext();
   await checkNavigation(await navContext.newPage(), `http://127.0.0.1:${port}`);
+  await checkRaceSheets(await navContext.newPage(), `http://127.0.0.1:${port}`);
   await navContext.close();
   const noScriptContext = await browser.newContext({
     javaScriptEnabled: false,

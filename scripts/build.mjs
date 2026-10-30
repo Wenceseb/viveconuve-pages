@@ -7,6 +7,7 @@ import { loadPages, render, escapeHtml } from './lib/content.mjs';
 import { buildImages, optimizeDocumentImages } from './lib/images.mjs';
 import { renderAgenda } from './lib/agenda.mjs';
 import { createFeeds } from './lib/feeds.mjs';
+import { raceSheets } from './lib/race-sheets.mjs';
 import { stationDetails } from './lib/station-details.mjs';
 import { nodes, attr } from './lib/html.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -114,6 +115,10 @@ for (const [index, name] of featureNames.entries()) {
   await writeFile(join(output, featureUrls[name]), source);
   await rm(join(output, 'assets/tools', name));
 }
+const raceSheetJs = await read('public/assets/library/race-sheet.js');
+const raceSheetUrl = `/assets/library/race-sheet.${hash(raceSheetJs)}.js`;
+await writeFile(join(output, raceSheetUrl), raceSheetJs);
+await rm(join(output, 'assets/library/race-sheet.js'));
 const libraryCss = await read('public/assets/library/library.css');
 const libraryCssUrl = `/assets/library/library.${hash(libraryCss)}.css`;
 await writeFile(join(output, libraryCssUrl), libraryCss);
@@ -139,6 +144,7 @@ for (const page of pages) {
     ...competitionValues,
     ...editorialValues,
     ...stationDetails(page, stationData),
+    raceSheets: page.permalink === '/estaciones-hyrox.html' ? raceSheets(pages, stationData) : '',
   });
   const contentImages = nodes(parse(content), 'img');
   const firstImage = [
@@ -167,7 +173,7 @@ for (const page of pages) {
     cssUrl,
     jsUrl,
     toolsScript: page.layout.includes('station-library')
-      ? `<link rel="stylesheet" href="${libraryCssUrl}">`
+      ? `<link rel="stylesheet" href="${libraryCssUrl}">${page.permalink === '/estaciones-hyrox.html' ? `<script defer src="${raceSheetUrl}"></script>` : ''}`
       : page.permalink === '/competiciones.html'
         ? `<link rel="stylesheet" href="${sectionsCssUrl}"><script defer src="${featureUrls['agenda.js']}"></script>`
         : [

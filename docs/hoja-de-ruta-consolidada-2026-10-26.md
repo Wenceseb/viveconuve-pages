@@ -4,6 +4,8 @@ Fecha de revisión: 30 de octubre de 2026. Integra el plan del 24/10, el trabajo
 
 ## Estado vigente — 30 de octubre
 
+Biblioteca: ficha de competición por modalidad con ocho estaciones, 12 categorías del modelo existente, enlaces al detalle y salida PDF. Reutiliza datos actuales y señala cargas de relevo mixto pendientes de confirmación. [Detalle y pruebas](ficha-modalidad-hyrox-2026-10-30.md).
+
 Navegación móvil: cierre al salir del menú, etiqueta visible y conservación de foco al cambiar de tamaño. Nuevas pruebas de regresión de teclado, pantallas estrechas y navegación sin JavaScript. [Detalle](navegacion-2026-10-30.md).
 
 Entrada desde Instagram actualizada y publicada en `25accc8`: accesos directos a herramientas, vídeo de Córdoba, Santa Fe y newsletter. Comprobada en producción en cuatro tamaños. [Detalle](entrada-instagram-2026-10-29.md).
