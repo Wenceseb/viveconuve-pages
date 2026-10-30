@@ -14,3 +14,5 @@ Verificación específica en Edge: toque exterior, Enter/Tab/Escape, salida del 
 42 pruebas existentes y validación de 47 páginas superadas. Captura del menú a 320 px revisada. No equivale a prueba humana con lector de pantalla o iPhone físico.
 
 Criterios de revisión: https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md (consultados 30/10/2026). Se aplica el patrón de navegación desplegable, no un diálogo modal.
+
+Publicación: 1e354968ae895ca1dbd0d929d60077c85d27f1a8, ejecución 41022793892. Todas las comprobaciones de build superadas. Verificación real en viveconuve.com completada: cierre exterior, Enter/Tab/Escape, foco entre tamaños, ausencia de desbordamiento 320–1440 px y navegación sin JavaScript correctos.

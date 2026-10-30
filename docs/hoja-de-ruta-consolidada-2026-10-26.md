@@ -1,8 +1,10 @@
 # ViveConUve · hoja de ruta única
 
-Fecha de revisión: 29 de octubre de 2026. Integra el plan del 24/10, el trabajo publicado y el brief definitivo del 25/10. Este documento es la referencia de ejecución; los anteriores quedan como investigación y antecedentes.
+Fecha de revisión: 30 de octubre de 2026. Integra el plan del 24/10, el trabajo publicado y el brief definitivo del 25/10. Este documento es la referencia de ejecución; los anteriores quedan como investigación y antecedentes.
 
-## Estado vigente — 29 de octubre
+## Estado vigente — 30 de octubre
+
+Navegación móvil: cierre al salir del menú, etiqueta visible y conservación de foco al cambiar de tamaño. Nuevas pruebas de regresión de teclado, pantallas estrechas y navegación sin JavaScript. [Detalle](navegacion-2026-10-30.md).
 
 Entrada desde Instagram actualizada y publicada en `25accc8`: accesos directos a herramientas, vídeo de Córdoba, Santa Fe y newsletter. Comprobada en producción en cuatro tamaños. [Detalle](entrada-instagram-2026-10-29.md).
 
