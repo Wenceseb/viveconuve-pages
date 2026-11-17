@@ -1,6 +1,12 @@
 import { escapeHtml as e } from './content.mjs';
 export function renderAgenda(events) {
-  const allowed = new Set(['support.hyrox.com', 'hyrox.com', 'athlonx.es', 'es.spartan.com']);
+  const allowed = new Set([
+    'support.hyrox.com',
+    'hyrox.com',
+    'hyrox.es',
+    'athlonx.es',
+    'es.spartan.com',
+  ]);
   const date = (v) =>
     new Intl.DateTimeFormat('es-ES', { dateStyle: 'long', timeZone: 'UTC' }).format(
       new Date(v + 'T12:00:00Z'),

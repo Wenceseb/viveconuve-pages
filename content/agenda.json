@@ -101,12 +101,12 @@
     "name": "HYROX Málaga",
     "city": "Málaga",
     "country": "España",
-    "start": "2027-04-14",
+    "start": "2027-04-15",
     "end": "2027-04-18",
     "formats": [
       "HYROX"
     ],
-    "source": "https://support.hyrox.com/?seller=64c90999373bfdfbecf2a933",
-    "verified": "2026-10-26"
+    "source": "https://hyrox.es/eventos/hyrox-malaga-26-27/",
+    "verified": "2026-11-17"
   }
 ]

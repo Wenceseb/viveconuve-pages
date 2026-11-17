@@ -14,7 +14,8 @@ test('the owner-corrected first competition date is used across the site', async
     assert.ok(!/2026-05-16|16 de mayo de 2026/.test(html), page);
     assert.ok(!html.includes('{{first'), page);
   }
-  assert.equal(data.goal.status, 'goal');
+  assert.equal(data.goal.status, 'registered');
+  assert.equal(data.goal.date, '2027-04-17');
   assert.equal(data.goal.period, '2027');
   assert.ok(!data.goal.month);
   assert.equal(data.next.status, 'registered');

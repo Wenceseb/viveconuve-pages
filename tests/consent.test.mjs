@@ -165,3 +165,25 @@ test('blocked Metricool does not break the page when its API is unavailable', ()
   const tracker = h.scripts.find((s) => s.src.includes('metricool'));
   assert.doesNotThrow(() => tracker.onload());
 });
+
+test('Facebook clicks respect consent, exact account, production and private-tool exclusions', () => {
+  const click = (h, href) =>
+    h.handlers.click({ target: { closest: () => ({ href, closest: () => null }) } });
+  for (const h of [
+    harness(),
+    harness('rejected'),
+    harness('accepted', false, true),
+    harness('accepted', false, false, 'http://localhost:8081'),
+  ]) {
+    click(h, 'https://www.facebook.com/1471635009356505');
+    assert.equal(h.browserWindow.dataLayer, undefined);
+  }
+  const h = harness('accepted');
+  click(h, 'https://www.facebook.com/another-account');
+  assert.equal(h.browserWindow.dataLayer.length, 2);
+  click(h, 'https://www.facebook.com/1471635009356505?private=value');
+  const sent = Array.from(h.browserWindow.dataLayer.at(-1));
+  assert.equal(sent[1], 'facebook_outbound');
+  assert.equal(sent[2].page_path, '/');
+  assert.ok(!JSON.stringify(sent).includes('private'));
+});
