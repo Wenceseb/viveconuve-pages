@@ -8,6 +8,7 @@ import { buildImages, optimizeDocumentImages } from './lib/images.mjs';
 import { renderAgenda } from './lib/agenda.mjs';
 import { createFeeds } from './lib/feeds.mjs';
 import { raceSheets } from './lib/race-sheets.mjs';
+import { buildSocialCard } from './lib/social-cards.mjs';
 import { stationDetails } from './lib/station-details.mjs';
 import { nodes, attr } from './lib/html.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -153,8 +154,19 @@ for (const page of pages) {
   ]
     .map((node) => attr(node, 'src'))
     .find((src) => imageManifest.has(src));
-  const socialImage = page.socialImage || firstImage || '/assets/images/viveconuve.png';
+  let socialImage = page.socialImage || firstImage || '/assets/images/viveconuve.png';
   if (!imageManifest.has(socialImage)) throw new Error(`${page.source}: missing social image`);
+  const card = await buildSocialCard(root, output, page, imageManifest);
+  const socialMeta = card || {
+    ...imageManifest.get(socialImage),
+    alt:
+      page.socialImageAlt ||
+      contentImages
+        .find((node) => attr(node, 'src') === socialImage)
+        ?.attrs.find((item) => item.name === 'alt')?.value ||
+      'Identidad gráfica de ViveConUve',
+  };
+  if (card) socialImage = card.url;
   const navigation = site.navigation
     .map(
       (item) =>
@@ -170,6 +182,11 @@ for (const page of pages) {
       site.url,
     ).href,
     socialImage: site.url + socialImage,
+    socialImageWidth: Math.min(socialMeta.width, 1600),
+    socialImageHeight: Math.round(
+      (socialMeta.height * Math.min(socialMeta.width, 1600)) / socialMeta.width,
+    ),
+    socialImageAlt: socialMeta.alt,
     cssUrl,
     jsUrl,
     toolsScript: page.layout.includes('station-library')

@@ -19,7 +19,8 @@
     "check:hybrid": "node scripts/hybrid-browser-check.mjs",
     "prebuild": "npm run check:runtime",
     "check:agenda": "node scripts/agenda-browser-check.mjs",
-    "check:guide": "node scripts/guide-browser-check.mjs"
+    "check:guide": "node scripts/guide-browser-check.mjs",
+    "check:distribution": "node scripts/social-browser-check.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
