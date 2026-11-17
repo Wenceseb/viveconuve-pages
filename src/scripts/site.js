@@ -55,6 +55,33 @@
     const link = event.target.closest?.('a[href]');
     if (!link || !enabled || !config.analyticsId || typeof window.gtag !== 'function') return;
     const target = new URL(link.href, location.href);
+    const placement = link.closest('.site-footer')
+      ? 'footer'
+      : link.closest('.site-header')
+        ? 'header'
+        : link.closest('.author')
+          ? 'author'
+          : 'content';
+    if (target.origin === new URL(location.href).origin) {
+      const destinations = {
+        '/camino-a-hyrox.html': 'camino',
+        '/atlhonx-cordoba-caliphate-2026.html': 'cordoba',
+        '/10k-santa-fe-2026.html': 'santa_fe',
+        '/hyrox-despues-de-los-50.html': 'guia_hyrox',
+      };
+      const newsletter =
+        target.hash === '#newsletter' &&
+        ['/', '/index.html', '/camino-a-hyrox.html'].includes(target.pathname);
+      const destination = newsletter ? 'newsletter' : destinations[target.pathname];
+      if (destination)
+        window.gtag('event', 'journey_click', {
+          page_path: location.pathname,
+          destination,
+          placement,
+          transport_type: 'beacon',
+        });
+      return;
+    }
     const instagram =
       target.hostname === 'www.instagram.com' && target.pathname === '/viveconuve71/';
     const facebook =
@@ -64,13 +91,21 @@
     // Separate from GA4's generic outbound click; never send query strings or user inputs.
     window.gtag('event', instagram ? 'instagram_outbound' : 'facebook_outbound', {
       page_path: location.pathname,
-      placement: link.closest('.site-footer')
-        ? 'footer'
-        : link.closest('.author')
-          ? 'author'
-          : link.closest('.site-header')
-            ? 'header'
-            : 'content',
+      placement,
+      transport_type: 'beacon',
+    });
+  });
+  document.addEventListener('submit', (event) => {
+    if (
+      !enabled ||
+      !config.analyticsId ||
+      typeof window.gtag !== 'function' ||
+      event.target?.id !== 'sib-form'
+    )
+      return;
+    // This is an attempted native submission, never a confirmed subscription.
+    window.gtag('event', 'newsletter_submit', {
+      page_path: location.pathname,
       transport_type: 'beacon',
     });
   });

@@ -83,6 +83,46 @@ test('Instagram measurement requires consent and excludes URL queries', () => {
   assert.ok(!JSON.stringify(sent).includes('private'));
   assert.equal(h.browserWindow.dataLayer.filter((e) => e[1] === 'instagram_outbound').length, 1);
 });
+
+test('internal journey events use a fixed destination without queries or private input', () => {
+  const click = (h, href) =>
+    h.handlers.click({ target: { closest: () => ({ href, closest: () => null }) } });
+  const h = harness();
+  click(h, 'https://viveconuve.com/camino-a-hyrox.html?secret=value');
+  assert.equal(h.browserWindow.dataLayer, undefined);
+  h.handlers.accept();
+  click(h, 'https://viveconuve.com/camino-a-hyrox.html?secret=value#newsletter');
+  const sent = Array.from(h.browserWindow.dataLayer.at(-1));
+  assert.equal(sent[1], 'journey_click');
+  assert.equal(sent[2].destination, 'newsletter');
+  assert.ok(!JSON.stringify(sent).includes('secret'));
+  const count = h.browserWindow.dataLayer.length;
+  click(h, 'https://viveconuve.com/mi-progreso.html?private=notes');
+  click(h, 'https://another.example/camino-a-hyrox.html');
+  assert.equal(h.browserWindow.dataLayer.length, count);
+});
+
+test('newsletter attempts require public consent and never include the email or form contents', () => {
+  const event = { target: { id: 'sib-form', email: 'private@example.invalid' } };
+  for (const h of [
+    harness(),
+    harness('rejected'),
+    harness('accepted', false, true),
+    harness('accepted', false, false, 'http://localhost:8081'),
+  ]) {
+    h.handlers.submit(event);
+    assert.equal(h.browserWindow.dataLayer, undefined);
+  }
+  const h = harness('accepted');
+  h.handlers.submit(event);
+  const sent = Array.from(h.browserWindow.dataLayer.at(-1));
+  assert.equal(sent[1], 'newsletter_submit');
+  assert.equal(sent[2].page_path, '/');
+  assert.ok(!JSON.stringify(sent).includes('private'));
+  const count = h.browserWindow.dataLayer.length;
+  h.handlers.submit({ target: { id: 'another-form' } });
+  assert.equal(h.browserWindow.dataLayer.length, count);
+});
 test('optional services are not requested before consent', () => {
   const h = harness();
   assert.equal(h.banner.hidden, false);
