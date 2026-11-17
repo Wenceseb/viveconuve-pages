@@ -1,5 +1,42 @@
 # ViveConUve: auditoría y plan de crecimiento
 
+## Estado operativo vigente y criterios de cierre
+
+Actualización del 17/11/2026 después de las tres tandas publicadas. Los apartados siguientes conservan el diagnóstico y los estados históricos de preparación; esta tabla es la referencia actual para ejecutar el plan.
+
+**Publicado:** conexiones Instagram/Facebook; fechas e inscripción de Málaga; recorrido central e interconexión de portada, crónicas, guía y archivo; entrada de Instagram; cuatro tarjetas sociales; newsletter en Camino; eventos con consentimiento y validación pública. Último commit de producción: `61d2e52`. 50 pruebas correctas en ese despliegue. No se han publicado piezas sociales ni crónicas nuevas.
+
+**Siguiente implementación local:** etiqueta oficial de Search Console en el head estático de portada. Token leído directamente del método «Etiqueta HTML» de Google para la propiedad `https://viveconuve.com/` y la cuenta conectada. Sin DNS, servicios nuevos ni dependencia de cookies. Pendiente de aprobación para desplegar y completar la verificación; no implica indexación automática ni garantiza recuperar informes históricos.
+
+| Orden | Pendiente | Qué permite darlo por cerrado | Dependencia |
+|---|---|---|---|
+| 1 | Recuperar Search Console | Propiedad verificada, acceso efectivo y lectura de rendimiento, indexación y sitemap | Desplegar etiqueta oficial y completar verificación de la cuenta |
+| 2 | Operativizar medición y panel | Eventos visibles en informes GA4, dimensiones de destino/ubicación configuradas si se necesitan, altas confirmadas Brevo y 14 días válidos para línea base | Acceso a GA4/Brevo; procesamiento de proveedores; excluir pruebas técnicas |
+| 3 | Activar distribución externa | Bio/enlaces medibles revisados y primer ciclo real de Instagram/Facebook con revisión editorial | Aprobación específica de cambios y publicaciones; material autorizado |
+| 4 | Ejecutar SEO con evidencia | Elegir y mejorar páginas existentes según consultas y medir el siguiente periodo comparable | Search Console, demanda observada y muestra suficiente |
+| 5 | Cobertura AthlonX | Crónica, material multimedia y análisis independiente aprobados, enlazados y difundidos | Competición del 21/11, resultados, relato y permisos reales |
+| 6 | Consolidación 30/60/90 días | Revisiones documentadas, decisiones sobre formatos/páginas y primer dossier comercial con datos verificables | Tiempo de observación y ejecución sostenida |
+| 7 | Continuidad Málaga | Hitos útiles de preparación, experiencia del 17/04/2027 y análisis posterior con datos | Entrenamiento, competición, material real y aprobación editorial |
+
+La infraestructura inicial puede cerrarse antes que el plan de crecimiento. El plan de 90 días requiere ejecutarlo y medirlo durante ese periodo; su continuidad narrativa termina después del debut de abril, cuando pueda hacerse el análisis real. No hay una cifra honesta de porcentaje global completado que mezcle código, acceso a cuentas, publicaciones y resultados de audiencia.
+
+### Entregables del brief
+
+| Entregable | Estado actual |
+|---|---|
+| A. Auditoría | Entregada; pendientes datos actuales de Search Console y CWV de campo. Pruebas técnicas no equivalen a métricas de campo |
+| B. Plan priorizado | Entregado; esta tabla actualiza orden y dependencias |
+| C. Implementación técnica | Tres tandas publicadas y verificadas; recuperación de Search Console preparada en local |
+| D. Distribución | Copys, enlaces UTM, destinos y tarjetas listos; ejecución externa pendiente |
+| E. AthlonX | Estructuras privadas listas; competición, resultados y cobertura definitiva pendientes |
+| F. Camino a Málaga | Página y captación publicadas; continuidad con experiencias reales pendiente |
+| G. Panel | Definiciones y registro semanal listos; informes, línea base y revisión periódica aún por validar |
+| H. Hoja de ruta | Diseñada y en ejecución; evaluaciones 30/60/90 días y continuidad hasta abril pendientes |
+
+**Decisión inmediata:** desbloquear datos y activar distribución. No añadir más herramientas públicas para sustituir el trabajo de atraer lectores. Después del primer ciclo, priorizar lo que traiga lectores pertinentes, conversación o altas confirmadas con esfuerzo sostenible. La monetización de 500–1.000 €/mes continúa como aspiración por validar, no como resultado alcanzado.
+
+---
+
 Fecha: 17/11/2026. Entrega local para revisión. No se ha desplegado, publicado contenido nuevo ni programado redes. Complementa la documentación anterior; no sustituye sus registros históricos.
 
 **Actualización de ejecución:** se implementan también los enlaces contextuales de portada y crónicas hacia el recorrido y Facebook. Una prueba pública consentida confirma respuesta 200 del registro de Metricool y 204 de GA4, sin solicitudes anteriores al consentimiento. Sustituye el estado inicial de «no se ha ejecutado una visita sintética» descrito más abajo. Falta comprobar su aparición en los informes y fijar una línea base; no se considera resuelto el vacío histórico. Evidencia en `validacion-crecimiento-2026-11-17.md`.

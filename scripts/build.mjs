@@ -181,6 +181,10 @@ for (const page of pages) {
       page.canonical || (page.permalink === '/index.html' ? '/' : page.permalink),
       site.url,
     ).href,
+    siteVerification:
+      page.permalink === '/index.html' && site.googleSiteVerification
+        ? `<meta name="google-site-verification" content="${escapeHtml(site.googleSiteVerification)}">`
+        : '',
     socialImage: site.url + socialImage,
     socialImageWidth: Math.min(socialMeta.width, 1600),
     socialImageHeight: Math.round(

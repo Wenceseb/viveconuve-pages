@@ -7,6 +7,20 @@ import { loadPages } from '../scripts/lib/content.mjs';
 import { nodes, attr } from '../scripts/lib/html.mjs';
 const root = resolve(import.meta.dirname, '..');
 
+test('the official Search Console verification is present once in the static home head', async () => {
+  const site = JSON.parse(await readFile(resolve(root, 'content/site.json'), 'utf8'));
+  assert.match(site.googleSiteVerification, /^[A-Za-z0-9_-]{20,100}$/);
+  for (const path of ['index', 'articulos', 'camino-a-hyrox']) {
+    const doc = parse(await readFile(resolve(root, `dist/${path}.html`), 'utf8'));
+    const head = nodes(doc, 'head')[0];
+    const tags = nodes(head, 'meta').filter(
+      (node) => attr(node, 'name') === 'google-site-verification',
+    );
+    assert.equal(tags.length, path === 'index' ? 1 : 0);
+    if (tags.length) assert.equal(attr(tags[0], 'content'), site.googleSiteVerification);
+  }
+});
+
 test('article structured data uses the canonical page and existing local images', async () => {
   for (const page of await loadPages(root)) {
     const html = parse(await readFile(resolve(root, 'dist', page.permalink.slice(1)), 'utf8'));
