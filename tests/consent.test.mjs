@@ -14,6 +14,9 @@ function harness(
     handlers = {},
     memory = { value: saved };
   let reloads = 0;
+  const timers = new Map();
+  const navigations = [];
+  let timerId = 0;
   const buttons = ['accept', 'reject'].map((action) => ({
     dataset: { cookieAction: action },
     addEventListener: (type, fn) => (handlers[action] = fn),
@@ -55,15 +58,67 @@ function harness(
     localStorage: storage,
     location: {
       reload: () => reloads++,
+      assign: (url) => navigations.push(url),
       href: origin + '/?private=value',
       pathname: '/',
     },
     URL,
     encodeURIComponent,
     Date,
+    setTimeout: (fn, delay) => {
+      const id = ++timerId;
+      timers.set(id, { fn, delay });
+      return id;
+    },
+    clearTimeout: (id) => timers.delete(id),
   });
-  return { loaded, scripts, handlers, banner, memory, browserWindow, reloads: () => reloads };
+  return {
+    loaded,
+    scripts,
+    handlers,
+    banner,
+    memory,
+    browserWindow,
+    timers,
+    navigations,
+    reloads: () => reloads,
+  };
 }
+
+test('consented internal navigation waits at most 200ms and follows only once', () => {
+  for (const callbackFirst of [true, false]) {
+    const h = harness('accepted');
+    let prevented = false;
+    h.handlers.click({
+      target: {
+        closest: () => ({
+          href: 'https://viveconuve.com/camino-a-hyrox.html',
+          closest: () => null,
+        }),
+      },
+      preventDefault: () => {
+        prevented = true;
+      },
+    });
+    assert.equal(prevented, true);
+    const timer = [...h.timers.values()][0];
+    assert.equal(timer.delay, 200);
+    const parameters = h.browserWindow.dataLayer.at(-1)[2];
+    if (callbackFirst) parameters.event_callback();
+    timer.fn();
+    parameters.event_callback();
+    assert.deepEqual(h.navigations, ['https://viveconuve.com/camino-a-hyrox.html']);
+  }
+  const h = harness('accepted');
+  h.handlers.click({
+    ctrlKey: true,
+    preventDefault: () => assert.fail('must preserve modified clicks'),
+    target: {
+      closest: () => ({ href: 'https://viveconuve.com/camino-a-hyrox.html', closest: () => null }),
+    },
+  });
+  assert.equal(h.timers.size, 0);
+});
 
 test('Instagram measurement requires consent and excludes URL queries', () => {
   const h = harness();

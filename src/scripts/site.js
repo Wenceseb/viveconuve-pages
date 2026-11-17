@@ -73,13 +73,42 @@
         target.hash === '#newsletter' &&
         ['/', '/index.html', '/camino-a-hyrox.html'].includes(target.pathname);
       const destination = newsletter ? 'newsletter' : destinations[target.pathname];
-      if (destination)
-        window.gtag('event', 'journey_click', {
+      if (destination) {
+        const parameters = {
           page_path: location.pathname,
           destination,
           placement,
           transport_type: 'beacon',
-        });
+        };
+        const sameTabNavigation =
+          target.pathname !== location.pathname &&
+          !event.defaultPrevented &&
+          !event.ctrlKey &&
+          !event.metaKey &&
+          !event.shiftKey &&
+          !event.altKey &&
+          (!event.button || event.button === 0) &&
+          (!link.target || link.target === '_self') &&
+          !link.hasAttribute?.('download') &&
+          typeof event.preventDefault === 'function';
+        if (sameTabNavigation) {
+          event.preventDefault();
+          let followed = false;
+          const follow = () => {
+            if (!followed) {
+              followed = true;
+              location.assign(target.href);
+            }
+          };
+          const fallback = setTimeout(follow, 200);
+          parameters.event_callback = () => {
+            clearTimeout(fallback);
+            follow();
+          };
+          parameters.event_timeout = 200;
+        }
+        window.gtag('event', 'journey_click', parameters);
+      }
       return;
     }
     const instagram =
