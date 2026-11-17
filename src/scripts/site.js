@@ -50,6 +50,42 @@
       }
     });
   }
+  const journeyKey = 'vcv_pending_journey';
+  const journeyDestinations = {
+    '/camino-a-hyrox.html': 'camino',
+    '/atlhonx-cordoba-caliphate-2026.html': 'cordoba',
+    '/10k-santa-fe-2026.html': 'santa_fe',
+    '/hyrox-despues-de-los-50.html': 'guia_hyrox',
+  };
+  function sendPendingJourney() {
+    try {
+      const raw = sessionStorage.getItem(journeyKey);
+      sessionStorage.removeItem(journeyKey);
+      if (!raw) return;
+      const pending = JSON.parse(raw);
+      if (
+        pending.target !== location.pathname ||
+        Date.now() - pending.created > 60000 ||
+        Date.now() < pending.created ||
+        !Number.isFinite(pending.created) ||
+        !/^\/(?:[a-z0-9-]{1,160}\.html)?$/.test(pending.source) ||
+        !['header', 'footer', 'author', 'content'].includes(pending.placement) ||
+        !['camino', 'cordoba', 'santa_fe', 'guia_hyrox', 'newsletter'].includes(
+          pending.destination,
+        ) ||
+        ![journeyDestinations[pending.target], 'newsletter'].includes(pending.destination)
+      )
+        return;
+      window.gtag('event', 'journey_click', {
+        page_path: pending.source,
+        destination: pending.destination,
+        placement: pending.placement,
+        transport_type: 'beacon',
+      });
+    } catch {
+      /* Storage restrictions never block navigation or reading. */
+    }
+  }
   let enabled = false;
   document.addEventListener('click', (event) => {
     const link = event.target.closest?.('a[href]');
@@ -63,16 +99,10 @@
           ? 'author'
           : 'content';
     if (target.origin === new URL(location.href).origin) {
-      const destinations = {
-        '/camino-a-hyrox.html': 'camino',
-        '/atlhonx-cordoba-caliphate-2026.html': 'cordoba',
-        '/10k-santa-fe-2026.html': 'santa_fe',
-        '/hyrox-despues-de-los-50.html': 'guia_hyrox',
-      };
       const newsletter =
         target.hash === '#newsletter' &&
         ['/', '/index.html', '/camino-a-hyrox.html'].includes(target.pathname);
-      const destination = newsletter ? 'newsletter' : destinations[target.pathname];
+      const destination = newsletter ? 'newsletter' : journeyDestinations[target.pathname];
       if (destination) {
         const parameters = {
           page_path: location.pathname,
@@ -89,23 +119,23 @@
           !event.altKey &&
           (!event.button || event.button === 0) &&
           (!link.target || link.target === '_self') &&
-          !link.hasAttribute?.('download') &&
-          typeof event.preventDefault === 'function';
+          !link.hasAttribute?.('download');
         if (sameTabNavigation) {
-          event.preventDefault();
-          let followed = false;
-          const follow = () => {
-            if (!followed) {
-              followed = true;
-              location.assign(target.href);
-            }
-          };
-          const fallback = setTimeout(follow, 200);
-          parameters.event_callback = () => {
-            clearTimeout(fallback);
-            follow();
-          };
-          parameters.event_timeout = 200;
+          try {
+            sessionStorage.setItem(
+              journeyKey,
+              JSON.stringify({
+                source: location.pathname,
+                target: target.pathname,
+                destination,
+                placement,
+                created: Date.now(),
+              }),
+            );
+            return;
+          } catch {
+            /* Fall back to the immediate event when session storage is unavailable. */
+          }
         }
         window.gtag('event', 'journey_click', parameters);
       }
@@ -150,6 +180,7 @@
       };
       window.gtag('js', new Date());
       window.gtag('config', config.analyticsId);
+      sendPendingJourney();
       const script = document.createElement('script');
       script.async = true;
       script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.analyticsId)}`;

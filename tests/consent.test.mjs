@@ -8,6 +8,8 @@ function harness(
   blockedStorage = false,
   privateTool = false,
   origin = 'https://viveconuve.com',
+  sessionMemory = null,
+  pathname = '/',
 ) {
   const loaded = [],
     scripts = [],
@@ -59,9 +61,22 @@ function harness(
     location: {
       reload: () => reloads++,
       assign: (url) => navigations.push(url),
-      href: origin + '/?private=value',
-      pathname: '/',
+      href: origin + pathname + '?private=value',
+      pathname,
     },
+    ...(sessionMemory
+      ? {
+          sessionStorage: {
+            getItem: () => sessionMemory.value,
+            setItem: (key, value) => {
+              sessionMemory.value = value;
+            },
+            removeItem: () => {
+              sessionMemory.value = null;
+            },
+          },
+        }
+      : {}),
     URL,
     encodeURIComponent,
     Date,
@@ -85,39 +100,49 @@ function harness(
   };
 }
 
-test('consented internal navigation waits at most 200ms and follows only once', () => {
-  for (const callbackFirst of [true, false]) {
-    const h = harness('accepted');
-    let prevented = false;
-    h.handlers.click({
-      target: {
-        closest: () => ({
-          href: 'https://viveconuve.com/camino-a-hyrox.html',
-          closest: () => null,
-        }),
-      },
-      preventDefault: () => {
-        prevented = true;
-      },
-    });
-    assert.equal(prevented, true);
-    const timer = [...h.timers.values()][0];
-    assert.equal(timer.delay, 200);
-    const parameters = h.browserWindow.dataLayer.at(-1)[2];
-    if (callbackFirst) parameters.event_callback();
-    timer.fn();
-    parameters.event_callback();
-    assert.deepEqual(h.navigations, ['https://viveconuve.com/camino-a-hyrox.html']);
-  }
-  const h = harness('accepted');
-  h.handlers.click({
-    ctrlKey: true,
-    preventDefault: () => assert.fail('must preserve modified clicks'),
+test('journey continuation is sent once on the destination without delaying navigation', () => {
+  const memory = { value: null };
+  const source = harness(
+    'accepted',
+    false,
+    false,
+    'https://viveconuve.com',
+    memory,
+    '/articulos.html',
+  );
+  source.handlers.click({
     target: {
-      closest: () => ({ href: 'https://viveconuve.com/camino-a-hyrox.html', closest: () => null }),
+      closest: () => ({
+        href: 'https://viveconuve.com/camino-a-hyrox.html?private=value',
+        closest: () => null,
+      }),
     },
   });
-  assert.equal(h.timers.size, 0);
+  assert.ok(memory.value);
+  assert.ok(!memory.value.includes('private'));
+  assert.equal(source.browserWindow.dataLayer.filter((e) => e[1] === 'journey_click').length, 0);
+  const destination = harness(
+    'accepted',
+    false,
+    false,
+    'https://viveconuve.com',
+    memory,
+    '/camino-a-hyrox.html',
+  );
+  const sent = destination.browserWindow.dataLayer.at(-1);
+  assert.equal(sent[1], 'journey_click');
+  assert.equal(sent[2].page_path, '/articulos.html');
+  assert.equal(sent[2].destination, 'camino');
+  assert.equal(memory.value, null);
+  const again = harness(
+    'accepted',
+    false,
+    false,
+    'https://viveconuve.com',
+    memory,
+    '/camino-a-hyrox.html',
+  );
+  assert.equal(again.browserWindow.dataLayer.filter((e) => e[1] === 'journey_click').length, 0);
 });
 
 test('Instagram measurement requires consent and excludes URL queries', () => {
