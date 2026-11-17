@@ -20,19 +20,25 @@ export async function buildSocialCard(root, output, page, manifest) {
     throw new Error(`${page.source}: invalid social card`);
   const layers = [];
   const addText = async (text, size, top, color = '#193b32') => {
-    const input = await sharp({
+    let input = await sharp({
       text: {
         text: `<span foreground="${color}">${escapeHtml(text)}</span>`,
         font: `Barlow Condensed Bold ${size}`,
         fontfile: join(root, 'public/assets/fonts/font-0.ttf'),
+        dpi: 72,
         rgba: true,
       },
     })
       .png()
       .toBuffer();
-    const { width, height } = await sharp(input).metadata();
-    if (width > 640 || top + height > 600)
-      throw new Error(`${page.source}: social card text overflows`);
+    let { width, height } = await sharp(input).metadata();
+    // Font rasterizers can measure the same font differently across platforms.
+    // Fit the complete line rather than crop words or fail the publication.
+    if (width > 640) {
+      input = await sharp(input).resize({ width: 640 }).png().toBuffer();
+      ({ width, height } = await sharp(input).metadata());
+    }
+    if (top + height > 600) throw new Error(`${page.source}: social card text overflows`);
     layers.push({ input, left: 56, top });
   };
   const photo = await sharp(join(root, card.image))

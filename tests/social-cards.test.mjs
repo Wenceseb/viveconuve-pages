@@ -6,8 +6,30 @@ import sharp from 'sharp';
 import { parse } from 'parse5';
 import { loadPages } from '../scripts/lib/content.mjs';
 import { nodes, attr } from '../scripts/lib/html.mjs';
+import { buildSocialCard } from '../scripts/lib/social-cards.mjs';
 
 const root = resolve(import.meta.dirname, '..');
+test('wide editorial lines fit the card without cropping or aborting the build', async () => {
+  const image = '/assets/images/wenceslao-uve.jpg';
+  const output = resolve(root, '.cache/social-card-tests');
+  const result = await buildSocialCard(
+    root,
+    output,
+    {
+      permalink: '/wide-line.html',
+      source: 'test',
+      socialCard: {
+        image,
+        kicker: 'PRUEBA',
+        lines: ['W'.repeat(24)],
+        alt: 'Prueba de ajuste de texto',
+      },
+    },
+    new Map([[image, {}]]),
+  );
+  const info = await sharp(resolve(output, '.' + result.url)).metadata();
+  assert.deepEqual([info.width, info.height], [1200, 630]);
+});
 test('social previews point to real images with accurate dimensions, alt text and clean canonical URLs', async () => {
   let cards = 0;
   for (const page of await loadPages(root)) {
