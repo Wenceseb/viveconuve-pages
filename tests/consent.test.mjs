@@ -176,6 +176,9 @@ test('internal journey events use a fixed destination without queries or private
   assert.equal(sent[1], 'journey_click');
   assert.equal(sent[2].destination, 'newsletter');
   assert.ok(!JSON.stringify(sent).includes('secret'));
+  click(h, 'https://viveconuve.com/athlonx-fuengirola-2026-cronica.html?secret=value');
+  assert.equal(h.browserWindow.dataLayer.at(-1)[2].destination, 'fuengirola');
+  assert.ok(!JSON.stringify(h.browserWindow.dataLayer.at(-1)).includes('secret'));
   const count = h.browserWindow.dataLayer.length;
   click(h, 'https://viveconuve.com/mi-progreso.html?private=notes');
   click(h, 'https://another.example/camino-a-hyrox.html');

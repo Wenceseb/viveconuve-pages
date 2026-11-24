@@ -1,5 +1,7 @@
 # Paquete editorial privado: Fuengirola → Málaga
 
+**Estado vigente, 24/11/2026:** la crónica ya está publicada en `/athlonx-fuengirola-2026-cronica.html`. No crear la URL propuesta más abajo ni duplicar el artículo. Las estructuras siguientes son antecedentes del encargo y no datos para completar por suposición. El texto aprobado de Fuengirola excluye tiempos, objetivos cronométricos y número de participantes de su grupo. Las próximas piezas pasan por la revisión de Uve antes de publicación, según `mantenimiento-editorial.md`.
+
 Estado: estructuras para completar y revisar. Este archivo no se compila ni publica. Ninguna frase pendiente constituye una experiencia atribuida a Uve.
 
 ## Crónica AthlonX Fuengirola

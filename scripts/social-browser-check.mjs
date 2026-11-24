@@ -34,7 +34,10 @@ try {
       await page.locator('link[rel="canonical"]').getAttribute('href'),
       'https://viveconuve.com/desde-instagram.html',
     );
-    assert.equal(await page.locator('main a').first().getAttribute('href'), '/camino-a-hyrox.html');
+    assert.equal(
+      await page.locator('main a').first().getAttribute('href'),
+      '/athlonx-fuengirola-2026-cronica.html',
+    );
     await page.locator('[data-cookie-action="reject"]').click();
     assert.equal(
       await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
@@ -51,7 +54,8 @@ try {
       fullPage: true,
     });
     await page.locator('main a').first().click();
-    assert.equal(new URL(page.url()).pathname, '/camino-a-hyrox.html');
+    assert.equal(new URL(page.url()).pathname, '/athlonx-fuengirola-2026-cronica.html');
+    await page.getByRole('link', { name: 'el camino a HYROX Málaga 2027', exact: true }).click();
     const card = await page.locator('meta[property="og:image"]').getAttribute('content');
     await page.goto(origin + new URL(card).pathname);
     const size = await page.locator('img').evaluate((img) => [img.naturalWidth, img.naturalHeight]);

@@ -53,6 +53,7 @@
   const journeyKey = 'vcv_pending_journey';
   const journeyDestinations = {
     '/camino-a-hyrox.html': 'camino',
+    '/athlonx-fuengirola-2026-cronica.html': 'fuengirola',
     '/atlhonx-cordoba-caliphate-2026.html': 'cordoba',
     '/10k-santa-fe-2026.html': 'santa_fe',
     '/hyrox-despues-de-los-50.html': 'guia_hyrox',
@@ -70,7 +71,7 @@
         !Number.isFinite(pending.created) ||
         !/^\/(?:[a-z0-9-]{1,160}\.html)?$/.test(pending.source) ||
         !['header', 'footer', 'author', 'content'].includes(pending.placement) ||
-        !['camino', 'cordoba', 'santa_fe', 'guia_hyrox', 'newsletter'].includes(
+        !['camino', 'fuengirola', 'cordoba', 'santa_fe', 'guia_hyrox', 'newsletter'].includes(
           pending.destination,
         ) ||
         ![journeyDestinations[pending.target], 'newsletter'].includes(pending.destination)

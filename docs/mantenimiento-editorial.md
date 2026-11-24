@@ -1,5 +1,21 @@
 # Mantener ViveConUve
 
+## Revisión del propietario antes de publicar
+
+Desde el 24/11/2026, preparar las nuevas piezas y las tandas de cambios editoriales en local y mostrar a Uve el texto final y una vista previa antes de publicar. La petición de empezar una tanda permite implementarla y comprobarla; la aprobación de publicación se solicita sobre el resultado concreto. Las pruebas técnicas no sustituyen esa revisión. No enviar a `main` ni activar GitHub Pages hasta recibirla.
+
+Antes de presentar la revisión:
+
+1. Buscar coincidencias por evento, fecha, slug y borradores; conservar las URL existentes.
+2. Releer el texto completo: tildes, puntuación, nombres, voz del autor y posibles afirmaciones sin fuente. «Guion» se escribe sin tilde. Distinguir un criterio de estilo de una falta ortográfica.
+3. Contrastar fecha del evento y publicación, resultado, categoría, imágenes y enlaces. No inventar sesiones, recuperación, cargas, tiempos ni testimonios.
+4. Revisar portada, archivo, diario, entrada desde Instagram, información personal y competición. Mantener el contexto de los relatos históricos; actualizar los bloques que describen el estado actual.
+5. Revisar título SEO, descripción, H1, canonical, imagen social, texto alternativo y sitemap/RSS. No prometer indexación ni posiciones.
+6. Ejecutar las comprobaciones del proyecto, revisar móvil y escritorio y adjuntar capturas. En pruebas de newsletter interceptar los envíos; cualquier alta real requiere un correo de prueba autorizado y su consentimiento.
+7. Presentar archivos y textos cambiados, comprobaciones, límites y vista previa. Tras la aprobación, publicar y verificar HTTPS, enlaces y contenido en producción.
+
+Fuengirola ya tiene crónica: `/athlonx-fuengirola-2026-cronica.html`, publicada el 24/11/2026 sobre el evento del 21/11. Resultado: **1.º Open GGEE +55 masculino**. No crear otra URL de ese relato. No añadir tiempos ni número de participantes de su grupo. HYROX Málaga conserva la fecha del 17/04/2027.
+
 ## Publicar una actualización del diario
 
 1. Edita `content/pages/camino-a-hyrox.html`. Añade un bloque `article.journal-entry` antes del anterior; conserva las entradas anteriores con sus fechas.

@@ -1333,3 +1333,6 @@ main > .story-prose {
 .v2 main .tool-nav a {
   color: #fff;
 }
+.bio-feature img.bio-podium {
+  height: auto;
+}
