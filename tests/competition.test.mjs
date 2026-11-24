@@ -18,7 +18,9 @@ test('the owner-corrected first competition date is used across the site', async
   assert.equal(data.goal.date, '2027-04-17');
   assert.equal(data.goal.period, '2027');
   assert.ok(!data.goal.month);
-  assert.equal(data.next.status, 'registered');
+  assert.equal(data.next.status, 'completed');
+  assert.equal(data.next.result, '1.º Open GGEE +55 masculino');
+  assert.equal(data.next.recap, '/athlonx-fuengirola-2026-cronica.html');
   assert.equal(data.next.date, '2026-11-21');
   assert.ok(!data.goal.result);
 });
